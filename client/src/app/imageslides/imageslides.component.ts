@@ -10,6 +10,8 @@ export class ImageslidesComponent implements OnInit {
   pic2='/assets/images/pic2.jpg';
   pic3='/assets/images/pic3.jpg';
 
+  
+
   constructor() { }
 
   ngOnInit() {
