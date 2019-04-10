@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AlertModule } from 'ngx-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MaterialModule } from './material.module';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './navBar/navBar.component';
@@ -40,6 +41,7 @@ import { BookingComponent } from './Booking/Booking.component';
       RouterModule.forRoot(appRoutes),
       AlertModule.forRoot(),
       BrowserAnimationsModule,
+      MaterialModule,
  
       CarouselModule.forRoot()
    ],
