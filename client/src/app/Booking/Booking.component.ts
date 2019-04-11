@@ -12,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
 export class BookingComponent implements OnInit {
   
 
-  hall1='/assets/images/hall1.jpg';
+hall1='/assets/images/hall1.jpg';
 hall2='/assets/images/hall2.jpg';
 royalRose='/assets/images/royalRose.jpg';
 

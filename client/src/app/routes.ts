@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { MenuesComponent } from './menues/menues.component';
 import { BookingComponent } from './Booking/Booking.component';
 import { RegisterComponent } from './register/register.component';
+import { BookingTulipComponent } from './BookingTulip/BookingTulip.component';
 
 export const appRoutes: Routes=[
   {path:'halls',component:HallDetailComponent},
@@ -17,6 +18,7 @@ export const appRoutes: Routes=[
   {path:'menues',component:MenuesComponent},
   {path:'booking',component:BookingComponent},
   {path: 'register', component:RegisterComponent},
+  {path: 'BookingTulip', component:BookingTulipComponent},
   {path:'',component:HomeComponent},
   {path:'**',redirectTo:'',pathMatch:'full'}
 
