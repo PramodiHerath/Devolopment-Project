@@ -2,14 +2,14 @@
     padding-bottom: 1%;
 }
 .square-box5 {
-    width: 500px;
-    height: 500px;
+    /* width: 500px; */
+    height: 400px;
     background-image: linear-gradient(to right bottom, #de8d7c, #e7987c, #f0a47c, #f6b17d, #fbbe7f);
 }
 
 .square-box4 {
     background-image: url('/assets/images/menues.jpg');
-    width: 500px;
+    /* width: 500px; */
     height: 400px;
     
     background-repeat: no-repeat;

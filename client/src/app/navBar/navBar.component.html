@@ -3,7 +3,7 @@
 <div class="container">
   <nav class="navbar fixed-top navbar-expand-lg bg-dark navbar-dark navbar-shady">
     <a class="navbar-brand" href="#">
-      <img width="100" height="100" alt="" src={{logo}}>
+      <img width="50" height="50" alt="" src={{logo}}>
     </a>
   
     <button class="navbar-toggler" type="button"
@@ -33,10 +33,12 @@
         <li><a href="#" class="nav-link " [routerLink]="['/login']"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li><a href="#" class="nav-link " [routerLink]="['/login']"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul>
+      
       <form class="form-inline mt-2 mt-md-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" style="margin-left:5em;">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
+    
     </div>
   </nav>
   </div>
