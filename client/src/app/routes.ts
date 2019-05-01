@@ -10,7 +10,7 @@ import { BookingComponent } from './Booking/Booking.component';
 import { RegisterComponent } from './register/register.component';
 import { BookingTulipComponent } from './BookingTulip/BookingTulip.component';
 
-export const appRoutes: Routes=[
+export const appRoutes: Routes= [
   {path:'halls',component:HallDetailComponent},
   {path:'packages',component:PackageComponent},
   {path:'services',component:ServicesComponent},

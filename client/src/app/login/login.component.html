@@ -1,63 +1,48 @@
 <div fxLayout="row" fxLayoutAlign="center center" class="login-main">
 
-
-    <mat-card >
-    
-    
+<mat-card >
     <mat-card-header>
+
+          <mat-card-title>Login</mat-card-title>
     
-    
-       <mat-card-title>Login Page</mat-card-title>
-    
-    
-    </mat-card-header>
-    
-    
+     </mat-card-header>
+
+
     <mat-card-content fxLayout="column">
 
-    
-    
-       <mat-form-field>
-    
-    
-         <input matInput placeholder="Email">
-    
-    
-       </mat-form-field>
-    
-    
-       <mat-form-field>
-    
-    
-         <input type="password" matInput placeholder="password">
-    
-    
-       </mat-form-field>
-    
-    
-    </mat-card-content>
-    
-    
-    <mat-card-actions align="end">
-    
-    
-       <button [routerLink]="['/BookingTulip'] "mat-raised-button color="primary">Login</button>
-       
-    
-    
-    </mat-card-actions>
+          <form [formGroup]="loginForm">
+               <mat-form-field hintLabel="Max 10 characters" appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput
+                    placeholder="Email" formControlName="email">
+                    <mat-error *ngIf="loginForm.get('email').touched && loginForm.get('email').invalid"></mat-error>
+                    <mat-error *ngIf="loginForm.get('email').errors.required">Email is required</mat-error>
+                    <mat-error *ngIf="loginForm.get('email').errors.email">Email address invalid</mat-error>
+               </mat-form-field> 
+               <br>
+               <mat-form-field hintLabel="Min 8 characters" appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input  type="password" 
+                    matInput placeholder="password" formControlName="password">
+                    <mat-error *ngIf="loginForm.get('password').touched && loginForm.get('password').invalid"></mat-error>
+                    <mat-error *ngIf="loginForm.get('password').errors.required">password is required</mat-error>
+               </mat-form-field>
 
-    <mat-card-actions align="end" style="position: relative">
-    
-    
-        
-        <a [routerLink]="['/login']" style="text-align: left;">Forgot Password?</a>
-     
-     
+          </form>
+
+     </mat-card-content>
+
+     <mat-card-actions align="end">
+         <button [routerLink]="['/BookingTulip'] "mat-raised-button color="primary">Login</button>
      </mat-card-actions>
+
+     <mat-card-actions align="end" style="position: relative">
+          <a [routerLink]="['/login']" style="text-align: left;">Forgot Password?</a>
+           </mat-card-actions>
+
     
+         
+
     
-    </mat-card>
-    
-    
-    </div>
+</mat-card>
+</div>

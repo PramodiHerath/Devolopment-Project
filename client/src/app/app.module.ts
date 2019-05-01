@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { AlertModule } from 'ngx-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module'
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
@@ -26,6 +26,7 @@ import { MenuesComponent } from './menues/menues.component';
 import { BookingComponent } from './Booking/Booking.component';
 import { RegisterComponent } from './register/register.component';
 import { BookingTulipComponent } from './BookingTulip/BookingTulip.component';
+import { TentativeBookingFormComponent } from './tentativeBookingForm/tentativeBookingForm.component';
 
 
 
@@ -44,7 +45,7 @@ import { BookingTulipComponent } from './BookingTulip/BookingTulip.component';
       BookingComponent,
       RegisterComponent,
       BookingTulipComponent,
-      
+      TentativeBookingFormComponent
    ],
    imports: [
       BrowserModule,
@@ -54,6 +55,7 @@ import { BookingTulipComponent } from './BookingTulip/BookingTulip.component';
       MaterialModule,
       FormsModule,
       FlexLayoutModule,
+      ReactiveFormsModule,
       BsDatepickerModule.forRoot(),
       CarouselModule.forRoot()
    ],
