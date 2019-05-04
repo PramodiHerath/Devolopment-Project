@@ -1,27 +1,25 @@
 
-
-
 <div class="">
     
   <carousel>
     
       <slide>
-        <img src={{pic1}} alt="First slide" style="display: block; width: 100%;">
+        <img src={{pic1}} alt="First slide" class="img-responsive center-block" style="display: block; width: 100%;">
       </slide>
 
       <slide>
-        <img src={{pic2}} alt="Second slide" style="display: block; width: 100%;">
+        <img src={{pic2}} alt="Second slide" class="img-responsive center-block" style="display: block; width: 100%;">
       </slide>
 
       <slide>
-        <img src={{pic3}} alt="Third slide" style="display: block; width: 100%;">
+        <img src={{pic3}} alt="Third slide" class="img-responsive center-block" style="display: block; width: 100%;">
       </slide>
 
       <div class="carousel-caption">
           <div class="carousal-inner">
             <form class="form-inline">
               <div class="form-group">
-                <button [routerLink]="['/booking']" name="BookNow" class="btn btn-primary" required="required">Book Now</button>
+                <button [routerLink]="['/booking']" name="BookNow" class="btn btn-primary btn-xl" required="required">Book Now</button>
               </div>
             </form>
           </div>

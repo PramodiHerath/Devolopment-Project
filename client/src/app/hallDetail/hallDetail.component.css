@@ -1,0 +1,17 @@
+
+.booking-wrapper {
+    background-color:#ffcccc;
+    padding: 5px 0;
+    opacity: 0.75;
+    /* position: absolute; */
+    z-index: 9998;
+    /* bottom: 0; */
+    width: 100%;
+    height: 150px;
+}
+.btn-xl {
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 10px;
+    width:100%;    
+}

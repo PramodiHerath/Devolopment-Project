@@ -11,34 +11,38 @@
     <mat-card-content fxLayout="column">
 
           <form [formGroup]="loginForm">
-               <mat-form-field hintLabel="Max 10 characters" appearance="outline">
+               <mat-form-field hintLabel="Enter a valid Email Address" appearance="outline">
                     <mat-label>Email</mat-label>
                     <input matInput
                     placeholder="Email" formControlName="email">
                     <mat-error *ngIf="loginForm.get('email').touched && loginForm.get('email').invalid"></mat-error>
                     <mat-error *ngIf="loginForm.get('email').errors.required">Email is required</mat-error>
                     <mat-error *ngIf="loginForm.get('email').errors.email">Email address invalid</mat-error>
-               </mat-form-field> 
+               </mat-form-field>
+                
                <br>
+
                <mat-form-field hintLabel="Min 8 characters" appearance="outline">
                     <mat-label>Password</mat-label>
-                    <input  type="password" 
-                    matInput placeholder="password" formControlName="password">
+                    <input matInput type="password" 
+                     placeholder="password" formControlName="password">
                     <mat-error *ngIf="loginForm.get('password').touched && loginForm.get('password').invalid"></mat-error>
                     <mat-error *ngIf="loginForm.get('password').errors.required">password is required</mat-error>
                </mat-form-field>
+
+               <mat-card-actions align="end">
+                    <button (click)="getTentativeBookingForm()" mat-raised-button color="primary">Login</button>
+               </mat-card-actions>
 
           </form>
 
      </mat-card-content>
 
-     <mat-card-actions align="end">
-         <button [routerLink]="['/BookingTulip'] "mat-raised-button color="primary">Login</button>
-     </mat-card-actions>
+     
 
      <mat-card-actions align="end" style="position: relative">
-          <a [routerLink]="['/login']" style="text-align: left;">Forgot Password?</a>
-           </mat-card-actions>
+          <a style="text-align: left;">Forgot Password?</a>
+     </mat-card-actions>
 
     
          

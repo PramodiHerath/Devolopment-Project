@@ -7,7 +7,7 @@ import { MaterialModule } from './material.module'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 
 import { AppComponent } from './app.component';
@@ -57,6 +57,7 @@ import { TentativeBookingFormComponent } from './tentativeBookingForm/tentativeB
       FlexLayoutModule,
       ReactiveFormsModule,
       BsDatepickerModule.forRoot(),
+      ButtonsModule.forRoot(),
       CarouselModule.forRoot()
    ],
    providers: [],

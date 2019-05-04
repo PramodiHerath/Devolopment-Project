@@ -14,6 +14,9 @@ export class LoginComponent implements OnInit {
       
     }
     )
+    getTentativeBookingForm(){
+      
+    }
     
   constructor() { }
 
