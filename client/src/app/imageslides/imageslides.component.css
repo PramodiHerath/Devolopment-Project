@@ -2,7 +2,11 @@
     padding: 10px 20px;
     font-size: 20px;
     border-radius: 10px;
-    width:100%;    
+    border-color: #846837;
+    width:100%;
+    background-color: antiquewhite;
+    color: #846837
+
 }
 .slideHeight{
     height: 75%;

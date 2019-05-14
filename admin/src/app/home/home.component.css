@@ -1,0 +1,107 @@
+.spacing {
+    padding-bottom: 1%;
+}
+
+
+
+.inner-circle-long {
+    background: url(/assets/images/circle.png) no-repeat center center;
+    height: 100%;
+    width: 100%;
+    min-height: 432px;
+    position: relative;
+}
+.box1 {
+    background-image:url(/assets/images/halls.jpg);
+    min-height: 576px;
+    height: auto;
+    margin-right: 1.5%;
+    width: 32%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.box2 {
+    background-image: url(/assets/images/receptionist.jpg);
+    min-height: 576px;
+    height: auto;
+    margin-right: 1.5%;
+    width:  32%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.box3 {
+    background-image: url(/assets/images/services.jpg);
+    min-height: 576px;
+    height: auto;
+    
+    width:  32%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.box4 {
+    background-image: url(/assets/images/menus.jpg);
+    min-height: 576px;
+    margin-right: 1%;
+    height: auto;
+    width:  32%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.standard-pos {
+    position: absolute;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+    color: #846837;
+    text-align: center;
+    font-size: 28px;
+    text-transform: uppercase;
+    top: 50%;
+    left: 50%;
+    margin-left: -73px;
+    margin-top: -9px;
+}
+.deluxe {
+    position: absolute;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+    color: #846837;
+    text-align: center;
+    font-size: 28px;
+    text-transform: uppercase;
+    top: 50%;
+    left: 50%;
+    margin-top: -9px;
+    margin-left: -49px;
+}
+.superior-laggon-pos {
+    position: absolute;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+    color: #846837;
+    text-align: center;
+    font-size: 28px;
+    text-transform: uppercase;
+    top: 50%;
+    left: 50%;
+    margin-top: -19px;
+    margin-left: -69px;
+}
+.executive-pos {
+    position: absolute;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+    color: #846837;
+    text-align: center;
+    font-size: 28px;
+    text-transform: uppercase;
+    top: 50%;
+    left: 50%;
+    margin-left: -72px;
+    margin-top: -9px;
+}

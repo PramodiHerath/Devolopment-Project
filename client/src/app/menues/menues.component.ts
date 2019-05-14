@@ -8,6 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class MenuesComponent implements OnInit {
 
   constructor() { }
+  pic1='/assets/images/royalRose.jpg';
+  pic2='/assets/images/pic2.jpg';
+  pic3='/assets/images/pic3.jpg';
+
+  royalSilver= '/assets/images/royalSilver.jpg';
+  royalGold= '/assets/images/royalGold.jpg';
+  royalPlatinum= '/assets/images/royalPlatinum.jpg';
 
   ngOnInit() {
   }

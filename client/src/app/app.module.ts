@@ -27,6 +27,7 @@ import { BookingComponent } from './Booking/Booking.component';
 import { RegisterComponent } from './register/register.component';
 import { BookingTulipComponent } from './BookingTulip/BookingTulip.component';
 import { TentativeBookingFormComponent } from './tentativeBookingForm/tentativeBookingForm.component';
+import { MenuDetailComponent } from './menuDetail/menuDetail.component';
 
 
 
@@ -45,7 +46,8 @@ import { TentativeBookingFormComponent } from './tentativeBookingForm/tentativeB
       BookingComponent,
       RegisterComponent,
       BookingTulipComponent,
-      TentativeBookingFormComponent
+      TentativeBookingFormComponent,
+      MenuDetailComponent
    ],
    imports: [
       BrowserModule,
