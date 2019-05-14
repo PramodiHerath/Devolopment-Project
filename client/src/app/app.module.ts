@@ -28,6 +28,7 @@ import { RegisterComponent } from './register/register.component';
 import { BookingTulipComponent } from './BookingTulip/BookingTulip.component';
 import { TentativeBookingFormComponent } from './tentativeBookingForm/tentativeBookingForm.component';
 import { MenuDetailComponent } from './menuDetail/menuDetail.component';
+import { RoyalSilverComponent } from './royalSilver/royalSilver.component';
 
 
 
@@ -47,7 +48,8 @@ import { MenuDetailComponent } from './menuDetail/menuDetail.component';
       RegisterComponent,
       BookingTulipComponent,
       TentativeBookingFormComponent,
-      MenuDetailComponent
+      MenuDetailComponent,
+      RoyalSilverComponent
    ],
    imports: [
       BrowserModule,

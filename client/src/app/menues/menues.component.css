@@ -13,6 +13,22 @@
     background-image: url('/assets/images/menues.jpg');
     width: 32%;
     height: 450px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.square-box6 {
+    background-image: url('/assets/images/services.jpg');
+    width: 32%;
+    height: 750px;
+    
+    background-repeat: no-repeat;
+   
+    background-position: center;
+}
+.square-box8 {
+    background-image: url('/assets/images/decoration.jpg');
+    width: 32%;
+    height: 550px;
     
     background-repeat: no-repeat;
    
@@ -76,3 +92,37 @@ div {
     color: #846837
 }
 
+.card-text{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    color: #de8d7c;
+    text-align: center
+}
+.square-box7 {
+    background-color: #de9e0929;
+    min-height: 576px;
+    height: auto;
+    width: 66%;
+    margin-right: 1%;
+}
+.left-heading {
+    text-align: center;
+    color: #846837;
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+}
+.menus-list-style {
+    font-size: 18px;
+    color: #846837;
+    font-family: 'Raleway', sans-serif;
+    margin-left: 5%;
+    line-height: 27px;
+}
+.menu-para-text {
+    font-size: 18px;
+    color: #846837;
+    font-family: 'Raleway', sans-serif;
+    line-height: 29px;
+    margin-left: 2%;
+    margin-bottom: 27px;
+}
