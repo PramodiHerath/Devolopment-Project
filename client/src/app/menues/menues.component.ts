@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {Router} from '@angular/router';
 @Component({
   selector: 'menues',
   templateUrl: './menues.component.html',
@@ -15,13 +15,21 @@ export class MenuesComponent implements OnInit {
   silverPrice=3250;
   goldPrice=4340;
   platinumPrice=5190;
-  
-  constructor() { }
+
   royalSilver= '/assets/images/royalSilver.jpg';
   royalGold= '/assets/images/royalGold.jpg';
   royalPlatinum= '/assets/images/royalPlatinum.jpg';
+  
+  constructor(private router: Router) {
 
+   }
+ 
+  bringTable(){
+    this.router.navigate(['/royalSilver'])
+  }
   ngOnInit() {
+
+   
   }
 
 }

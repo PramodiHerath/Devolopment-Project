@@ -5,8 +5,18 @@
     width: 32%;
     height: 450px;
     background-image: linear-gradient(to right bottom, #de8d7c, #e7987c, #f0a47c, #f6b17d, #fbbe7f);
+    
     margin-right: 1%;
     margin-left: 1%
+}
+
+.logoBox{
+    width: 99%;
+    height: 450px;
+    
+    
+    /* margin-right: 1%;
+    margin-left: 1% */
 }
 
 .square-box4 {

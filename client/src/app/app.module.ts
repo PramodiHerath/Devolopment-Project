@@ -29,6 +29,7 @@ import { BookingTulipComponent } from './BookingTulip/BookingTulip.component';
 import { TentativeBookingFormComponent } from './tentativeBookingForm/tentativeBookingForm.component';
 import { MenuDetailComponent } from './menuDetail/menuDetail.component';
 import { RoyalSilverComponent } from './royalSilver/royalSilver.component';
+import { CheckboxFormatDirective } from './checkbox-format.directive';
 
 
 
@@ -49,7 +50,8 @@ import { RoyalSilverComponent } from './royalSilver/royalSilver.component';
       BookingTulipComponent,
       TentativeBookingFormComponent,
       MenuDetailComponent,
-      RoyalSilverComponent
+      RoyalSilverComponent,
+      CheckboxFormatDirective
    ],
    imports: [
       BrowserModule,

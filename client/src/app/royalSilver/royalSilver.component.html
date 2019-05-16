@@ -1,3 +1,44 @@
-<p>
-  royalSilver works!
-</p>
+
+<br>
+<br>
+<br>
+<br>
+<form>
+<div class="table-responsive">
+<table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col" hidden>CategoryId</th>
+      <th scope="col">Category</th>
+      <th scope="col">Item Name</th>
+      <th scope="col">Category price</th>
+      <th scope="col">Compulsory choice</th>
+      <th scope="col">Additional choices<br><span style="font-size: 15px;">(This will add 1*Categry Price per each item)</span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="table-active" *ngFor="let items of menus">
+      <td>{{items.menuItems[0].CategoryName}}</td>
+      <td>{{items.menuItems[0].CategoryName}}</td>
+      <td>{{items.menuItems[0].CategoryName}}</td>
+      <td>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" value=""(onclick)="increment()" [disabled]="checkValidity()"> <br>Choose Item
+          </label>
+        </div>
+      </td>
+      
+      <td>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" value=""(onclick)="incrementChioce()" [disabled]="checkValidityCoice()"> <br>Choose Item
+          </label>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</form>
