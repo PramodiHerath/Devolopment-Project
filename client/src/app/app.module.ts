@@ -9,6 +9,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './navBar/navBar.component';
@@ -62,6 +64,7 @@ import { CheckboxFormatDirective } from './checkbox-format.directive';
       FormsModule,
       FlexLayoutModule,
       ReactiveFormsModule,
+      PdfViewerModule,
       BsDatepickerModule.forRoot(),
       ButtonsModule.forRoot(),
       CarouselModule.forRoot()
