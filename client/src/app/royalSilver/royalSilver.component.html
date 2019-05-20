@@ -21,14 +21,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="table-active" *ngFor="let drink of royalSilverDrink">
+      <tr class="table-active" *ngFor="let drink of royalSilverDrink; index as i ">
         <td>{{drink.CategoryName}}</td>
         <td>{{drink.ItemName}}</td>
-        <td>{{drink.ItemPrice}}</td>
+        <td>{{drink.CategoryPrice}}</td>
         <td>
           <div class="form-check">
             <label class="form-check-label">
-              <input type="checkbox" class="form-check-input" value=""(onclick)="increment()" [disabled]="checkValidity()"> <br>Choose Item
+              <input  type="checkbox" id="compulsoryCheckbox" class="form-check-input" value="" (click)="increment($event)" [disabled]="checkValidity()"> <br>Choose Item
             </label>
           </div>
         </td>
@@ -36,7 +36,7 @@
         <td>
           <div class="form-check">
             <label class="form-check-label">
-              <input type="checkbox" class="form-check-input" value=""(onclick)="incrementChioce()" [disabled]="checkValidityCoice()"> <br>Choose Item
+              <input type="checkbox" class="form-check-input" value="" (click)="incrementChioce()" [disabled]="checkValidityCoice()"> <br>Choose Item
             </label>
           </div>
         </td>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { isNgTemplate } from '@angular/compiler';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { EventManager } from '@angular/platform-browser';
 @Component({
   selector: 'royalSilver',
   templateUrl: './royalSilver.component.html',
@@ -8,10 +9,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class RoyalSilverComponent implements OnInit {
 
-  constructor() { }
+  constructor(private eventManager: EventManager) { 
+    
+  }
 
   menu:any;
-  checkBoxCount:any;
+  checkBoxCount:number=0;
   royalSilver:any;
   royalSilverDrink=[];
   royalSilverSalad=[];
@@ -23,6 +26,37 @@ export class RoyalSilverComponent implements OnInit {
   royalSilverCondiments=[];
   royalSilverDesserts=[];
   num:number=0;
+  
+  increment(event: Event){
+
+    const checkbox = event.target as HTMLInputElement;
+
+  if (checkbox.checked) {
+    this.checkBoxCount++;
+    
+  }
+  else if(!checkbox.checked){
+    this.checkBoxCount--;
+    
+  }
+    
+  }
+  
+  checkValidity(){
+    if(this.checkBoxCount>=2){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+  incrementChioce(){
+  
+  }
+  
+  checkValidityCoice(){
+  
+  }
 
   displayRoyalSilver(){
     
@@ -56,12 +90,9 @@ export class RoyalSilverComponent implements OnInit {
           this.royalSilverDesserts.push(this.menu.MenuItems[this.num]);
               }
      
-     
-
-  }
- 
+     }
+ }
   
-  }
 
 
 
@@ -84,22 +115,13 @@ export class RoyalSilverComponent implements OnInit {
 this.displayRoyalSilver();
 
 
+
+
 }
 
 
-increment(){
-this.num++;
-}
-checkValidity(){
-// if(this.num==this.royalSilverDrink.ChoiceOf)
-}
-incrementChioce(){
 
-}
 
-checkValidityCoice(){
-
-}
 
 
 
