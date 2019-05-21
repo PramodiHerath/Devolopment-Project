@@ -32,6 +32,9 @@ import { TentativeBookingFormComponent } from './tentativeBookingForm/tentativeB
 import { MenuDetailComponent } from './menuDetail/menuDetail.component';
 import { RoyalSilverComponent } from './royalSilver/royalSilver.component';
 import { CheckboxFormatDirective } from './checkbox-format.directive';
+import { PlanEventComponent } from './planEvent/planEvent.component';
+import { RoyalGoldComponent } from './royalGold/royalGold.component';
+import { RoyalPlatinumComponent } from './royalPlatinum/royalPlatinum.component';
 
 
 
@@ -53,7 +56,10 @@ import { CheckboxFormatDirective } from './checkbox-format.directive';
       TentativeBookingFormComponent,
       MenuDetailComponent,
       RoyalSilverComponent,
-      CheckboxFormatDirective
+      CheckboxFormatDirective,
+      PlanEventComponent,
+      RoyalGoldComponent,
+      RoyalPlatinumComponent
    ],
    imports: [
       BrowserModule,

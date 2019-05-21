@@ -39,7 +39,7 @@
     background-image: url('/assets/images/decoration.jpg');
     width: 32%;
     height: 550px;
-    
+    margin-top: 1%;
     background-repeat: no-repeat;
    
     background-position: center;
@@ -90,7 +90,7 @@ div {
     border-radius: 10px;
     border-color: #846837;
     width:100%;
-    background-color: antiquewhite;
+    background-color: rgb(231, 198, 154);
     color: #846837
 
 }

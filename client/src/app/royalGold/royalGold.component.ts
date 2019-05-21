@@ -1,32 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { isNgTemplate } from '@angular/compiler';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'royalSilver',
-  templateUrl: './royalSilver.component.html',
-  styleUrls: ['./royalSilver.component.css']
+  selector: 'royalGold',
+  templateUrl: './royalGold.component.html',
+  styleUrls: ['./royalGold.component.css']
 })
-export class RoyalSilverComponent implements OnInit {
+export class RoyalGoldComponent implements OnInit {
 
-  constructor() { 
-    
-  }
+  constructor() { }
 
   menu:any;
   checkBoxCountDrink:number=0;
   checkBoxCountDrinkChoice:number=0;
   drinkAditionalChoice:number=0;
-  royalSilver:any;
-  royalSilverDrink=[];
-  royalSilverSalad=[];
-  royalSilverDressing=[];
-  royalSilverRice=[];
-  royalSilverChicken=[];
-  royalSilverFish=[];
-  royalSilverVegitable=[];
-  royalSilverCondiments=[];
-  royalSilverDesserts=[];
+  royalGold:any;
+  royalGoldDrink=[];
+  royalGoldSalad=[];
+  royalGoldDressing=[];
+  royalGoldRice=[];
+  royalGoldChicken=[];
+  royalGoldFish=[];
+  royalGoldVegitable=[];
+  royalGoldCondiments=[];
+  royalGoldDesserts=[];
   
  
   
@@ -46,7 +42,7 @@ export class RoyalSilverComponent implements OnInit {
   }
   
   checkValidityDrink(){
-    if(this.checkBoxCountDrink>=1){
+    if(this.checkBoxCountDrink>=this.royalGoldDrink[0].choiceOf){
       return true;
     }
     else{
@@ -73,36 +69,36 @@ export class RoyalSilverComponent implements OnInit {
   
   }
 
-  displayRoyalSilver(){
+  displayRoyalGold(){
     
     for (let i = 0; i<this.menu.MenuItems.length ; i++) {
   
       if(this.menu.MenuItems[i].CategoryId==1){
-        this.royalSilverDrink.push(this.menu.MenuItems[i]);
+        this.royalGoldDrink.push(this.menu.MenuItems[i]);
               }
         else if(this.menu.MenuItems[i].CategoryId==2){
-          this.royalSilverSalad.push(this.menu.MenuItems[i]);
+          this.royalGoldSalad.push(this.menu.MenuItems[i]);
               }
         else if(this.menu.MenuItems[i].CategoryId==3){
-          this.royalSilverDressing.push(this.menu.MenuItems[i]);
+          this.royalGoldDressing.push(this.menu.MenuItems[i]);
               }
         else if(this.menu.MenuItems[i].CategoryId==4){
-          this.royalSilverRice.push(this.menu.MenuItems[i]);
+          this.royalGoldRice.push(this.menu.MenuItems[i]);
               }
         else if(this.menu.MenuItems[i].CategoryId==5){
-          this.royalSilverChicken.push(this.menu.MenuItems[i]);
+          this.royalGoldChicken.push(this.menu.MenuItems[i]);
               }
         else if(this.menu.MenuItems[i].CategoryId==6){
-          this.royalSilverFish.push(this.menu.MenuItems[i]);
+          this.royalGoldFish.push(this.menu.MenuItems[i]);
               }
         else if(this.menu.MenuItems[i].CategoryId==7){
-          this.royalSilverVegitable.push(this.menu.MenuItems[i]);
+          this.royalGoldVegitable.push(this.menu.MenuItems[i]);
               }
         else if(this.menu.MenuItems[i].CategoryId==8){
-          this.royalSilverCondiments.push(this.menu.MenuItems[i]);
+          this.royalGoldCondiments.push(this.menu.MenuItems[i]);
               }
         else if(this.menu.MenuItems[i].CategoryId==9){
-          this.royalSilverDesserts.push(this.menu.MenuItems[i]);
+          this.royalGoldDesserts.push(this.menu.MenuItems[i]);
               }
      
      }
@@ -115,19 +111,19 @@ export class RoyalSilverComponent implements OnInit {
     
     this.menu=
 {
-    MenuId:1,MenuName:"royalSilver",MenuPrice:3250,
+    MenuId:1,MenuName:"royalGold",MenuPrice:4340,
     MenuItems:[{CategoryId:1,ItemId:1,CategoryName:"Drink",ItemName:"Mango",CategoryPrice:100,ChoiceOf:1},
     {CategoryId:1,ItemId:2,CategoryName:"Drink",ItemName:"Orange",CategoryPrice:100,ChoiceOf:1},
     {CategoryId:1,ItemId:3,CategoryName:"Drink",ItemName:"Guave",CategoryPrice:100,ChoiceOf:1},
     {CategoryId:1,ItemId:4,CategoryName:"Drink",ItemName:"Mix Fruit",CategoryPrice:100,ChoiceOf:1},
-    {CategoryId:1,ItemId:1,CategoryName:"Drink",ItemName:"Mango",CategoryPrice:100,ChoiceOf:1},
+    {CategoryId:1,ItemId:5,CategoryName:"Drink",ItemName:"Black Current",CategoryPrice:100,ChoiceOf:1},
     {CategoryId:2,ItemId:1,CategoryName:"SALAD BAR",ItemName:"Mixed Vegitable Salad",CategoryPrice:200,ChoiceOf:3},
     {CategoryId:2,ItemId:2,CategoryName:"SALAD BAR",ItemName:"Russian Egg Salad",CategoryPrice:200,ChoiceOf:3}
   ]
 }
 
 
-this.displayRoyalSilver();
+this.displayRoyalGold();
 
 
 

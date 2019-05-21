@@ -15,7 +15,7 @@ import { MatDatepickerModule,
         MatRadioModule,
         MatInputModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import {MatGridListModule} from '@angular/material/grid-list';
 @NgModule({
   imports: [
     MatDatepickerModule,
@@ -32,6 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     // FormsModule,
     MatListModule,
     MatRadioModule,
+    MatGridListModule,
     BrowserAnimationsModule
   ],
   exports: [
@@ -48,6 +49,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatCheckboxModule,
     MatListModule,
     MatRadioModule,
+    MatGridListModule,
     // MatFormsModule,
 
     BrowserAnimationsModule

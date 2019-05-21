@@ -10,6 +10,7 @@ import { BookingComponent } from './Booking/Booking.component';
 import { RegisterComponent } from './register/register.component';
 import { BookingTulipComponent } from './BookingTulip/BookingTulip.component';
 import { RoyalSilverComponent } from './royalSilver/royalSilver.component';
+import { PlanEventComponent } from './planEvent/planEvent.component';
 
 export const appRoutes: Routes= [
   {path:'halls',component:HallDetailComponent},
@@ -20,7 +21,8 @@ export const appRoutes: Routes= [
   {path:'booking',component:BookingComponent},
   {path: 'register', component:RegisterComponent},
   {path: 'BookingTulip', component:BookingTulipComponent},
-  {path: 'royalSilver', component:RoyalSilverComponent}, 
+  {path: 'royalSilver', component:RoyalSilverComponent},
+  {path: 'planEvent', component:PlanEventComponent}, 
   {path:'',component:HomeComponent},
   {path:'**',redirectTo:'',pathMatch:'full'}
 
