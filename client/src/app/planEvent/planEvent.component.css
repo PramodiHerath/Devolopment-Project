@@ -67,3 +67,15 @@
    
     background-position: center;
 }
+.square-box10{
+    background-color:antiquewhite;
+    width: 400px;
+    height: 750px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 25px;
+    color: #846837;
+    
+    background-repeat: no-repeat;
+   
+    background-position: center;
+}

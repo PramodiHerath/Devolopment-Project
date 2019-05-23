@@ -58,87 +58,95 @@
       <h1 class="left-heading menu-heading">Additional Services</h1>
       <p class="menu-para-text">Choose your Preffered Services</p>
 <!-- form starts -->
-      <form [formGroup]="eventPlanForm">
+      <form [formGroup]="eventPlanForm" (ngSubmit) = "calculateBudget(eventPlanForm.value)">
         <ul class="menus-list-style">
           <li>
             <div class="form-group">
               <label for="Capacity">Capacity</label>
-              <input type="text" class="form-control" id="Capacity" style="width: 20%" formControlName="capacity">
+              <input type="text" class="form-control" id="Capacity" style="width: 20%" formControlName="capacity" placeholder="Number of Participants">
               <div *ngIf="eventPlanForm.get('capacity').touched && eventPlanForm.get('capacity').invalid">
                 <div *ngIf="eventPlanForm.get('capacity').errors.required">capacity is required</div>
               </div>
             </div>
           </li>
           <li>
-            <div class="form-group">
+            <div class="form-group" >
               <label for="Duration">Duration</label>
-              <input type="text" class="form-control" id="Duration" style="width: 20%" formControlName="duration">
+              <input type="text" class="form-control" id="Duration" style="width: 20%" formControlName="duration" placeholder="Number of Hours">
+              <div *ngIf="eventPlanForm.get('duration').touched && eventPlanForm.get('duration').invalid">
+                <div *ngIf="eventPlanForm.get('duration').errors.required">duration is required</div>
+              </div>
             </div>
           </li>
           <li>
             <div class="checkbox">
-              <label><input type="checkbox" value="">Full Ball Room Draping(LKR120,000/- NETT)</label>
+              <label><input type="checkbox" value="" id="Draping" (click)="addDraping($event)">Full Ball Room Draping(LKR120,000/- NETT)</label>
             </div>
           </li>
           
           <li>
             <div class="checkbox" style="display: inline-block">
-              <label><input type="checkbox" value="">Champagne Bottle for the Cahmpagne Fountain(LKR2000/- NETT)</label>
+              <label><input type="checkbox" value="" (click)="addChampagne($event)">Champagne Bottle for the Cahmpagne Fountain(LKR2000/- NETT)</label>
             </div>
           </li>
           <li>
             <div class="checkbox" style="display: inline-block">
-              <label><input type="checkbox" value="">Dry Ice(LKR3500/- NETT)</label>
+              <label><input type="checkbox" value="" (click)="addDryIce($event)">Dry Ice(LKR3500/- NETT)</label>
             </div>
           </li>
           <li>
             <div class="checkbox" style="display: inline-block">
-              <label><input type="checkbox" value="">Milk Platter Rice for Couple(LKR2000/- NETT)</label>
+              <label><input type="checkbox" value="" (click)="addMilkPlatter($event)">Milk Platter Rice for Couple(LKR2000/- NETT)</label>
             </div>
           </li>
           <li>
             <div class="checkbox" style="display: inline-block">
-              <label><input type="checkbox" value="">Decoration for Foyer(Basic-LKR25000/- NETT)</label>
+              <label><input type="checkbox" value="" (click)="addDeco($event)">Decoration for Foyer(Basic-LKR25000/- NETT)</label>
             </div>
           </li>
           <li>
             <div class="checkbox" style="display: inline-block">
-              <label><input type="checkbox" value="">Screen and Projector(LKR6000/- NETT)</label>
+              <label><input type="checkbox" value="" (click)="addScreen($event)">Screen and Projector(LKR6000/- NETT)</label>
             </div>
             <div class="form-group" style="display: inline-block">
               <label for="Amount" style="display: inline-block; margin-left: 40px">Amount</label>
-              <input type="text" class="form-control" id="Amount" style="width: 20%;display: inline-block;margin-left: 10px">
+              <input type="text" class="form-control" id="ScreenAmount" style="width: 20%;display: inline-block;margin-left: 10px" formControlName="screen">
             </div>
           </li>
           <li>
             <div class="checkbox" style="display: inline-block">
-              <label><input type="checkbox" value="">Tiffany Chairs(LKR200/- NETT Per Chair)</label>
+              <label><input type="checkbox" value="" (click)="addTiffanyChairs($event)">Tiffany Chairs(LKR200/- NETT Per Chair)</label>
             </div>
             <div class="form-group" style="display: inline-block">
               <label for="Amount" style="display: inline-block; margin-left: 40px">Amount</label>
-              <input type="text" class="form-control" id="Amount" style="width: 20%;display: inline-block;margin-left: 10px">
+              <input type="text" class="form-control" id="TiffanyChairsAmount" style="width: 20%;display: inline-block;margin-left: 10px" formControlName="tiffanyChairs">
             </div>
           </li>
           <li>
             <div class="checkbox" style="display: inline-block">
-              <label><input type="checkbox" value="">Milk Rice Portion(LKR250/- NETT Per Person )</label>
+              <label><input type="checkbox" value="" (click)="addMilkRicePortion($event)">Milk Rice Portion(LKR250/- NETT Per Person )</label>
             </div>
             <div class="form-group" style="display: inline-block">
               <label for="Amount" style="display: inline-block; margin-left: 40px">Amount</label>
-              <input type="text" class="form-control" id="Amount" style="width: 20%;display: inline-block;margin-left: 10px">
+              <input type="text" class="form-control" id="MilkRicePortionAmount" style="width: 20%;display: inline-block;margin-left: 10px" formControlName="milkRicePortion">
             </div>
           </li>
           
         </ul>
         
           <div class="form-group">
-            <button name="ViewRoughBudget" type="submit" class="btn btn-primary btn-xl" required="required">View Rough Budget</button>
+            <input name="ViewRoughBudget" type="submit" class="btn btn-primary btn-xl" value="View Rough Budget" required="required" >
           </div>
+          
         
         </form>
     </div>
-    <div class="col-md-3 square-box6">
+    <div class="col-md-3 square-box6" *ngIf="!Budget">
 			<!-- image	 -->
-	  </div>
+    </div>
+    <div class="col-md-3 square-box10" *ngIf="Budget">
+			<div>
+        <p>Your <br> Rough Budget <br> is <br> {{ShowBudget}}</p>
+	    </div>
   </div>
 </div>
