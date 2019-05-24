@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { isNgTemplate } from '@angular/compiler';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+// import {Globals} from './globals'
 @Component({
   selector: 'royalSilver',
   templateUrl: './royalSilver.component.html',

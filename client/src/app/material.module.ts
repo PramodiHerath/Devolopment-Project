@@ -16,6 +16,7 @@ import { MatDatepickerModule,
         MatInputModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   imports: [
     MatDatepickerModule,
@@ -30,6 +31,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatIconModule,
     MatCheckboxModule,
     // FormsModule,
+    MatSelectModule,
     MatListModule,
     MatRadioModule,
     MatGridListModule,
@@ -50,6 +52,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatListModule,
     MatRadioModule,
     MatGridListModule,
+    MatSelectModule,
     // MatFormsModule,
 
     BrowserAnimationsModule

@@ -8,7 +8,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
-
+import { Globals } from './globals';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 
@@ -75,7 +75,9 @@ import { RoyalPlatinumComponent } from './royalPlatinum/royalPlatinum.component'
       ButtonsModule.forRoot(),
       CarouselModule.forRoot()
    ],
-   providers: [],
+   providers: [
+     Globals
+   ],
    bootstrap: [
       AppComponent
    ]

@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+// import { Globals } from './globals';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { throwError } from 'rxjs';
+
+
 @Component({
   selector: 'planEvent',
   templateUrl: './planEvent.component.html',
   styleUrls: ['./planEvent.component.css']
 })
 export class PlanEventComponent implements OnInit {
+
   constructor() { }
   eventPlanForm = new FormGroup({
     capacity: new FormControl('',Validators.required),
@@ -18,14 +23,14 @@ export class PlanEventComponent implements OnInit {
   }
   )
 
-  silverPrice=3250;
-  goldPrice=4340;
-  platinumPrice=5190;
-  menuPrice:number;
+  private silverPrice=3250;
+  private goldPrice=4340;
+  private platinumPrice=5190;
+  menuPrice:number=0;
   showGold:boolean;
   showSilver:boolean;
   showPlatinum:boolean;
-  Capacity:number;
+  Capacity:number=0;
   Duration:number;
   Draping:number=0;
   Champagne:number=0;
@@ -43,6 +48,7 @@ export class PlanEventComponent implements OnInit {
   ScreenCharge:number;
   TiffanyChairsCharge:number;
   MilkRicePortionCharge:number;
+  menuCharge:number=0;
   ShowBudget:any;
 
 
@@ -171,29 +177,44 @@ addMilkRicePortion(event: Event){
   }
 }
 
-
+// on Click of view rough budget button calculating budget and showing it 
 calculateBudget(data){
-  this.Capacity=Number(data.capacity);
-  this.Duration=Number(data.duration);
-  this.ScreenAmount=Number(data.screen);
+  if(this.menuPrice){
+  this.Capacity=+data.capacity;
+  this.menuCharge=this.menuPrice*this.Capacity;
+  this.Duration=+data.duration;
+  this.ScreenAmount=+data.screen;
   this.ScreenCharge=this.ScreenAmount*this.Screen;
-  this.TiffanyChairsAmount=Number(data.tiffanyChairs);
+  this.TiffanyChairsAmount=+data.tiffanyChairs;
   this.TiffanyChairsCharge=this.TiffanyChairsAmount*this.TiffanyChairs;
-  this.MilkRicePortionAmount=Number(data.milkRicePortion);
+  this.MilkRicePortionAmount=+data.milkRicePortion;
   this.MilkRicePortionCharge=this.MilkRicePortionAmount*this.MilkRicePortion;
 
   if(this.Duration>5){
+    
     this.ExtendedHourCharge=(this.Duration-5)*50000;
     
   }
   else{
     this.ExtendedHourCharge=0;
   }
-  this.Budget=this.ExtendedHourCharge+this.ScreenCharge+this.TiffanyChairsCharge+this.MilkRicePortionCharge+this.Draping+this.Champagne+this.DryIce+this.MilkPlatter;
+  this.Budget=this.menuCharge+this.ExtendedHourCharge+this.ScreenCharge+this.TiffanyChairsCharge+this.MilkRicePortionCharge+this.Draping+this.Champagne+this.DryIce+this.MilkPlatter;
 
   this.ShowBudget=+this.Budget;
+
   console.log(this.Budget);
 }
+else{
+  alert("Please select your menu first");
+}
+}
+// end of calculating and displaying rough budget
+
+
+clearRoughBudget(){
+  this.Budget=0;
+}
+
 
   ngOnInit() {
   }
