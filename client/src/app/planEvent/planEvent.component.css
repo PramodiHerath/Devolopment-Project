@@ -79,3 +79,9 @@
    
     background-position: center;
 }
+.titleStyles{
+    font-family: fantasy;
+    font-size: 40px;
+    text-align: center;
+    color: #846837
+}
