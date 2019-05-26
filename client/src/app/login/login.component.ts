@@ -14,9 +14,18 @@ export class LoginComponent implements OnInit {
       
     }
     )
-    getTentativeBookingForm(){
-      
+    get password(){
+      return this.loginForm.get('password');
     }
+    getTentativeBookingForm(){
+
+
+      
+        console.log(this.loginForm.get('email').errors);
+        console.log(this.loginForm.errors);
+    }
+    
+    
     
   constructor() { }
 

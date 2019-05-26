@@ -22,8 +22,14 @@ export class RegisterComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-register(){
+  bringBookingForm(){
+   
+  }
 
+register(){
+  if(!this.registrationForm.pristine && !this.registrationForm.errors){
+  this.router.navigate(['/BookingTulip']);
+}
 }
   constructor(private router: Router) { }
 

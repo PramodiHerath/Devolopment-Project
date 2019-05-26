@@ -23,9 +23,9 @@ export class PlanEventComponent implements OnInit {
   }
   )
 
-  private silverPrice=3250;
-  private goldPrice=4340;
-  private platinumPrice=5190;
+  silverPrice=3250;
+  goldPrice=4340;
+  platinumPrice=5190;
   menuPrice:number=0;
   showGold:boolean;
   showSilver:boolean;
@@ -213,6 +213,7 @@ else{
 
 clearRoughBudget(){
   this.Budget=0;
+  this.eventPlanForm.reset();
 }
 
 

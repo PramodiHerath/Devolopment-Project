@@ -10,7 +10,7 @@
 
     <mat-card-content fxLayout="column">
 
-          <form [formGroup]="loginForm">
+          <form [formGroup]="loginForm" (ngSubmit)="getTentativeBookingForm()">
                <mat-form-field hintLabel="Enter a valid Email Address" appearance="outline">
                     <mat-label>Email</mat-label>
                     <input matInput
@@ -29,13 +29,13 @@
                     <input matInput type="password" 
                      placeholder="password" formControlName="password">
                     <div *ngIf="loginForm.get('password').touched && loginForm.get('password').invalid">
-                         <mat-error *ngIf="loginForm.get('password').errors.required">password is required</mat-error>
+                         <mat-error *ngIf="password.errors.required">password is required</mat-error>
                     </div>
                     
                </mat-form-field>
 
                <mat-card-actions align="end">
-                    <button (click)="getTentativeBookingForm()" mat-raised-button color="primary">Login</button>
+                    <button  mat-raised-button color="primary" [disabled]="(loginForm.get('email').pristine) || (loginForm.get('password').pristine)">Login</button>
                </mat-card-actions>
 
           </form>

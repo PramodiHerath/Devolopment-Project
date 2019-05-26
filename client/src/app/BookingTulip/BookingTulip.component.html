@@ -1,28 +1,78 @@
-<div fxLayout="row" fxLayoutAlign="center center" class="login-main">
-<form>
-<div class="booking-container">
-        <mat-form-field>
-                <mat-select placeholder="Select">
-                  <mat-option value="option">Event Type</mat-option>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container-fluid">
+  <div class="row spacing">
+    <div class="col-md-8 square-box7" style="margin-right: 3%; width:66% ">
+      <h1 class="left-heading menu-heading">Booking Form - Royal Tulip</h1>
+      <p class="menu-para-text">Please Fill And Submit</p>
+<!-- form starts -->
+      <form [formGroup]="tulipBookingForm" (ngSubmit) = "updateBookingTable(tulipBookingForm.value)">
+        <ul class="menus-list-style">
+          <li>
+            <div class="form-group">
+              <mat-form-field>
+                <mat-label>Event Type</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let type of eventTypes" [value]="type">
+                    {{type}}
+                  </mat-option>
                 </mat-select>
-        </mat-form-field>
-      
-        <mat-form-field>
-                <mat-select placeholder="Select">
-                  <mat-option value="option">Capacity</mat-option>
+              </mat-form-field>
+            </div>
+          </li>
+          <li>
+            <div class="form-group">
+              <mat-form-field>
+                <mat-label>Capacity</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let type of eventTypes" [value]="type">
+                    {{type}}
+                  </mat-option>
                 </mat-select>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-select placeholder="Select">
-            <mat-option value="option">Payment Method</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-radio-group aria-label="Select an option">
-                <mat-radio-button value="1">Day</mat-radio-button>
-                <mat-radio-button value="2">Night</mat-radio-button>
-        </mat-radio-group>
-      </div>
-</form>
-</div>
+              </mat-form-field>
+            </div>
+          </li>
+          <li>
+            <div class="form-group">
+              <mat-form-field>
+                <mat-label>Payment Method</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let type of eventTypes" [value]="type">
+                    {{type}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </li>
+          
+          <li>
+            <mat-radio-group aria-label="Select an option">
+              <mat-radio-button value="1" style="margin-right: 10px">Day Event</mat-radio-button>
+              <mat-radio-button value="2">Night Event</mat-radio-button>
+            </mat-radio-group>
+          </li>
+          <li>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </li>
+          <li>
+            <mat-form-field>
+              <textarea matInput placeholder="Special Remarks"></textarea>
+            </mat-form-field>
+          </li>
+          
+        </ul>
+        
+          <div class="form-group">
+            <input name="ViewRoughBudget" type="submit" class="btn btn-primary btn-xl" value="Make a Tentative Booking" required="required" >
+          </div>
+          
+        
+        </form>
+    </div>
