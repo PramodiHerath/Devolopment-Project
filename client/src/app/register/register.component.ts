@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
   }
 
 register(){
-  if(!this.registrationForm.pristine && !this.registrationForm.errors){
+  if(this.registrationForm.valid){
   this.router.navigate(['/BookingTulip']);
 }
 }

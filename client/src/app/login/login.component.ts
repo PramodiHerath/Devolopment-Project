@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'login',
@@ -8,6 +8,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  constructor(private router: Router) { }
+
+
     loginForm = new FormGroup({
       email:new FormControl('',[Validators.email,Validators.required]),
       password: new FormControl('',Validators.required)
@@ -18,16 +21,14 @@ export class LoginComponent implements OnInit {
       return this.loginForm.get('password');
     }
     getTentativeBookingForm(){
-
-
-      
-        console.log(this.loginForm.get('email').errors);
-        console.log(this.loginForm.errors);
+      if(this.loginForm.valid){
+        this.router.navigate(['/BookingTulip']);
+      }
     }
     
     
     
-  constructor() { }
+ 
 
   ngOnInit() {
   }

@@ -15,9 +15,18 @@ export class PlanEventComponent implements OnInit {
   eventPlanForm = new FormGroup({
     capacity: new FormControl('',Validators.required),
     duration: new FormControl('',Validators.required),
+    draping:new FormControl(''),
+    champagne:new FormControl(''),
+    dryIce:new FormControl(''),
+    milkPlatter:new FormControl(''),
+    deco:new FormControl(''),
+    screenCheck:new FormControl(''),
     screen:new FormControl(''),
+    tiffanyChairsCheck:new FormControl(''),
     tiffanyChairs:new FormControl(''),
+    milkRicePortionCheck:new FormControl(''),
     milkRicePortion:new FormControl('')
+
     
     
   }
