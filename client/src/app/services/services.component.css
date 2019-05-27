@@ -1,0 +1,23 @@
+.titleStyles{
+    font-family: fantasy;
+    font-size: 25px;
+    text-align: center;
+    color: #846837
+}
+
+.btn-xl {
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 20px;
+    border-color: #846837;
+    width:100%;
+    background-color: rgb(243, 207, 160);
+    color: #846837
+
+}
+.card-text{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    color: #de8d7c;
+    text-align: center
+}
