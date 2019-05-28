@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class Globals {
   silverCharges: number = 0;
   goldCharges:number=0;

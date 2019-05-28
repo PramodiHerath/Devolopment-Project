@@ -1,7 +1,8 @@
+import { Globals } from './../globals';
 import { Component, OnInit } from '@angular/core';
 import { isNgTemplate } from '@angular/compiler';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-// import {Globals} from './globals'
+
 @Component({
   selector: 'royalSilver',
   templateUrl: './royalSilver.component.html',
@@ -9,7 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class RoyalSilverComponent implements OnInit {
 
-  constructor() { 
+  constructor(public global: Globals ) { 
     
   }
 
@@ -64,8 +65,7 @@ export class RoyalSilverComponent implements OnInit {
       this.checkBoxCountDrinkChoice--;
       
     }
-   console.log(this.checkBoxCountDrinkChoice*100);
-    return this.checkBoxCountDrinkChoice*100;
+   this.global.silverCharges+=this.checkBoxCountDrinkChoice*100;
     
   }
   
