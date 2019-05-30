@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 
-const clientSchema = new mongoose.Schema({
+const receptionistSchema = new mongoose.Schema({
     _id:{
-        type: String,
+        type: Number,
         required: true,
     },
     name: {
@@ -29,7 +29,7 @@ const clientSchema = new mongoose.Schema({
     
   });
   
-  const Client = mongoose.model('Client', clientSchema);
+  const Receptionist = mongoose.model('Receptionist', receptionistSchema);
 
-exports.Client = Client; 
-exports.clientSchema = clientSchema;
+exports.Receptionist = Receptionist; 
+exports.receptionistSchema = receptionistSchema;

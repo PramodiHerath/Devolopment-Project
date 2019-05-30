@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 
-const serviceSchema = new mongoose.Schema({
+const categorySchema = new mongoose.Schema({
     _id:{
         type: Number,
         required: true,
@@ -9,16 +9,15 @@ const serviceSchema = new mongoose.Schema({
     name: {
       type: String,
       required: true,
-      maxlength: 150
     },
     price: {
         type: Number,
         required: true,
-    },
+    }
     
   });
   
-  const Service = mongoose.model('Service', serviceSchema);
+  const Category = mongoose.model('Category', categorySchema);
 
-exports.Service = Service; 
-exports.serviceSchema = serviceSchema;
+exports.Category = Category; 
+exports.categorySchema = categorySchema;
