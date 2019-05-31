@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-const {Category} = require('../models/menu');
+const {Menu} = require('../models/menu');
 
 router.post('/', async (req, res) => {
 
@@ -10,9 +10,9 @@ router.post('/', async (req, res) => {
     _id: req.body.menuId,
     name: req.body.menuName,
     price: req.body.menuPrice,
-    item:[
+    item:
         req.body.menuItems
-    ]
+    
   })
   
     menutoCreate = await menutoCreate.save();

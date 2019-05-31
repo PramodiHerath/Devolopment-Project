@@ -3,7 +3,7 @@ const {Category}= require('./category')
 
 const itemSchema = new mongoose.Schema({
     _id:{
-        type: Number,
+        type: String,
         required: true,
     },
     name: {
@@ -12,11 +12,8 @@ const itemSchema = new mongoose.Schema({
       minlength: 5,
       maxlength: 50
     },
-    price:{
-        type: Number
-    },
-    categoryId:{
-        type: mongoose.Schema.Types.ObjectId,
+    categoryName:{
+        type: String,
         ref: Category
 
     }
