@@ -8,12 +8,16 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
+import { NavBarComponent } from './navBar/navBar.component';
+import { MenusComponent } from './menus/menus.component';
 
 @NgModule({
    declarations: [
       AppComponent,
       LoginComponent,
-      HomeComponent
+      HomeComponent,
+      NavBarComponent,
+      MenusComponent
    ],
    imports: [
       BrowserAnimationsModule,
@@ -21,8 +25,7 @@ import { RouterModule } from '@angular/router';
       RouterModule.forRoot(appRoutes),
       MaterialModule,
       FormsModule,
-      ReactiveFormsModule,
-     
+      ReactiveFormsModule
    ],
    providers: [],
    bootstrap: [

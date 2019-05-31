@@ -3,10 +3,13 @@ const express = require('express');
 const app=express();
 const mongoose = require('mongoose');
 const Category=require('./routes/category')
+const Menu=require('./routes/menu')
+
+
 
 app.use(express.json());
 app.use('/api/categories', Category);
-
+app.use('/api/menus', Menu);
 
 
 

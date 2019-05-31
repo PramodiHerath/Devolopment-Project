@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const {Category}= require('./category')
 
-const itemmSchema = new mongoose.Schema({
+const itemSchema = new mongoose.Schema({
     _id:{
         type: Number,
         required: true,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'admin-home',
@@ -13,9 +14,14 @@ export class HomeComponent implements OnInit {
   receptionists='/assets/images/receptionist.jpg';
   services='/assets/images/services.jpg';
   menus='/assets/images/menus.jpg';
-  reservations='/assets/images/reservations.jpg';
+  reservations='/assets/images/calandar.jpg';
+  reports='/assets/images/reports.jpg';
 
-  constructor() { }
+  bringMenusComponents(){
+    this.router.navigate(['/menus']);
+  }
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }

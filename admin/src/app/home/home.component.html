@@ -1,39 +1,76 @@
+<!-- menu cards start -->
 <div class="container-fluid">
-<div class="row">
-    <div class="col-md-4 box1">
-      <a><div class="inner-circle-long"> 
-        <h1 class="standard-pos">HALLS</h1>
-      </div></a>
-    </div>
-    <div class="col-md-4 box2">
-      <a><div class="inner-circle-long"> 
-        <h1 class="deluxe">RECEPTIONISTS</h1>
-      </div></a>
-    </div>
-    <div class="col-md-4 box3">
-      <a><div class="inner-circle-long"> 
-        <h1 class="superior-laggon-pos">SERVICES</h1>
-      </div></a>
-    </div>
-</div>
+	<div class="raw">
+		<div class="col-md-4">
+			<div class="card">
+  			<img src={{menus}} class="card-img-top cardImages" alt="...">
+  			<div class="card-body">
+    			<h5 class="card-title titleStyles">Menus</h5>
+    			
+    			<a class="btn btn-primary btn-xl" (click)="bringMenusComponents()">Veiw Detail</a>
+  			</div>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+				<div class="card">
+					<img src={{reservations}} class="card-img-top cardImages" alt="...">
+					<div class="card-body">
+						<h5 class="card-title titleStyles">Reservations</h5>
+						
+						<a href="#" class="btn btn-primary btn-xl">View Detail</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+					<div class="card">
+						<img src={{services}} class="card-img-top cardImages" alt="...">
+						<div class="card-body">
+							<h5 class="card-title titleStyles">Services</h5>
+							
+							<a href="#" class="btn btn-primary btn-xl">View Detail</a>
+						</div>
+					</div>
+				</div>
+	</div>			
 </div>
 
+
 <div class="container-fluid">
-<div class="row">
-  <div class="col-md-4 box4">
-    <a><div class="inner-circle-long"> 
-      <h1 class="executive-pos">MENUS</h1>
-    </div></a>
-  </div>
-  <div class="col-md-4 box4">
-    <a><div class="inner-circle-long"> 
-      <h1 class="executive-pos">MENUS</h1>
-    </div></a>
-  </div>
-  <div class="col-md-4 box4">
-    <a><div class="inner-circle-long"> 
-      <h1 class="executive-pos">MENUS</h1>
-    </div></a>
-  </div>
+	<div class="raw">
+		<div class="col-md-4">
+			<div class="card">
+  			<img src={{halls}} class="card-img-top cardImages" alt="...">
+  			<div class="card-body">
+    			<h5 class="card-title titleStyles">Halls</h5>
+    			
+    			<a href="#" class="btn btn-primary btn-xl">Veiw Detail</a>
+  			</div>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+				<div class="card">
+					<img src={{receptionists}} class="card-img-top cardImages" alt="...">
+					<div class="card-body">
+						<h5 class="card-title titleStyles">Receptionists</h5>
+						
+						<a href="#" class="btn btn-primary btn-xl">View Detail</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+					<div class="card">
+						<img src={{reports}} class="card-img-top cardImages" alt="...">
+						<div class="card-body">
+							<h5 class="card-title titleStyles">Reports</h5>
+							
+							<a href="#" class="btn btn-primary btn-xl">View Detail</a>
+						</div>
+					</div>
+				</div>
+	</div>			
 </div>
-</div>
+<!-- menu cards end -->

@@ -6,15 +6,21 @@ const {Category} = require('../models/category');
 
 router.post('/', async (req, res) => {
 
-   let categoryToCreate = new Category({ 
+   let categorytoCreate = new Category({ 
     _id: req.body.categoryId,
     name: req.body.categoryName,
     price: req.body.categoryPrice
   })
+  
+  categorytoCreate = await categorytoCreate.save();
 
-  categoryToCreate = await categorytoCreate.save();
+  res.send(categorytoCreate);
 
-  res.send(categoryToCreate);
 });
+
+router.get('/', async (req, res) => {
+    const category = await Category.find();
+    res.send(category);
+  });
 
 module.exports = router;  
