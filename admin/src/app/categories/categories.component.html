@@ -1,5 +1,91 @@
 
 <admin-navBar></admin-navBar>
-<p>
-  categories works!
-</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<div class="table-responsive">
+    <table class="table table-hover table-dark">
+      <thead>
+        <tr>
+          <th scope="col" hidden>CategoryId</th>
+          <th scope="col">Category</th>
+          <th scope="col">Category price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table-active" *ngFor= "let category of categories">
+          <td>{{category.name}}</td>
+          <td> {{category.price}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+<div class="container-fluid">
+    <div class="raw">
+
+  <div class="col-md-4">
+              
+              <a class="btn btn-primary btn-xl" (click)="bringAddCategory()">Add</a>
+          
+  </div>
+  <div class="col-md-4">
+              
+      <a class="btn btn-primary btn-xl" (click)="bringUpdateCategory()">Update</a>
+  
+</div>
+<div class="col-md-4">
+              
+    <a class="btn btn-primary btn-xl" (click)="bringDeleteCategory()">Delete</a>
+
+</div>
+    </div>
+</div>  
+  
+   <br>
+   <br>
+   
+
+   <div class="container-fluid" *ngIf=add>
+      <div class="row spacing">
+        <div class="col-md-12 square-box7" style="margin-right: 3%; width:66% ">
+          <h1 class="left-heading menu-heading">Add Catogoreis</h1>
+        
+   <form [formGroup]="addCategoryForm" (ngSubmit) = "addCategory(addCategoryForm.value)">
+      <ul class="menus-list-style">
+        <li>
+          <div class="form-group">
+            <label for="CategoryName">Category Name</label>
+            <input type="text" class="form-control" id="CategoryName" style="width: 20%" formControlName="name" placeholder="Category Name">
+            <div *ngIf="addCategoryForm.get('name').touched && addCategoryForm.get('name').invalid">
+              <div *ngIf="addCategoryForm.get('name').errors.required">capacity is required</div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="form-group" >
+            <label for="Categoryprice">Category Price</label>
+            <input type="text" class="form-control" id="Duration" style="width: 20%" formControlName="price" placeholder="Category Price">
+            <div *ngIf="addCategoryForm.get('price').touched && addCategoryForm.get('price').invalid">
+              <div *ngIf="addCategoryForm.get('price').errors.required">price is required</div>
+            </div>
+          </div>
+        </li>
+        
+      </ul>
+      
+        <div class="form-group">
+          <input name="AddCategory" type="submit" class="btn btn-primary btn-xl" value="Add Category" required="required" >
+        </div>
+     
+        
+      
+      </form>
+    </div>
+    
+  </div>
+</div>

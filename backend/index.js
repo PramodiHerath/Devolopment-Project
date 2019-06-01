@@ -9,18 +9,6 @@ const Item=require('./routes/item');
 
 
 
-app.use(express.json());
-app.use('/api/categories', Category);
-app.use('/api/menus', Menu);
-app.use('/api/items', Item);
-
-
-
-
-
-
-
-
 
 mongoose.connect('mongodb://localhost/RoyalPark',{ useNewUrlParser: true })
   .then(() => console.log('Connected to MongoDB...'))
@@ -39,6 +27,10 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use(express.json());
+app.use('/api/categories', Category);
+app.use('/api/menus', Menu);
+app.use('/api/items', Item);
 
 const port=process.env.PORT || 3000;
 
