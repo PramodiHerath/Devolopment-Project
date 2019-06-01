@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { NavBarComponent } from './navBar/navBar.component';
 import { MenusComponent } from './menus/menus.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
    declarations: [
@@ -27,6 +28,7 @@ import { CategoriesComponent } from './categories/categories.component';
       RouterModule.forRoot(appRoutes),
       MaterialModule,
       FormsModule,
+      HttpClientModule,
       ReactiveFormsModule
    ],
    providers: [],
