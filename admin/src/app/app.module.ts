@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 import { NavBarComponent } from './navBar/navBar.component';
 import { MenusComponent } from './menus/menus.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 @NgModule({
    declarations: [
@@ -17,7 +18,8 @@ import { MenusComponent } from './menus/menus.component';
       LoginComponent,
       HomeComponent,
       NavBarComponent,
-      MenusComponent
+      MenusComponent,
+      CategoriesComponent
    ],
    imports: [
       BrowserAnimationsModule,

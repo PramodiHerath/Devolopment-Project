@@ -1,3 +1,4 @@
+import { CategoriesComponent } from './categories/categories.component';
 import { MenusComponent } from './menus/menus.component';
 
 import { LoginComponent } from './login/login.component';
@@ -10,6 +11,7 @@ export const appRoutes: Routes= [
     {path:'login',component:LoginComponent},
     {path:'home',component:HomeComponent},
     {path:'menus',component:MenusComponent},
+    {path:'categories',component:CategoriesComponent},
     {path:'',component: LoginComponent},
     {path:'**',redirectTo:'',pathMatch:'full'}
   

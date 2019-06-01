@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenusComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { } 
+
+
+  MainMenus='/assets/images/Main Menus.png';
+  Categories='/assets/images/Categories.png';
+  Items='/assets/images/Items.png';
+  
+
+  bringCategories(){
+    this.router.navigate(['/categories']);
+  }
 
   ngOnInit() {
   }

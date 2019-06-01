@@ -4,15 +4,14 @@ const {Category}= require('./category')
 const itemSchema = new mongoose.Schema({
     _id:{
         type: String,
-        required: true,
+       
     },
     name: {
       type: String,
       required: true,
-      minlength: 5,
-      maxlength: 50
+    
     },
-    categoryName:{
+    categoryId:{
         type: String,
         ref: Category
 

@@ -7,6 +7,7 @@ const {Category} = require('../models/category');
 router.post('/', async (req, res) => {
 
    let categorytoCreate = new Category({ 
+     _id: req.body.categoryName,
     name: req.body.categoryName,
     price: req.body.categoryPrice
   })
