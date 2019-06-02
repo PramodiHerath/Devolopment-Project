@@ -11,10 +11,13 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class CategoriesComponent implements OnInit {
 categories:any[];
 newCategory:object;
+changedCategory:object;
 
 add:boolean;
 update:boolean;
 delete:boolean;
+updateForm:boolean;
+updatingCategory:String;
 
 
 addCategoryForm = new FormGroup({
@@ -23,15 +26,27 @@ addCategoryForm = new FormGroup({
 }
 )
 
+updateCategoryForm = new FormGroup({
+  newName: new FormControl('',Validators.required),
+  newPrice: new FormControl('',Validators.required)
+}
+)
+
   constructor(private service:CategoriesService) {
    
-    this.service.getCategories()
-    .subscribe(response=>{
-       
+    this.service.getAllCategories()
+    .subscribe(
+      response=>{
         console.log(response);
          this.categories=response;
+    },
+      error=>{
+        alert('An unexpected error occurred.');
+        console.log(error);
     })  
    }
+
+
 
    addCategory(data){
       this.newCategory={
@@ -39,11 +54,68 @@ addCategoryForm = new FormGroup({
         categoryPrice:data.price
      }
       this.service.postCategories(this.newCategory)
-      .subscribe(response=>{
-       this.categories.push(response);
-      console.log(response);
-      this.addCategoryForm.reset();   
+      .subscribe(
+        response=>{
+        this.categories.push(response);
+        console.log(response);
+        this.addCategoryForm.reset();   
+    },
+        error=>{
+        alert('An unexpected error occurred.');
+        console.log(error);
     }) 
+   }
+
+
+
+   updateCategory(data){
+    this.changedCategory={
+      categoryName:data.newName,
+      categoryPrice:+data.newPrice
+    }
+    console.log(this.changedCategory)
+      this.service.updateCategory(this.changedCategory)
+      .subscribe(
+        response=>{
+        console.log(response);
+        this.updateCategoryForm.reset();
+      },
+        error=>{
+        alert('An unexpected error occurred.');
+        console.log(error);
+      })
+      this.service.getAllCategories()
+    .subscribe(response=>{
+       
+        console.log(response);
+         this.categories=response;
+    })
+   }
+
+   deleteCategory(i){
+      this.service.deleteCategory(this.categories[i].name)
+      .subscribe(
+        response=>{
+        console.log(response)
+        this.categories.splice(i,1) 
+     },
+        (error: Response)=>{
+          if(error.status===404)
+          alert('This Category is Already Deleted');
+          else{
+            alert('An unexpected error occurred.');
+            console.log(error);
+          }
+       
+    })
+     
+   }
+
+
+   bringUpdateForm(i){
+      this.updateForm=true;
+      console.log(this.categories[i].name);
+      this.updatingCategory=this.categories[i].name;
    }
 
    bringAddCategory(){

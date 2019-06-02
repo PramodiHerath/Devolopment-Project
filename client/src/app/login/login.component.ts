@@ -1,3 +1,4 @@
+import { LoginService } from './../serviceshttp/login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
@@ -8,7 +9,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private router: Router) { }
+  invalidLogin:boolean;
+  constructor(private router: Router,private service: LoginService) { }
 
 
     loginForm = new FormGroup({
@@ -20,14 +22,26 @@ export class LoginComponent implements OnInit {
     get password(){
       return this.loginForm.get('password');
     }
-    getTentativeBookingForm(){
-      if(this.loginForm.valid){
-        this.router.navigate(['/BookingTulip']);
+    getTentativeBookingForm(credentials){
+      // if(this.loginForm.valid){
+      //   this.router.navigate(['/BookingTulip']);
+      // }
+
+      this.service.login(credentials)
+        .subscribe(next=>{
+          this.router.navigate(['/BookingTulip']);
+    },(error:Response)=>{
+      
+      if(error.status===400){
+        this.invalidLogin= true;
+        console.log(error);
       }
+      else alert('Unexpected error found');
+    });
+
+
     }
-    
-    
-    
+   
  
 
   ngOnInit() {

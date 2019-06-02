@@ -10,7 +10,7 @@
 
     <mat-card-content fxLayout="column">
 
-          <form [formGroup]="loginForm" (ngSubmit)="getTentativeBookingForm()">
+          <form [formGroup]="loginForm" (ngSubmit)="getTentativeBookingForm(loginForm.value)">
                <mat-form-field hintLabel="Enter a valid Email Address" appearance="outline">
                     <mat-label>Email</mat-label>
                     <input matInput

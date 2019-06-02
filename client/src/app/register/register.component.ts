@@ -1,3 +1,4 @@
+import { LoginService } from './../serviceshttp/login.service';
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -16,6 +17,7 @@ export class RegisterComponent implements OnInit {
     
   }
   )
+  constructor(private router: Router) { }
 
 
   bringLoginForm(){
@@ -31,7 +33,7 @@ register(){
   this.router.navigate(['/BookingTulip']);
 }
 }
-  constructor(private router: Router) { }
+  
 
   ngOnInit() {
   }

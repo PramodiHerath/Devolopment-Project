@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -10,6 +11,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { Globals } from './globals';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { JwtModule } from '@auth0/angular-jwt';
 
 
 import { AppComponent } from './app.component';
@@ -62,12 +64,22 @@ import { RoyalPlatinumComponent } from './royalPlatinum/royalPlatinum.component'
       RoyalPlatinumComponent
    ],
    imports: [
+
+      // JwtModule.forRoot({
+      //    config: {
+      //      tokenGetter: function  tokenGetter() {
+      //           return     localStorage.getItem('access_token');},
+      //      whitelistedDomains: ['localhost:3000'],
+      //      blacklistedRoutes: ['http://localhost:3000/auth/login']
+      //    }
+      //  }),
       BrowserModule,
       RouterModule.forRoot(appRoutes),
       AlertModule.forRoot(),
       BrowserAnimationsModule,
       MaterialModule,
       FormsModule,
+      HttpClientModule,
       FlexLayoutModule,
       ReactiveFormsModule,
       PdfViewerModule,

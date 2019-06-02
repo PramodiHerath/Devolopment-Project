@@ -3,9 +3,11 @@ const express = require('express');
 const app=express();
 const mongoose = require('mongoose');
 
+
 const Category=require('./routes/category');
 const Menu=require('./routes/menu');
 const Item=require('./routes/item');
+const Client=require('./routes/client');
 
 
 
@@ -25,12 +27,15 @@ app.use((req, res, next) => {
       "GET,PUT, POST, PATCH, DELETE, OPTIONS"
     );
     next();
+    
 });
 
 app.use(express.json());
 app.use('/api/categories', Category);
 app.use('/api/menus', Menu);
 app.use('/api/items', Item);
+app.use('/api/client', Client);
+
 
 const port=process.env.PORT || 3000;
 
