@@ -84,7 +84,7 @@ updateCategoryForm = new FormGroup({
         console.log(error);
       })
 
-      this.service.getAllCategories()
+    this.service.getAllCategories()
     .subscribe(response=>{
        
         console.log(response);
