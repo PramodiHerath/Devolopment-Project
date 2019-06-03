@@ -8,6 +8,9 @@ const Category=require('./routes/category');
 const Menu=require('./routes/menu');
 const Item=require('./routes/item');
 const Client=require('./routes/client');
+const User=require('./routes/user');
+const UserLogin=require('./routes/userLogin');
+
 
 
 
@@ -35,6 +38,8 @@ app.use('/api/categories', Category);
 app.use('/api/menus', Menu);
 app.use('/api/items', Item);
 app.use('/api/client', Client);
+app.use('/api/user', User);
+app.use('/api/userLogin', UserLogin);
 
 
 const port=process.env.PORT || 3000;

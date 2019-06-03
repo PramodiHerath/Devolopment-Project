@@ -11,13 +11,13 @@
          <mat-card-content fxLayout="column">
      
                <form [formGroup]="loginForm" (ngSubmit)="getHomeComponent()">
-                    <mat-form-field hintLabel="Enter a valid Email Address" appearance="outline">
-                         <mat-label>Email</mat-label>
+                    <mat-form-field hintLabel="Enter a valid User Name" appearance="outline">
+                         <mat-label>User Name</mat-label>
                          <input matInput
-                         placeholder="Email" formControlName="email">
-                         <div *ngIf="loginForm.get('email').touched && loginForm.get('email').invalid">
-                              <mat-error *ngIf="loginForm.get('email').errors.required">Email is required</mat-error>
-                              <mat-error *ngIf="loginForm.get('email').errors.email">Email address invalid</mat-error>
+                         placeholder="User Name" formControlName="userName">
+                         <div *ngIf="loginForm.get('userName').touched && loginForm.get('userName').invalid">
+                              <!-- <mat-error *ngIf="loginForm.get('email').errors.required">Email is required</mat-error>
+                              <mat-error *ngIf="loginForm.get('email').errors.email">Email address invalid</mat-error> -->
                          </div>
                          
                     </mat-form-field>

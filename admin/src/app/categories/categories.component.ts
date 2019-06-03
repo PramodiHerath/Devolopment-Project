@@ -9,7 +9,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
-categories:any[];
+categories : any  ;
 newCategory:object;
 changedCategory:object;
 
@@ -45,7 +45,6 @@ updateCategoryForm = new FormGroup({
         console.log(error);
     })  
    }
-
 
 
    addCategory(data){
@@ -84,12 +83,14 @@ updateCategoryForm = new FormGroup({
         alert('An unexpected error occurred.');
         console.log(error);
       })
+
       this.service.getAllCategories()
     .subscribe(response=>{
        
         console.log(response);
          this.categories=response;
     })
+    
    }
 
    deleteCategory(i){

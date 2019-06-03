@@ -1,3 +1,4 @@
+import { AuthGuard } from './services/authGuard.service';
 import { CategoriesComponent } from './categories/categories.component';
 import { MenusComponent } from './menus/menus.component';
 
@@ -8,10 +9,10 @@ import { HomeComponent } from './home/home.component';
 
 export const appRoutes: Routes= [
 
-    {path:'login',component:LoginComponent},
-    {path:'home',component:HomeComponent},
-    {path:'menus',component:MenusComponent},
-    {path:'categories',component:CategoriesComponent},
+    {path:'login',component:LoginComponent,canActivate:[AuthGuard]},
+    {path:'home',component:HomeComponent,canActivate:[AuthGuard]},
+    {path:'menus',component:MenusComponent,canActivate:[AuthGuard]},
+    {path:'categories',component:CategoriesComponent,canActivate:[AuthGuard]},
     {path:'',component: LoginComponent},
     {path:'**',redirectTo:'',pathMatch:'full'}
   
