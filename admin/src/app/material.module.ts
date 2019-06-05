@@ -13,7 +13,9 @@ import { MatDatepickerModule,
         // FormsModule,
         MatListModule,
         MatRadioModule,
-        MatInputModule } from '@angular/material';
+        MatInputModule, 
+        MatSortModule,
+        MatPaginatorModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -32,6 +34,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     // FormsModule,
     MatListModule,
     MatRadioModule,
+    MatPaginatorModule,
+    MatSortModule,
     BrowserAnimationsModule
   ],
   exports: [
@@ -47,6 +51,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatIconModule,
     MatCheckboxModule,
     MatListModule,
+    MatPaginatorModule,
     MatRadioModule,
     // MatFormsModule,
 

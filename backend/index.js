@@ -4,13 +4,14 @@ const app=express();
 const mongoose = require('mongoose');
 
 
+
 const Category=require('./routes/category');
 const Menu=require('./routes/menu');
 const Item=require('./routes/item');
 const Client=require('./routes/client');
 const User=require('./routes/user');
 const UserLogin=require('./routes/userLogin');
-
+const SerachItem=require('./routes/searchItem');
 
 
 
@@ -36,11 +37,11 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use('/api/categories', Category);
 app.use('/api/menus', Menu);
-app.use('/api/items', Item);
+app.use('/api/item', Item);
 app.use('/api/client', Client);
 app.use('/api/user', User);
 app.use('/api/userLogin', UserLogin);
-
+app.use('/api/searchItem', SerachItem);
 
 const port=process.env.PORT || 3000;
 

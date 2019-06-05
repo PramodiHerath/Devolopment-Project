@@ -2,17 +2,19 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
-
-const {Menu} = require('../models/client');
+const bcrypt=require('bcrypt');
+const {Client} = require('../models/client');
 
 router.post('/', async (req, res) => {
+  const passwordSalt=await bcrypt.genSalt(10);
+  const passwordHash=await bcrypt.hash(req.body.password,passwordSalt);
 
    let clienttoCreate = new Client({ 
     _id: req.body.clientName,
     name: req.body.clientName,
     telephoneNumber: req.body.clientPhoneNumber,
     emailAddress: req.body.clientEmailAddress,
-    password: req.body.clientPassword
+    password: passwordHash
     
   })
   

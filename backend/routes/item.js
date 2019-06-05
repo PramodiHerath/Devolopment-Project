@@ -27,10 +27,6 @@ router.get('/', async (req, res) => {
   res.send(item);
 });
 
-// router.get('/', async (req, res) => {
-//     const item = await Item.find();
-//     res.send(item);
-//   });
 
   router.put('/:id',async (req, res) => {
     const item = await Item.findByIdAndUpdate(req.params.id,

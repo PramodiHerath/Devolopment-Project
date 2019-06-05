@@ -12,6 +12,7 @@ import { NavBarComponent } from './navBar/navBar.component';
 import { MenusComponent } from './menus/menus.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ItemComponent } from './item/item.component';
 
 @NgModule({
    declarations: [
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
       HomeComponent,
       NavBarComponent,
       MenusComponent,
-      CategoriesComponent
+      CategoriesComponent,
+      ItemComponent
    ],
    imports: [
       BrowserAnimationsModule,

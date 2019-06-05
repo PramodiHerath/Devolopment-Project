@@ -15,7 +15,6 @@ const clientSchema = new mongoose.Schema({
     telephoneNumber: {
         type: Number,
         required: true,
-        length: 10
     },
     emailAddress:{
         type: String,

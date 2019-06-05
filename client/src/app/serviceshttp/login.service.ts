@@ -15,9 +15,10 @@ decodedToken:any;
 
 
 
-login(credentials){
-  return this.http.post(this.baseUrl,credentials).pipe(
+login(credentials: any) {
+  return this.http.post(this.baseUrl + 'userLogin', credentials).pipe(
     map((response: any) => {
+      console.log(response);
       const user = response;
       if (user) {
         localStorage.setItem('token', user.token);
@@ -28,5 +29,15 @@ login(credentials){
   );
 }
 
+isLogedin(){
+  // let jwtHelper=new JwtHelper();
+  let token=localStorage.getItem('token');
 
+  if(!token) return false;
+  // jwtHelper.
+
+  return true;
 }
+}
+
+
