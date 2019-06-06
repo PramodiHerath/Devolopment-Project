@@ -23,11 +23,22 @@ const userSchema = new mongoose.Schema({
     isAdmin:{
         type:Boolean,
         require:true
-    }
+    },
+    telePhoneNumber: {
+        type: Number,
+        required: true,
+        length: 10
+    },
+    emailAddress:{
+        type: String,
+        required: true,
+
+    },
     
   });
   
   const User = mongoose.model('User', userSchema);
+  
 
 exports.User = User; 
 exports.userSchema = userSchema;

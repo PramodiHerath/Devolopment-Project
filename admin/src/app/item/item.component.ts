@@ -30,6 +30,7 @@ export class ItemComponent implements OnInit {
     this.itemService.getAllItems()
     .subscribe(response=>{
       console.log(response);
+      this.data=response;
       this.dataSource = new ItemDataSource (this.paginator, this.sort,this.data);
     },(error:Response)=>{
       console.log(error);

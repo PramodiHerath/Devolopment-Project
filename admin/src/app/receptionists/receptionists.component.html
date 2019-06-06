@@ -1,0 +1,121 @@
+
+<admin-navBar></admin-navBar>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="table-responsive">
+  <table class="table table-hover table-dark data-table">
+    <thead>
+      <tr>
+        <th scope="col">User Name</th>
+        <th scope="col">Telephone Number</th>
+        <th scope="col">Email Address</th>
+        <th scope="col">Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-active" *ngFor= "let receptionist of users; index as i">
+        <td>{{receptionist.name}}</td>
+        <td> {{receptionist.telePhoneNumber}}</td>
+        <td> {{receptionist.emailAddress}}</td>
+        <td> {{receptionist.role}}</td>
+        <!-- <td><button *ngIf=update (click)=bringUpdateForm(i) class="btn-table">Update</button></td>
+        <td><button *ngIf=delete (click)=deleteCategory(i)  class="btn-table">Delete</button></td> -->
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container-fluid">
+  <div class="raw">
+
+<div class="col-md-4">
+            
+            <a class="btn btn-primary btn-xl" (click)="bringAddUser()">Add</a>
+        
+</div>
+<div class="col-md-4">
+            
+    <a class="btn btn-primary btn-xl" (click)="bringUpdateUser()">Update</a>
+
+</div>
+<div class="col-md-4">
+            
+  <a class="btn btn-primary btn-xl" (click)="bringDeleteUser()">Delete</a>
+
+</div>
+  </div>
+</div>  
+
+ <br>
+
+ <div class="container-fluid" *ngIf=add style="width: 50%;">
+  <div class="row spacing">
+    <div class="col-md-12 square-box7"  >
+      <h1 class="left-heading menu-heading">Add Users</h1>
+    
+<form [formGroup]="addUserForm" (ngSubmit) = "addUser()">
+  <ul class="menus-list-style">
+    <li>
+      <div class="form-group">
+        <label for="UserName">User Name</label>
+        <input type="text" class="form-control" id="UserName" style="width: 20%" formControlName="name" placeholder="User Name">
+        <div *ngIf="addUserForm.get('name').touched && addUserForm.get('name').invalid">
+          <!-- <div *ngIf="addUserForm.get('name').errors.required">name is required</div> -->
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="form-group" >
+        <label for="UserPassword">Password</label>
+        <input type="password" class="form-control" id="Password" style="width: 20%" formControlName="password" placeholder="password">
+        <div *ngIf="addUserForm.get('password').touched && addUserForm.get('password').invalid">
+          <!-- <div *ngIf="addUserForm.get('password').errors.required">password is required</div> -->
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="form-group" >
+        <label for="UserRole">User Role</label>
+        <input type="text" class="form-control" id="UserRole" style="width: 20%" formControlName="role" placeholder="user role">
+        <div *ngIf="addUserForm.get('role').touched && addUserForm.get('role').invalid">
+          <!-- <div *ngIf="addUserForm.get('role').errors.required">role is required</div> -->
+        </div>
+      </div>
+    </li>
+    
+    <li>
+      <div class="form-group" >
+        <label for="TelePhoneNumber">Password</label>
+        <input type="text" class="form-control" id="TelePhoneNumber" style="width: 20%" formControlName="telePhoneNumber" placeholder="telephone number">
+        <div *ngIf="addUserForm.get('telePhoneNumber').touched && addUserForm.get('telePhoneNumber').invalid">
+          <!-- <div *ngIf="addUserForm.get('telePhoneNumber').errors.required">telephone number is required</div> -->
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="form-group" >
+        <label for="EmailAddress">Email Address</label>
+        <input type="text" class="form-control" id="EmailAddress" style="width: 20%" formControlName="emailAddress" placeholder="emailAddress">
+        <div *ngIf="addUserForm.get('emailAddress').touched && addUserForm.get('emailAddress').invalid">
+          <!-- <div *ngIf="addUserForm.get('emailAddress').errors.required">email is required</div> -->
+        </div>
+      </div>
+    </li>
+   
+    
+  </ul>
+  
+    <div class="form-group" style="text-align: center">
+      <input name="AddCategory" type="submit" class="btn btn-primary btn-xl" value="Add User" required="required" style="align-self: center;width:50%" >
+    </div>
+ 
+    
+  
+  </form>
+</div>
+
+</div>
+</div>

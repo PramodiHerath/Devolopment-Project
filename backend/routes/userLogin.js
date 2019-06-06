@@ -7,6 +7,7 @@ const bcrypt=require('bcrypt');
 const {User} = require('../models/user');
 
 router.post('/', async (req, res) => {
+  
     
     const user= await User.findOne({name:req.body.userName});
   if (!user) return res.status(400).send('Invalid User Name');

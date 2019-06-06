@@ -20,6 +20,9 @@ export class HomeComponent implements OnInit {
   bringMenusComponents(){
     this.router.navigate(['/menus']);
   }
+  bringReceptionistsComponents(){
+    this.router.navigate(['/receptionists']);
+  }
 
   constructor(private router: Router) { }
 

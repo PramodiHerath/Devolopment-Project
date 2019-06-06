@@ -68,6 +68,7 @@ updateCategoryForm = new FormGroup({
 
 
    updateCategory(data){
+    this.bringUpdateCategory();
     this.changedCategory={
       categoryName:data.newName,
       categoryPrice:+data.newPrice
@@ -94,6 +95,7 @@ updateCategoryForm = new FormGroup({
    }
 
    deleteCategory(i){
+     this.bringDeleteCategory();
       this.service.deleteCategory(this.categories[i].name)
       .subscribe(
         response=>{
@@ -114,7 +116,8 @@ updateCategoryForm = new FormGroup({
 
 
    bringUpdateForm(i){
-      this.updateForm=true;
+      
+      this.update=true;
       console.log(this.categories[i].name);
       this.updatingCategory=this.categories[i].name;
    }

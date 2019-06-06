@@ -15,19 +15,25 @@ router.post('/', async (req, res) => {
     name: req.body.userName,
     password: passwordHash,
     role:req.body.userRole,
-    isAdmin:req.body.isAdmin
+    isAdmin:req.body.isAdmin,
+    telePhoneNumber:req.body.telePhoneNumber,
+    emailAddress:req.body.emailAddress
     
   })
   
     usertoCreate = await usertoCreate.save();
+
 
     res.send(usertoCreate);
 
 });
 
 router.get('/', async (req, res) => {
+
     const user = await User.find();
     res.send(user);
+
   });
 
+  
 module.exports = router;  

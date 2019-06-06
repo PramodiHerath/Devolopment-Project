@@ -13,6 +13,8 @@ import { MenusComponent } from './menus/menus.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ItemComponent } from './item/item.component';
+import { ReceptionistsComponent } from './receptionists/receptionists.component';
+import { ItemsTableComponent } from './items-table/items-table.component';
 
 @NgModule({
    declarations: [
@@ -22,7 +24,9 @@ import { ItemComponent } from './item/item.component';
       NavBarComponent,
       MenusComponent,
       CategoriesComponent,
-      ItemComponent
+      ItemComponent,
+      ReceptionistsComponent,
+      ItemsTableComponent
    ],
    imports: [
       BrowserAnimationsModule,

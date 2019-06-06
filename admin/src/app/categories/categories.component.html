@@ -8,7 +8,7 @@
 
 
 <div class="table-responsive">
-    <table class="table table-hover table-dark">
+    <table class="table table-hover table-dark data-table">
       <thead>
         <tr>
           <th scope="col" hidden>CategoryId</th>
@@ -20,8 +20,8 @@
         <tr class="table-active" *ngFor= "let category of categories; index as i">
           <td>{{category.name}}</td>
           <td> {{category.price}}</td>
-          <td><button *ngIf=update (click)=bringUpdateForm(i)>Update</button></td>
-          <td><button *ngIf=delete (click)=deleteCategory(i)>Delete</button></td>
+          <td><button *ngIf=update (click)=bringUpdateForm(i) class="btn-table">Update</button></td>
+          <td><button *ngIf=delete (click)=deleteCategory(i)  class="btn-table">Delete</button></td>
         </tr>
       </tbody>
     </table>
@@ -52,9 +52,9 @@
    <br>
    
 
-   <div class="container-fluid" *ngIf=add>
+   <div class="container-fluid" *ngIf=add style="width: 50%;">
       <div class="row spacing">
-        <div class="col-md-12 square-box7" style="margin-right: 3%; width:66% ">
+        <div class="col-md-12 square-box7"  >
           <h1 class="left-heading menu-heading">Add Catogoreis</h1>
         
    <form [formGroup]="addCategoryForm" (ngSubmit) = "addCategory(addCategoryForm.value)">
@@ -81,8 +81,8 @@
         
       </ul>
       
-        <div class="form-group">
-          <input name="AddCategory" type="submit" class="btn btn-primary btn-xl" value="Add Category" required="required" >
+        <div class="form-group" style="text-align: center">
+          <input name="AddCategory" type="submit" class="btn btn-primary btn-xl" value="Add Category" required="required" style="align-self: center;width:50%" >
         </div>
      
         
@@ -94,7 +94,7 @@
 </div>
 
 
-<div class="container-fluid" *ngIf=updateForm>
+<div class="container-fluid" *ngIf=update style="width: 50%">
   <div class="row spacing">
     <div class="col-md-12 square-box7" style="margin-right: 3%; width:66% ">
       <h1 class="left-heading menu-heading">Update Category {{updatingCategory}}</h1>
@@ -123,8 +123,8 @@
     
   </ul>
   
-    <div class="form-group">
-      <input name="UpdateCategory" type="submit" class="btn btn-primary btn-xl" value="Update Category" required="required" >
+    <div class="form-group" style="text-align: center">
+      <input name="UpdateCategory" type="submit" class="btn btn-primary btn-xl" value="Update Category" required="required" style="align-self: center;width:50%">
     </div>
  
     
