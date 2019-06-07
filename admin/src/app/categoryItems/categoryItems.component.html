@@ -1,0 +1,25 @@
+
+<admin-navBar></admin-navBar>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="table-responsive">
+  <table class="table table-hover table-dark data-table">
+    <thead>
+      <tr>
+        
+        <th scope="col">Item Name</th>
+        <th scope="col">Category Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-active" *ngFor= "let item of categoryItems; index as i">
+        <td>{{item.name}}</td>
+        <td> {{item.categoryId}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -11,10 +11,10 @@ router.post('/', async (req, res) => {
     const passwordHash=await bcrypt.hash(req.body.password,passwordSalt);
 
    let usertoCreate = new User({ 
-    _id: req.body.userName,
-    name: req.body.userName,
+    _id: req.body.name,
+    name: req.body.name,
     password: passwordHash,
-    role:req.body.userRole,
+    role:req.body.role,
     isAdmin:req.body.isAdmin,
     telePhoneNumber:req.body.telePhoneNumber,
     emailAddress:req.body.emailAddress

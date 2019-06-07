@@ -2,6 +2,7 @@ import { CategoriesService } from './../services/categories.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'admin-categories',
@@ -32,7 +33,7 @@ updateCategoryForm = new FormGroup({
 }
 )
 
-  constructor(private service:CategoriesService) {
+  constructor(private service:CategoriesService,private router:Router) {
    
     this.service.getAllCategories()
     .subscribe(
@@ -114,6 +115,10 @@ updateCategoryForm = new FormGroup({
      
    }
 
+   onItemView(category){
+      console.log(category);
+      this.router.navigate(['/categoryItem',category.name]);
+       }
 
    bringUpdateForm(i){
       

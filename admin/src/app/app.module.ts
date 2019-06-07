@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ItemComponent } from './item/item.component';
 import { ReceptionistsComponent } from './receptionists/receptionists.component';
 import { ItemsTableComponent } from './items-table/items-table.component';
+import { CategoryItemsComponent } from './categoryItems/categoryItems.component';
 
 @NgModule({
    declarations: [
@@ -26,7 +27,8 @@ import { ItemsTableComponent } from './items-table/items-table.component';
       CategoriesComponent,
       ItemComponent,
       ReceptionistsComponent,
-      ItemsTableComponent
+      ItemsTableComponent,
+      CategoryItemsComponent
    ],
    imports: [
       BrowserAnimationsModule,

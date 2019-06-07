@@ -15,6 +15,11 @@ getAllCategories(){
   
 }
 
+getCategoryItems(catergoryId){
+  return this.http.get(this.baseUrl+'categories/'+catergoryId)
+  
+}
+
 postCategories(newCategory){
   return this.http.post(this.baseUrl+'categories',newCategory)
 }

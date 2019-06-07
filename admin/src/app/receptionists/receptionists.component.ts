@@ -54,9 +54,9 @@ export class ReceptionistsComponent implements OnInit {
    }
 
    addUser(){
-    console.log(this.addUserForm.value);
+    this.addUserForm.patchValue({isAdmin:"false"})
     this.newUser=Object.assign({},this.addUserForm.value);
-  
+    console.log(this.newUser);
     this.service.postUsers(this.newUser)
     .subscribe(
       response=>{

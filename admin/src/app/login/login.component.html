@@ -29,7 +29,7 @@
                          <input matInput type="password" 
                           placeholder="password" formControlName="password">
                          <div *ngIf="loginForm.get('password').touched && loginForm.get('password').invalid">
-                              <mat-error *ngIf="password.errors.required">password is required</mat-error>
+                              <!-- <mat-error *ngIf="password.errors.required">password is required</mat-error> -->
                          </div>
                          
                     </mat-form-field>

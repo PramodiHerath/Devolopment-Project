@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 
 const {Category} = require('../models/category');
+const {Item} = require('../models/item');
 
 router.post('/', async (req, res) => {
 
@@ -21,6 +22,11 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
     const category = await Category.find();
     res.send(category);
+  });
+
+  router.get('/:id', async (req, res) => {
+    const items = await Item.find({categoryId:req.params.id});
+    res.send(items);
   });
 
 router.put('/:id',async (req, res) => {

@@ -20,6 +20,7 @@
         <tr class="table-active" *ngFor= "let category of categories; index as i">
           <td>{{category.name}}</td>
           <td> {{category.price}}</td>
+          <td><button  class="btn-table" (click)="onItemView(category)">View Items</button></td>
           <td><button *ngIf=update (click)=bringUpdateForm(i) class="btn-table">Update</button></td>
           <td><button *ngIf=delete (click)=deleteCategory(i)  class="btn-table">Delete</button></td>
         </tr>

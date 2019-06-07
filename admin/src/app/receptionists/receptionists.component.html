@@ -79,17 +79,16 @@
     <li>
       <div class="form-group" >
         <label for="UserRole">User Role</label>
-        <input type="text" class="form-control" id="UserRole" style="width: 20%" formControlName="role" placeholder="user role">
-        <div *ngIf="addUserForm.get('role').touched && addUserForm.get('role').invalid">
-          <!-- <div *ngIf="addUserForm.get('role').errors.required">role is required</div> -->
-        </div>
+        <select formControlName="role" >
+          <option *ngFor="let role of Role">{{role}}</option>
+        </select>
       </div>
     </li>
     
     <li>
       <div class="form-group" >
         <label for="TelePhoneNumber">Password</label>
-        <input type="text" class="form-control" id="TelePhoneNumber" style="width: 20%" formControlName="telePhoneNumber" placeholder="telephone number">
+        <input type="text" class="form-control" id="TelePhoneNumber" style="width: 20%" formControlName="telePhoneNumber" placeholder="Telephone number">
         <div *ngIf="addUserForm.get('telePhoneNumber').touched && addUserForm.get('telePhoneNumber').invalid">
           <!-- <div *ngIf="addUserForm.get('telePhoneNumber').errors.required">telephone number is required</div> -->
         </div>
