@@ -17,6 +17,7 @@ changedCategory:object;
 add:boolean;
 update:boolean;
 delete:boolean;
+view:boolean;
 updateForm:boolean;
 updatingCategory:String;
 
@@ -131,6 +132,7 @@ updateCategoryForm = new FormGroup({
       this.update=false;
       this.delete=false;
       this.add=true;
+      
 
    }
    bringUpdateCategory(){
