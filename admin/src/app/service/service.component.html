@@ -1,0 +1,146 @@
+
+<admin-navBar></admin-navBar>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<div class="table-responsive">
+    <table class="table table-hover table-dark data-table">
+      <thead>
+        <tr>
+          <th scope="col" hidden>CategoryId</th>
+          <th scope="col">Category</th>
+          <th scope="col">Category price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table-active" *ngFor= "let service of services; index as i">
+          <td>{{service.name}}</td>
+          <td> {{service.price}}</td>
+          <td><button *ngIf=update (click)=bringUpdateForm(service) class="btn-table">Update</button></td>
+          <td><button *ngIf=delete (click)=deleteService(service,i)  class="btn-table">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+<div class="container-fluid" *ngIf="isAdmin">
+    <div class="raw">
+
+  <div class="col-md-4">
+              
+              <a class="btn btn-primary btn-xl" (click)="bringAddService()">Add</a>
+          
+  </div>
+  <div class="col-md-4">
+              
+      <a class="btn btn-primary btn-xl" (click)="bringUpdateService()">Update</a>
+  
+</div>
+<div class="col-md-4">
+              
+    <a class="btn btn-primary btn-xl" (click)="bringDeleteService()">Delete</a>
+
+</div>
+    </div>
+</div>  
+  
+   <br>
+   <br>
+   
+
+   <div class="container-fluid" *ngIf=add style="width: 50%;">
+      <div class="row spacing">
+        <div class="col-md-12 square-box7"  >
+          <h1 class="left-heading menu-heading">Add Services</h1>
+        
+   <form [formGroup]="addServiceForm" (ngSubmit) = "addService(addServiceForm.value)">
+      <ul class="menus-list-style">
+        <li>
+          <div class="form-group">
+            <label for="CategoryName">Service Name</label>
+            <input type="text" class="form-control" id="CategoryName" style="width: 20%" formControlName="name" placeholder="Service Name">
+            <div *ngIf="addServiceForm.get('name').touched && addServiceForm.get('name').invalid">
+              <div *ngIf="addServiceForm.get('name').errors.required">Name is required</div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="form-group" >
+            <label for="Categoryprice">Service Price</label>
+            <input type="text" class="form-control" id="Duration" style="width: 20%" formControlName="price" placeholder="Service Price">
+            <div *ngIf="addServiceForm.get('price').touched && addServiceForm.get('price').invalid">
+              <div *ngIf="addServiceForm.get('price').errors.required">price is required</div>
+            </div>
+          </div>
+        </li>
+       
+        
+      </ul>
+      
+        <div class="form-group" style="text-align: center">
+          <input name="AddCategory" type="submit" class="btn btn-primary btn-xl" value="Add Service" required="required" style="align-self: center;width:50%" >
+        </div>
+     
+        
+      
+      </form>
+    </div>
+    
+  </div>
+</div>
+
+
+<div class="container-fluid" *ngIf=update style="width: 50%">
+  <div class="row spacing">
+    <div class="col-md-12 square-box7" style="margin-right: 3%; width:66% ">
+      <h1 class="left-heading menu-heading">Update Category {{updatingService}}</h1>
+    
+<form [formGroup]="updateServiceForm" (ngSubmit) = "updateService()">
+  <ul class="menus-list-style">
+      <!-- <li>
+          <div class="form-group">
+            <label for="CategoryNewName">Category Id : {{service}}</label>
+            
+            <div *ngIf="updateServiceForm.get('newName').touched && updateServiceForm.get('name').invalid">
+              <div *ngIf="updateServiceForm.get('newName').errors.required">Name is required</div>
+            </div>
+          </div>
+        </li> -->
+    <li>
+      <div class="form-group">
+        <label for="ServiceNewName">Service Name</label>
+        <input type="text" class="form-control" id="CategoryNewName" style="width: 20%" formControlName="newName" placeholder="Service Name">
+        <div *ngIf="updateServiceForm.get('newName').touched && updateServiceForm.get('name').invalid">
+          <div *ngIf="updateServiceForm.get('newName').errors.required">service is required</div>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="form-group" >
+        <label for="ServiceNewPrice">Service Price</label>
+        <input type="text" class="form-control" id="CategoryNewPrice" style="width: 20%" formControlName="newPrice" placeholder="Category Price">
+        <div *ngIf="updateServiceForm.get('newPrice').touched && updateServiceForm.get('newPrice').invalid">
+          <div *ngIf="updateServiceForm.get('newPrice').errors.required">price is required</div>
+        </div>
+      </div>
+    </li>
+   
+    
+  </ul>
+  
+    <div class="form-group" style="text-align: center">
+      <input name="UpdateService" type="submit" class="btn btn-primary btn-xl" value="Update Service" required="required" style="align-self: center;width:50%">
+    </div>
+ 
+    
+  
+  </form>
+</div>
+
+</div>
+</div>

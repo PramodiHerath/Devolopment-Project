@@ -23,6 +23,9 @@ export class HomeComponent implements OnInit {
   bringReceptionistsComponents(){
     this.router.navigate(['/receptionists']);
   }
+  bringServiceComponent(){
+    this.router.navigate(['/services']);
+  }
 
   constructor(private router: Router) { }
 

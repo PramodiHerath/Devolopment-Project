@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServicesComponent implements OnInit {
   champagne='/assets/images/services.jpg';
+  dryIce='/assets/images/services/dryIce.jpg';
 
 
    drapingPrice:number=120000;

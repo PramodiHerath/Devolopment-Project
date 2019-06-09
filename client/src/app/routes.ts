@@ -22,7 +22,8 @@ export const appRoutes: Routes= [
   {path: 'register', component:RegisterComponent},
   {path: 'BookingTulip', component:BookingTulipComponent},
   {path: 'royalSilver', component:RoyalSilverComponent},
-  {path: 'planEvent', component:PlanEventComponent}, 
+  {path: 'planEvent', component:PlanEventComponent},
+  {path:'package/:id',component: PackageComponent}, 
   {path:'',component:HomeComponent},
   {path:'**',redirectTo:'',pathMatch:'full'}
 

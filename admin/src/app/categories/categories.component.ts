@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth.service';
 import { CategoriesService } from './../services/categories.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
+  isAdmin=this.authService.decodedToken.isAdmin;
 categories : any  ;
 newCategory:object;
 changedCategory:object;
@@ -36,7 +38,7 @@ updateCategoryForm = new FormGroup({
 }
 )
 
-  constructor(private service:CategoriesService,private router:Router) {
+  constructor(private service:CategoriesService,private router:Router, private authService:AuthService) {
    
     this.service.getAllCategories()
     .subscribe(
@@ -60,6 +62,7 @@ updateCategoryForm = new FormGroup({
       .subscribe(
         response=>{
         this.categories.push(response);
+        alert('succesfully added')
         console.log(response);
         this.addCategoryForm.reset();   
     },
@@ -104,6 +107,7 @@ updateCategoryForm = new FormGroup({
         response=>{
         console.log(response)
         this.categories.splice(i,1) 
+        alert('succesfully deleted')
      },
         (error: Response)=>{
           if(error.status===404)

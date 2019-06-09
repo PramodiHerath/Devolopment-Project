@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth.service';
 import { ReceptionistService } from './../services/receptionist.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormControlName } from '@angular/forms';
@@ -8,7 +9,7 @@ import { FormGroup, FormControl, Validators, FormControlName } from '@angular/fo
 })
 export class ReceptionistsComponent implements OnInit {
 
-
+  isAdmin=this.authService.decodedToken.isAdmin;
   users : any  ;
   newUser:object;
   changedUser:object;
@@ -39,7 +40,7 @@ export class ReceptionistsComponent implements OnInit {
 
   Role=["Receptionist","Manager"]
 
-  constructor(private service:ReceptionistService) {
+  constructor(private service:ReceptionistService,  private authService:AuthService) {
     
     this.service.getAllUsers()
     .subscribe(

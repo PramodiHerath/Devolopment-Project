@@ -16,6 +16,8 @@ import { ItemComponent } from './item/item.component';
 import { ReceptionistsComponent } from './receptionists/receptionists.component';
 import { ItemsTableComponent } from './items-table/items-table.component';
 import { CategoryItemsComponent } from './categoryItems/categoryItems.component';
+import { ServiceComponent } from './service/service.component';
+
 
 @NgModule({
    declarations: [
@@ -28,7 +30,8 @@ import { CategoryItemsComponent } from './categoryItems/categoryItems.component'
       ItemComponent,
       ReceptionistsComponent,
       ItemsTableComponent,
-      CategoryItemsComponent
+      CategoryItemsComponent,
+      ServiceComponent
    ],
    imports: [
       BrowserAnimationsModule,

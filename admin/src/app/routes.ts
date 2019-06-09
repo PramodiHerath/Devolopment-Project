@@ -1,3 +1,4 @@
+import { ServiceComponent } from './service/service.component';
 import { CategoryItemsComponent } from './categoryItems/categoryItems.component';
 
 import { ReceptionistsComponent } from './receptionists/receptionists.component';
@@ -19,6 +20,7 @@ export const appRoutes: Routes= [
     {path:'categories',component:CategoriesComponent},
     {path:'item',component:ItemComponent,},
     {path:'receptionists',component:ReceptionistsComponent},
+    {path:'services',component:ServiceComponent},
     {path:'',component: LoginComponent},
     {path:'categoryItem/:categoryId',component: CategoryItemsComponent},
     {path:'**',redirectTo:'',pathMatch:'full'}

@@ -29,7 +29,7 @@
     </table>
   </div>
 
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="isAdmin">
     <div class="raw">
 
   <div class="col-md-4">
@@ -103,7 +103,7 @@
     
 <form [formGroup]="updateCategoryForm" (ngSubmit) = "updateCategory()">
   <ul class="menus-list-style">
-      <li>
+      <!-- <li>
           <div class="form-group">
             <label for="CategoryNewName">Category Id : {{category}}</label>
             
@@ -111,7 +111,7 @@
               <div *ngIf="updateCategoryForm.get('newName').errors.required">capacity is required</div>
             </div>
           </div>
-        </li>
+        </li> -->
     <li>
       <div class="form-group">
         <label for="CategoryNewName">Category Name</label>

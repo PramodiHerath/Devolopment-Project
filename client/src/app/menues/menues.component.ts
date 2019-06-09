@@ -7,7 +7,11 @@ import {Router} from '@angular/router';
 })
 export class MenuesComponent implements OnInit {
 
-  
+  menu1="silverMenu";
+  men2="goldMenu";
+  menu3="platinumMenu";
+
+
   pic1='/assets/images/royalRose.jpg';
   pic2='/assets/images/pic2.jpg';
   pic3='/assets/images/pic3.jpg';
@@ -28,8 +32,8 @@ export class MenuesComponent implements OnInit {
     this.router.navigate(['/planEvent'])
   }
   bringRoyalSilver(id){
-    console.log(menId);
-      this.router.navigate(['/categoryItem',menuId]);
+    console.log(id);
+      this.router.navigate(['/package',id]);
   }
   ngOnInit() {
 

@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth.service';
 import { ItemsService } from './../services/items.service';
 import { CategoriesService } from './../services/categories.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,6 +11,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./categoryItems.component.css']
 })
 export class CategoryItemsComponent implements OnInit {
+  isAdmin=this.authService.decodedToken.isAdmin;
   categoryItems;
   catergoryId;
 
@@ -17,7 +19,7 @@ export class CategoryItemsComponent implements OnInit {
 
   add:boolean;
   delete:boolean;
-  
+
 
   addItemForm = new FormGroup({
   itemName: new FormControl('',Validators.required),
@@ -25,7 +27,7 @@ export class CategoryItemsComponent implements OnInit {
   }
   )
 
-  constructor(private route:ActivatedRoute,private service:CategoriesService, private itemService:ItemsService) { }
+  constructor(private route:ActivatedRoute,private service:CategoriesService, private itemService:ItemsService, private authService:AuthService) { }
 
   get name(){
     return this.addItemForm.get('name');
