@@ -17,6 +17,7 @@ export class CategoryItemsComponent implements OnInit {
 
   add:boolean;
   delete:boolean;
+  
 
   addItemForm = new FormGroup({
   itemName: new FormControl('',Validators.required),
