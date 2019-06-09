@@ -37,6 +37,7 @@ router.put('/:id',async (req, res) => {
       }, { new: true });
       if (!service) return res.status(404).send('The service with the given name was not found.');
     res.send(category);
+    
   });
 
 router.delete('/:id',async (req, res) => {
