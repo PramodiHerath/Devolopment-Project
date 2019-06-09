@@ -12,6 +12,7 @@ const Client=require('./routes/client');
 const User=require('./routes/user');
 const UserLogin=require('./routes/userLogin');
 const SerachItem=require('./routes/searchItem');
+const Counter=require('./routes/counter');
 
 
 
@@ -42,6 +43,8 @@ app.use('/api/client', Client);
 app.use('/api/user', User);
 app.use('/api/userLogin', UserLogin);
 app.use('/api/searchItem', SerachItem);
+app.use('/api/counter', Counter);
+
 
 const port=process.env.PORT || 3000;
 

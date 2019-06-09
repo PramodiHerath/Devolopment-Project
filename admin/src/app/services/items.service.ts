@@ -15,4 +15,13 @@ getAllItems(){
 searchItem(str:String){
   return this.http.get(this.baseUrl + 'searchItem?itemName='+str);
 }
+
+deleteItem(item){
+  
+    return this.http.delete(this.baseUrl + 'item/'+ item);
+
+}
+postItems(newItem){
+  return this.http.post(this.baseUrl+'item',newItem);
+}
 }

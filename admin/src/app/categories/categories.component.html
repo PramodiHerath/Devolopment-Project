@@ -1,5 +1,6 @@
 
 <admin-navBar></admin-navBar>
+
 <br>
 <br>
 <br>
@@ -21,8 +22,8 @@
           <td>{{category.name}}</td>
           <td> {{category.price}}</td>
           <td><button  class="btn-table"  (click)="onItemView(category)">View Items</button></td>
-          <td><button *ngIf=update (click)=bringUpdateForm(i) class="btn-table">Update</button></td>
-          <td><button *ngIf=delete (click)=deleteCategory(i)  class="btn-table">Delete</button></td>
+          <td><button *ngIf=update (click)=bringUpdateForm(category) class="btn-table">Update</button></td>
+          <td><button *ngIf=delete (click)=deleteCategory(category,i)  class="btn-table">Delete</button></td>
         </tr>
       </tbody>
     </table>
@@ -65,7 +66,7 @@
             <label for="CategoryName">Category Name</label>
             <input type="text" class="form-control" id="CategoryName" style="width: 20%" formControlName="name" placeholder="Category Name">
             <div *ngIf="addCategoryForm.get('name').touched && addCategoryForm.get('name').invalid">
-              <div *ngIf="addCategoryForm.get('name').errors.required">capacity is required</div>
+              <div *ngIf="addCategoryForm.get('name').errors.required">Name is required</div>
             </div>
           </div>
         </li>
@@ -100,8 +101,17 @@
     <div class="col-md-12 square-box7" style="margin-right: 3%; width:66% ">
       <h1 class="left-heading menu-heading">Update Category {{updatingCategory}}</h1>
     
-<form [formGroup]="updateCategoryForm" (ngSubmit) = "updateCategory(updateCategoryForm.value)">
+<form [formGroup]="updateCategoryForm" (ngSubmit) = "updateCategory()">
   <ul class="menus-list-style">
+      <li>
+          <div class="form-group">
+            <label for="CategoryNewName">Category Id : {{category}}</label>
+            
+            <div *ngIf="updateCategoryForm.get('newName').touched && updateCategoryForm.get('name').invalid">
+              <div *ngIf="updateCategoryForm.get('newName').errors.required">capacity is required</div>
+            </div>
+          </div>
+        </li>
     <li>
       <div class="form-group">
         <label for="CategoryNewName">Category Name</label>

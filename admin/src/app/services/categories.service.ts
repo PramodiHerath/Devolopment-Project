@@ -23,9 +23,9 @@ getCategoryItems(catergoryId){
 postCategories(newCategory){
   return this.http.post(this.baseUrl+'categories',newCategory)
 }
-updateCategory(changedCategory){
+updateCategory(changedCategory,updatingId){
  
-    return this.http.put(this.baseUrl + 'categories/'+changedCategory.categoryName, changedCategory)
+    return this.http.put(this.baseUrl + 'categories/'+updatingId, changedCategory)
   
 }
 deleteCategory(category){

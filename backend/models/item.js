@@ -3,7 +3,7 @@ const {Category}= require('./category')
 
 const itemSchema = new mongoose.Schema({
     _id:{
-        type: String,
+        type: Number,
        
     },
     name: {
@@ -12,7 +12,7 @@ const itemSchema = new mongoose.Schema({
     
     },
     categoryId:{
-        type: String,
+      type: Number,
         ref: Category
 
     }

@@ -19,6 +19,7 @@ const hallSchema = new mongoose.Schema({
   });
   
   const Hall = mongoose.model('Hall', hallSchema);
+  
 
 exports.Hall = Hall; 
 exports.hallSchema = hallSchema;

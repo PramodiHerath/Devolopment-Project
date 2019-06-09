@@ -20,6 +20,7 @@ delete:boolean;
 view:boolean;
 updateForm:boolean;
 updatingCategory:String;
+updatingId:any;
 
 
 addCategoryForm = new FormGroup({
@@ -29,6 +30,7 @@ addCategoryForm = new FormGroup({
 )
 
 updateCategoryForm = new FormGroup({
+  
   newName: new FormControl('',Validators.required),
   newPrice: new FormControl('',Validators.required)
 }
@@ -69,14 +71,13 @@ updateCategoryForm = new FormGroup({
 
 
 
-   updateCategory(data){
+   updateCategory(){
     this.bringUpdateCategory();
-    this.changedCategory={
-      categoryName:data.newName,
-      categoryPrice:+data.newPrice
-    }
+    this.changedCategory=Object.assign({},this.updateCategoryForm.value);
+    
     console.log(this.changedCategory)
-      this.service.updateCategory(this.changedCategory)
+    console.log(this.updatingId)
+      this.service.updateCategory(this.changedCategory,this.updatingId)
       .subscribe(
         response=>{
         console.log(response);
@@ -96,9 +97,9 @@ updateCategoryForm = new FormGroup({
     
    }
 
-   deleteCategory(i){
+   deleteCategory(category,i){
      this.bringDeleteCategory();
-      this.service.deleteCategory(this.categories[i].name)
+      this.service.deleteCategory(category._id)
       .subscribe(
         response=>{
         console.log(response)
@@ -117,15 +118,16 @@ updateCategoryForm = new FormGroup({
    }
 
    onItemView(category){
-      console.log(category);
-      this.router.navigate(['/categoryItem',category.name]);
+      console.log(category._id);
+      this.router.navigate(['/categoryItem',category._id]);
        }
 
-   bringUpdateForm(i){
+   bringUpdateForm(category){
       
       this.update=true;
-      console.log(this.categories[i].name);
-      this.updatingCategory=this.categories[i].name;
+      console.log(category.name);
+      this.updatingCategory=category.name;
+      this.updatingId=category._id;
    }
 
    bringAddCategory(){

@@ -9,8 +9,6 @@ const menuSchema = new mongoose.Schema({
     name: {
       type: String,
       required: true,
-      minlength: 5,
-      maxlength: 50
     },
     price: {
         type: Number,
@@ -18,7 +16,7 @@ const menuSchema = new mongoose.Schema({
     },
     item:[
         {
-            type: mongoose.Schema.Types.ObjectId,
+            type: String,
             ref: Item
         }
     ]

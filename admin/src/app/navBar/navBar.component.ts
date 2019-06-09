@@ -23,7 +23,7 @@ export class NavBarComponent implements OnInit {
   }
 
   reports(){
-console.log(this.role)
+  console.log(this.role)
   }
   logOut(){
     localStorage.removeItem('token');

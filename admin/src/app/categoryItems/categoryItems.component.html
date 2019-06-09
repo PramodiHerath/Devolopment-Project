@@ -18,8 +18,66 @@
     <tbody>
       <tr class="table-active" *ngFor= "let item of categoryItems; index as i">
         <td>{{item.name}}</td>
-        <td> {{item.categoryId}}</td>
+        <td>{{item.categoryId.name}}</td>
+        <td><button *ngIf=delete (click)=deleteItem(item,i)  class="btn-table">Delete</button></td>
       </tr>
     </tbody>
   </table>
 </div>
+
+<div class="container-fluid">
+    <div class="raw">
+
+  <div class="col-md-6">
+              
+              <a class="btn btn-primary btn-xl" (click)="bringAddItem()">Add</a>
+          
+  </div>
+  
+<div class="col-md-6">
+              
+    <a class="btn btn-primary btn-xl" (click)="bringDeleteItem()">Delete</a>
+
+</div>
+    </div>
+</div> 
+
+<br>
+<br>
+
+
+<div class="container-fluid" *ngIf=add style="width: 50%;">
+   <div class="row spacing">
+     <div class="col-md-12 square-box7"  >
+       <h1 class="left-heading menu-heading">Add Items</h1>
+     
+<form [formGroup]="addItemForm" (ngSubmit) = "addItem()">
+   <ul class="menus-list-style">
+     <li>
+       <div class="form-group">
+         <label for="ItemName">Item Name</label>
+         <input type="text" class="form-control" id="ItemName" style="width: 20%" formControlName="itemName" placeholder="Item Name">
+         <!-- <div *ngIf="addItemForm.get('name').touched && addItemForm.get('name').invalid">
+           <div *ngIf="name().errors.required">Item is required</div>
+         </div> -->
+       </div>
+     </li>
+     
+   </ul>
+   
+     <div class="form-group" style="text-align: center">
+       <input name="AddCategory" type="submit" class="btn btn-primary btn-xl" value="Add Item" required="required" style="align-self: center;width:50%" >
+     </div>
+  
+     
+   
+   </form>
+ </div>
+ 
+</div>
+</div>
+
+
+
+
+

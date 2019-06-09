@@ -3,11 +3,15 @@ const router = express.Router();
 const mongoose = require('mongoose');
 
 const {Menu} = require('../models/menu');
+const {Item} = require('../models/item');
 
 router.post('/', async (req, res) => {
 
+  const item= await Item.findOne({name:req.body.categoryName});
+  if (!category) return res.status(400).send('Invalid Item.');
+  let counter=await Counter.findOneAndUpdate({ "name" : "Menu" },{ $inc: { "value" : 1 } });
    let menutoCreate = new Menu({ 
-    _id: req.body.menuId,
+    _id:counter.value+1,
     name: req.body.menuName,
     price: req.body.menuPrice,
     item:
