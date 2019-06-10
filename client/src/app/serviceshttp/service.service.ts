@@ -4,14 +4,13 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class MenuService {
+export class ServiceService {
   private baseUrl='http://localhost:3000/api/';
-
 constructor(private http:HttpClient) { }
 
-getAllMenus(){
-  return this.http.get(this.baseUrl+'menus');
+getAllServices(){
+  return this.http.get(this.baseUrl+'services');
+  
 }
-
 
 }

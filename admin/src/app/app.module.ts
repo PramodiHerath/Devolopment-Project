@@ -17,6 +17,9 @@ import { ReceptionistsComponent } from './receptionists/receptionists.component'
 import { ItemsTableComponent } from './items-table/items-table.component';
 import { CategoryItemsComponent } from './categoryItems/categoryItems.component';
 import { ServiceComponent } from './service/service.component';
+import { MainMenusComponent } from './mainMenus/mainMenus.component';
+import { ViewMenuComponent } from './viewMenu/viewMenu.component';
+import { ViewMenuItemsComponent } from './viewMenuItems/viewMenuItems.component';
 
 
 @NgModule({
@@ -31,7 +34,10 @@ import { ServiceComponent } from './service/service.component';
       ReceptionistsComponent,
       ItemsTableComponent,
       CategoryItemsComponent,
-      ServiceComponent
+      ServiceComponent,
+      MainMenusComponent,
+      ViewMenuComponent,
+      ViewMenuItemsComponent
    ],
    imports: [
       BrowserAnimationsModule,

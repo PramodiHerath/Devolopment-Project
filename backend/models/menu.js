@@ -16,7 +16,7 @@ const menuSchema = new mongoose.Schema({
     },
     item:[
         {
-            type: String,
+            type: Number,
             ref: Item
         }
     ]

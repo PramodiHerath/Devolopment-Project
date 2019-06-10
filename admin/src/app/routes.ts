@@ -1,3 +1,4 @@
+import { ViewMenuItemsComponent } from './viewMenuItems/viewMenuItems.component';
 import { ServiceComponent } from './service/service.component';
 import { CategoryItemsComponent } from './categoryItems/categoryItems.component';
 
@@ -10,6 +11,7 @@ import { MenusComponent } from './menus/menus.component';
 import { LoginComponent } from './login/login.component';
 import {Routes} from '@angular/router'
 import { HomeComponent } from './home/home.component';
+import { ViewMenuComponent } from './viewMenu/viewMenu.component';
 
 
 export const appRoutes: Routes= [
@@ -21,6 +23,8 @@ export const appRoutes: Routes= [
     {path:'item',component:ItemComponent,},
     {path:'receptionists',component:ReceptionistsComponent},
     {path:'services',component:ServiceComponent},
+    {path:'viewMenu',component:ViewMenuComponent},
+    {path:'viewMenuItems/:menuId',component:ViewMenuItemsComponent},
     {path:'',component: LoginComponent},
     {path:'categoryItem/:categoryId',component: CategoryItemsComponent},
     {path:'**',redirectTo:'',pathMatch:'full'}

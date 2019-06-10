@@ -21,7 +21,7 @@ export class MenusComponent implements OnInit {
   }
 
   bringMenus(){
-    this.router.navigate(['/item']);
+    this.router.navigate(['/viewMenu']);
   }
   ngOnInit() {
   }

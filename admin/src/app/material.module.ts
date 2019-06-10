@@ -1,3 +1,4 @@
+import { MatGridListModule } from '@angular/material/grid-list';
 // material.module.ts
 import { NgModule } from '@angular/core';
 import { MatDatepickerModule,
@@ -13,8 +14,10 @@ import { MatDatepickerModule,
         // FormsModule,
         MatListModule,
         MatRadioModule,
+        MatExpansionModule,
         MatInputModule, 
         MatSortModule,
+       
         MatPaginatorModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -36,6 +39,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatRadioModule,
     MatPaginatorModule,
     MatSortModule,
+    MatExpansionModule,
+    MatGridListModule,
     BrowserAnimationsModule
   ],
   exports: [
@@ -51,7 +56,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatIconModule,
     MatCheckboxModule,
     MatListModule,
+    MatExpansionModule,
     MatPaginatorModule,
+    MatGridListModule,
     MatRadioModule,
     // MatFormsModule,
 

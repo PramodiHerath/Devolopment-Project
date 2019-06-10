@@ -1,0 +1,29 @@
+
+<admin-navBar></admin-navBar>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<div class="table-responsive">
+    <table class="table table-hover table-dark data-table">
+      <thead>
+        <tr>
+          <th scope="col" hidden>MenuId</th>
+          <th scope="col">Name</th>
+          <th scope="col">Menu Price</th>
+          <th scope="col">View</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table-active" *ngFor= "let menu of menus; index as i">
+          <td>{{menu.name}}</td>
+          <td> {{menu.price}}</td>
+          <td><button  class="btn-table"  (click)="onItemView(menu)">View Items</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
