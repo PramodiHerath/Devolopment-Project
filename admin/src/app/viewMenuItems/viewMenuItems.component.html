@@ -54,11 +54,11 @@
                         <mat-expansion-panel style="outline: rgba(0, 0, 139, 0.829) solid 1px">
                             <mat-expansion-panel-header>
                               <mat-panel-title style="font-size: 24px">
-                                Select Items
+                                Select drinks
                               </mat-panel-title>
                             </mat-expansion-panel-header>
                         
-                            <div *ngFor="let offence of offencesList">
+                            <div *ngFor="let drink of driksList">
                                 <p><span>{{offence.provision}} </span>
                                   <span>
                                     <mat-checkbox color="warn" class="example-margin" (change)="offenceSelect($event,offence)" value="{{offence._id}}"></mat-checkbox>

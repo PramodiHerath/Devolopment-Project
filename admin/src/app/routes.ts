@@ -1,3 +1,4 @@
+import { MainMenusComponent } from './mainMenus/mainMenus.component';
 import { ViewMenuItemsComponent } from './viewMenuItems/viewMenuItems.component';
 import { ServiceComponent } from './service/service.component';
 import { CategoryItemsComponent } from './categoryItems/categoryItems.component';
@@ -24,6 +25,7 @@ export const appRoutes: Routes= [
     {path:'receptionists',component:ReceptionistsComponent},
     {path:'services',component:ServiceComponent},
     {path:'viewMenu',component:ViewMenuComponent},
+    {path:'createMenu',component:MainMenusComponent},
     {path:'viewMenuItems/:menuId',component:ViewMenuItemsComponent},
     {path:'',component: LoginComponent},
     {path:'categoryItem/:categoryId',component: CategoryItemsComponent},

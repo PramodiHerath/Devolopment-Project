@@ -39,7 +39,11 @@ updateCategoryForm = new FormGroup({
 )
 
   constructor(private service:CategoriesService,private router:Router, private authService:AuthService) {
+   this.viewCategories();
    
+   }
+
+   viewCategories(){
     this.service.getAllCategories()
     .subscribe(
       response=>{
@@ -84,6 +88,8 @@ updateCategoryForm = new FormGroup({
       .subscribe(
         response=>{
         console.log(response);
+        alert('succesfully updated')
+        this.viewCategories();
         this.updateCategoryForm.reset();
       },
         error=>{

@@ -18,8 +18,8 @@ router.post('/', async (req, res) => {
   let counter=await Counter.findOneAndUpdate({ "name" : "Menu" },{ $inc: { "value" : 1 } });
    let menutoCreate = new Menu({ 
     _id:counter.value+1,
-    name: req.body.menuName,
-    price: req.body.menuPrice,
+    name: req.body.name,
+    price: req.body.price,
     item:
         req.body.item
     

@@ -6,14 +6,11 @@ import { Injectable } from '@angular/core';
 })
 export class MenuService {
   private baseUrl='http://localhost:3000/api/';
-
 constructor(private http:HttpClient) { }
+
 
 getAllMenus(){
   return this.http.get(this.baseUrl+'menus');
+  
 }
-addMenus(newMenu){
-  return this.http.post(this.baseUrl+'menus',newMenu);
-}
-
 }

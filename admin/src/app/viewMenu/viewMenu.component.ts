@@ -33,6 +33,11 @@ onItemView(menu){
   this.router.navigate(['/viewMenuItems',menu.name]);
    }
 
+bringcreateMenu(){
+    this.router.navigate(['/createMenu']);
+   }
+   
+
   ngOnInit() {
   }
 
