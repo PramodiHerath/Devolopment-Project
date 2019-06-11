@@ -50,6 +50,8 @@ export class MainMenusComponent implements OnInit {
         console.log(error);
       })
   }
+
+  
   itemSelect(event,item){
     if(event.checked){
 
