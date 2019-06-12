@@ -1,6 +1,7 @@
 import { MenuService } from './../services/menu.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'admin-viewMenu',
@@ -9,7 +10,9 @@ import { Router } from '@angular/router';
 })
 export class ViewMenuComponent implements OnInit {
 menus:any;
-  constructor(private service:MenuService,private router:Router) {
+isAdmin=this.authService.decodedToken.isAdmin;
+
+  constructor(private service:MenuService,private router:Router,private authService:AuthService) {
     this.viewMenus();
    }
 

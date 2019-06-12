@@ -51,4 +51,11 @@ router.get('/', async (req, res) => {
     res.send(categoryItemList);
   });
   
+
+  router.get('/:id', async (req, res) => {
+    const items = await Item.find({categoryId:req.params.id}).populate('categoryId');
+    res.send(items);
+    
+  });
+  
   module.exports = router; 

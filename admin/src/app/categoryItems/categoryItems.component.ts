@@ -14,6 +14,7 @@ export class CategoryItemsComponent implements OnInit {
   isAdmin=this.authService.decodedToken.isAdmin;
   categoryItems;
   catergoryId;
+  category:any;
 
   Item:any;
 
@@ -42,10 +43,11 @@ export class CategoryItemsComponent implements OnInit {
     .subscribe(params=>{
       this.catergoryId=params.get('categoryId');
       console.log(this.catergoryId);
+      this.getcategorydetails(this.catergoryId);
       this.service.getCategoryItems(this.catergoryId)
       .subscribe(
         response=>{
-          console.log(response[0].categoryId.name);
+          console.log(response);
            this.categoryItems=response;
       },
         error=>{
@@ -55,9 +57,24 @@ export class CategoryItemsComponent implements OnInit {
     })
   }
 
+  getcategorydetails(categoryId){
+    this.service.getCategoryDetails(categoryId)
+    .subscribe(
+      response=>{
+        console.log(response);
+     
+
+         this.category=response[0];
+         console.log(this.category.name);
+    },
+      error=>{
+        alert('An unexpected error occurred.');
+        console.log(error);
+    })
+  }
   addItem(){
     this.bringAddItem();
-    this.addItemForm.patchValue({categoryName:this.categoryItems[0].categoryId.name});
+    this.addItemForm.patchValue({categoryName:this.category.name});
 
     this.Item=Object.assign({},this.addItemForm.value);
     console.log(this.Item);

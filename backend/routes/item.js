@@ -8,7 +8,7 @@ const {Counter} = require('../models/counter');
 router.post('/', async (req, res) => {
 
     const category= await Category.findOne({name:req.body.categoryName});
-  if (!category) return res.status(400).send('Invalid Item.');
+  if (!category) return res.status(400).send('Invalid category.');
 
   let counter=await Counter.findOneAndUpdate({ "name" : "Item" },{ $inc: { "value" : 1 } });
 

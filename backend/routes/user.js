@@ -14,7 +14,7 @@ router.post('/', async (req, res) => {
     _id: req.body.name,
     name: req.body.name,
     password: passwordHash,
-    role:req.body.role,
+    role:req.body.userRole,
     isAdmin:req.body.isAdmin,
     telePhoneNumber:req.body.telePhoneNumber,
     emailAddress:req.body.emailAddress

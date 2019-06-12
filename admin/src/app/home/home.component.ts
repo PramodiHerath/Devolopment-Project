@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'admin-home',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 
 
 export class HomeComponent implements OnInit {
-
+  isAdmin=this.authService.decodedToken.isAdmin;
   halls='/assets/images/halls.jpg';
   receptionists='/assets/images/receptionist.jpg';
   services='/assets/images/services.jpg';
@@ -27,7 +28,7 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/services']);
   }
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private authService:AuthService) { }
 
   ngOnInit() {
   }
