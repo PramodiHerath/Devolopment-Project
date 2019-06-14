@@ -60,39 +60,17 @@
 
 <!-- menu cards start -->
 <div class="container-fluid">
-	<div class="raw">
-		<div class="col-md-4">
+	<div class="raw" fxLayout="row" >
+		<div class="col-md-" *ngFor="let menu of menus">
 			<div class="card">
   			<img src={{royalSilver}} class="card-img-top" alt="...">
   			<div class="card-body">
-    			<h5 class="card-title titleStyles">Royal Silver</h5>
-    			<p class="card-text">Rate: Rs.{{silverPrice}}/- per person</p>
+    			<h5 class="card-title titleStyles">{{menu.name}}</h5>
+    			<p class="card-text">Rate: Rs.{{menu.price}}/- per person</p>
     			<a class="btn btn-primary btn-xl" (click)="bringRoyalSilver(menu1)">Veiw Detail</a>
   			</div>
 			</div>
 		</div>
-
-		<div class="col-md-4">
-				<div class="card">
-					<img src={{royalGold}} class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title titleStyles">Royal Gold</h5>
-						<p class="card-text">Rate: Rs.{{goldPrice}}/- per person</p>
-						<a class="btn btn-primary btn-xl">View Detail</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-4">
-					<div class="card">
-						<img src={{royalPlatinum}} class="card-img-top" alt="...">
-						<div class="card-body">
-							<h5 class="card-title titleStyles">Royal Platinum</h5>
-							<p class="card-text">Rate: Rs.{{platinumPrice}}/- per person</p>
-							<a class="btn btn-primary btn-xl">View Detail</a>
-						</div>
-					</div>
-				</div>
 	</div>			
 </div>
 

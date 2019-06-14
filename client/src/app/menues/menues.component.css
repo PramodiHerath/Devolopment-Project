@@ -136,3 +136,12 @@ div {
     margin-left: 2%;
     margin-bottom: 27px;
 }
+.card-image{
+    background-image: linear-gradient(to right bottom, #de8d7c, #e7987c, #f0a47c, #f6b17d, #fbbe7f);
+}
+.inner-circle-long {
+    background: url('/assets/images/circle.png') no-repeat center center;
+    /* height: 100%;
+    width: 100%; */
+    position: relative;
+}

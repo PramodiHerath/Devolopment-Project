@@ -28,6 +28,12 @@
     </table>
 
   </div>
-  <div style="text-align: center" *ngIf="isAdmin">
+
+  <div class="container-fluid" *ngIf="isAdmin">
+    <div class="raw">
+  <div   class="col-md-6">
       <a class="btn btn-primary btn-xl" (click)="bringcreateMenu()">Create New Menu</a>
   </div>
+  <div  class="col-md-6" >
+    <a class="btn btn-primary btn-xl" (click)="bringcreateMenu()">Delete Menu</a>
+</div>

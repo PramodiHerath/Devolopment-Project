@@ -12,7 +12,8 @@ router.post('/', async (req, res) => {
    let categorytoCreate = new Category({ 
      _id: counter.value+1,
     name: req.body.categoryName,
-    price: req.body.categoryPrice
+    price: req.body.categoryPrice,
+    choiceOf:req.body.choiceOf
   })
   
   categorytoCreate = await categorytoCreate.save();

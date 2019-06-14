@@ -10,50 +10,44 @@
   </div>
 
 <!-- menu cards start -->
+
 <div class="container-fluid">
-	<div class="raw">
-		<div class="col-md-4">
-			<div class="card">
-  			<img src={{royalSilverPic}} class="card-img-top" alt="...">
-  			<div class="card-body">
-    			<h5 class="card-title titleStyles">Royal Silver</h5>
-    			<p class="card-text">Rate: Rs.{{silverPrice}}/- per person</p>
-    			<a class="btn btn-primary btn-xl" (click)="selectRoyalSilver()">Choose</a>
-  			</div>
-			</div>
-		</div>
-
-		<div class="col-md-4">
-				<div class="card">
-					<img src={{royalGoldPic}} class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title titleStyles">Royal Gold</h5>
-						<p class="card-text">Rate: Rs.{{goldPrice}}/- per person</p>
-						<a class="btn btn-primary btn-xl" (click)="selectRoyalGold()">Choose</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-4">
-					<div class="card">
-						<img src={{royalPlatinumPic}} class="card-img-top" alt="...">
-						<div class="card-body">
-							<h5 class="card-title titleStyles">Royal Platinum</h5>
-							<p class="card-text">Rate: Rs.{{platinumPrice}}/- per person</p>
-							<a class="btn btn-primary btn-xl" (click)="selectRoyalPlatinum()">Choose</a>
-						</div>
-					</div>
-				</div>
-	</div>			
-</div>
+    <div class="raw" fxLayout="row" >
+      <div class="col-md-" *ngFor="let menu of menus">
+        <div class="card">
+          <img src={{royalSilverPic}} class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title titleStyles">{{menu.name}}</h5>
+            <p class="card-text">Rate: Rs.{{menu.price}}/- per person</p>
+            <a class="btn btn-primary btn-xl" (click)="selectMenu(menu)">Veiw Detail</a>
+          </div>
+        </div>
+      </div>
+    </div>			
+  </div>
 
 <!-- menu cards end -->
 <p></p>
 
 <!-- dynamically render menu item table -->
-<royalSilver *ngIf=showSilver></royalSilver>
-<royalGold *ngIf=showGold></royalGold>
-<royalPlatinum *ngIf=showPlatinum></royalPlatinum>
+
+<div class="container-fluid" *ngIf="clicked">
+    <div class="row spacing">
+      <div class="col-md-11 square-box7" style="margin-right: 3%; margin-left: 3%; width:94%; ">
+        <h1 class="left-heading menu-heading">Customize Your Menu</h1>
+        <p class="menu-para-text">Additional Choices will Add a category price per plate:</p>
+          <ul class="menus-list-style" *ngFor="let item of items">
+            <li>{{item.name}}</li>
+            <div class="form-check">
+                <label class="form-check-label">
+                  <input  type="checkbox" id="compulsoryCheckbox" class="form-check-input" value=""  > <br>Choose Item
+                </label>
+              </div>
+            
+          </ul>
+    </div>
+  </div>
+</div>
 <!-- end of menu table -->
 
 <!-- aditional services selection starts -->

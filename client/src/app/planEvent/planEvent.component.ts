@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 // import { Globals } from './globals';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { throwError } from 'rxjs';
+import { MenuService } from '../serviceshttp/menu.service';
+import { MenuItemsService } from '../serviceshttp/menuItems.service';
 
 
 @Component({
@@ -9,9 +11,13 @@ import { throwError } from 'rxjs';
   templateUrl: './planEvent.component.html',
   styleUrls: ['./planEvent.component.css']
 })
+
 export class PlanEventComponent implements OnInit {
 
-  constructor() { }
+  constructor( private service: MenuService, private menuItemService: MenuItemsService) {
+    this.viewMenus();
+  }
+
   eventPlanForm = new FormGroup({
     capacity: new FormControl('',Validators.required),
     duration: new FormControl('',Validators.required),
@@ -25,20 +31,16 @@ export class PlanEventComponent implements OnInit {
     tiffanyChairsCheck:new FormControl(''),
     tiffanyChairs:new FormControl(''),
     milkRicePortionCheck:new FormControl(''),
-    milkRicePortion:new FormControl('')
-
-    
-    
+    milkRicePortion:new FormControl('') 
   }
   )
 
-  silverPrice=3250;
-  goldPrice=4340;
-  platinumPrice=5190;
+  
+  menus:any;
+  menuItems:any;
+  items:any;
   menuPrice:number=0;
-  showGold:boolean;
-  showSilver:boolean;
-  showPlatinum:boolean;
+  clicked:boolean=false;
   Capacity:number=0;
   Duration:number;
   Draping:number=0;
@@ -67,26 +69,39 @@ export class PlanEventComponent implements OnInit {
   royalGoldPic= '/assets/images/royalGold.jpg';
   royalPlatinumPic= '/assets/images/royalPlatinum.jpg';
 
-selectRoyalSilver(){
-  this.showGold=false;
-  this.showPlatinum=false;
-  this.showSilver=true;
-  this.menuPrice=this.silverPrice;
-}
- 
-selectRoyalGold(){
-  this.showGold=true;
-  this.showPlatinum=false;
-  this.showSilver=false;
-  this.menuPrice=this.goldPrice;
 
-}
-selectRoyalPlatinum(){
-  this.showGold=false;
-  this.showPlatinum=true;
-  this.showSilver=false;
-  this.menuPrice=this.platinumPrice;
-}
+  viewMenus(){
+    this.service.getAllMenus()
+    .subscribe(
+      response=>{
+        console.log(response);
+         this.menus=response;
+         
+    },
+      error=>{
+        alert('An unexpected error occurred.');
+        console.log(error);
+    })  
+   }
+
+
+   selectMenu(menu){
+     console.log(menu.item[0].categoryId);
+      this.clicked=true;
+      this.menuItemService.getMenuItems(menu._id)
+      .subscribe(
+        response=>{
+          console.log(response);
+           this.menuItems=response;
+           
+      },
+        error=>{
+          alert('An unexpected error occurred.');
+          console.log(error);
+      })  
+
+   }
+
 
 addDraping(event: Event){
   const checkbox = event.target as HTMLInputElement;
