@@ -38,6 +38,7 @@ router.put('/:id',async (req, res) => {
       { 
         name: req.body.newName,
         price: req.body.newPrice,
+        choiceOf: req.body.newChoice
         
       }, { new: true });
       if (!category) return res.status(404).send('The category with the given name was not found.');

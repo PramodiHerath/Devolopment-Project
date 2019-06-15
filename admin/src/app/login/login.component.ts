@@ -9,7 +9,8 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-
+  logo='/assets/images/logo.jpg';
+  
   loginForm = new FormGroup({
     userName:new FormControl('',Validators.required),
     password: new FormControl('',Validators.required)

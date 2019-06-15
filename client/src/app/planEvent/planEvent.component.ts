@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { throwError } from 'rxjs';
 import { MenuService } from '../serviceshttp/menu.service';
 import { MenuItemsService } from '../serviceshttp/menuItems.service';
+import { ServiceService } from '../serviceshttp/service.service';
 
 
 @Component({
@@ -14,8 +15,9 @@ import { MenuItemsService } from '../serviceshttp/menuItems.service';
 
 export class PlanEventComponent implements OnInit {
 
-  constructor( private service: MenuService, private menuItemService: MenuItemsService) {
+  constructor( private service: MenuService, private menuItemService: MenuItemsService, private serviceService: ServiceService) {
     this.viewMenus();
+    this.viewServices();
   }
 
   eventPlanForm = new FormGroup({
@@ -39,6 +41,7 @@ export class PlanEventComponent implements OnInit {
   menus:any;
   menuItems:any;
   items:any;
+  services:any;
   menuPrice:number=0;
   clicked:boolean=false;
   Capacity:number=0;
@@ -62,12 +65,54 @@ export class PlanEventComponent implements OnInit {
   menuCharge:number=0;
   ShowBudget:any;
 
+  
+  drapingPrice:number;
+  ChampagnePrice:number;
+  dryIcePrice:number;
+  milkRicePlatterPrice:number;
+  decoPrice:number;
+  screenPrice:number;
+  tiffanyChairsPrice:number;
+  milkRicePortionPrice:number;
+
 
 
 
   royalSilverPic= '/assets/images/royalSilver.jpg';
   royalGoldPic= '/assets/images/royalGold.jpg';
   royalPlatinumPic= '/assets/images/royalPlatinum.jpg';
+  viewServices(){
+  this.serviceService.getAllServices()
+  .subscribe(
+    response=>{
+      console.log(response);
+       this.services=response;
+       for(let i=0; i<this.services.length;i++){
+        if(this.services[i].name==="Full Ball Room Draping")
+        this.drapingPrice=this.services[i].price;
+        else if(this.services[i].name==="Dry Ice")
+        this.dryIcePrice=this.services[i].price;
+        else if(this.services[i].name==="Champagne Bottle")
+        this.ChampagnePrice=this.services[i].price;
+        else if(this.services[i].name==="Milk Rice Platter")
+        this.milkRicePlatterPrice=this.services[i].price;
+        else if(this.services[i].name==="Decoration for Foyer")
+        this.decoPrice=this.services[i].price;
+        else if(this.services[i].name==="Screen & Projector")
+        this.screenPrice=this.services[i].price;
+        else if(this.services[i].name==="Tiffany Chairs")
+        this.tiffanyChairsPrice=this.services[i].price;
+        else if(this.services[i].name==="Milk Rice Portion")
+        this.milkRicePortionPrice=this.services[i].price;
+      
+  
+      }
+  },
+    error=>{
+      alert('An unexpected error occurred.');
+      console.log(error);
+  })  
+ }
 
 
   viewMenus(){

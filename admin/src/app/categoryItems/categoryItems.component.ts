@@ -88,7 +88,7 @@ export class CategoryItemsComponent implements OnInit {
       this.viewItems();   
   },
       error=>{
-      alert('An unexpected error occurred.');
+      alert('An Unexpected Error Occured');
       console.log(error);
   }) 
  }

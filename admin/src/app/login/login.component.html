@@ -1,10 +1,15 @@
-<div fxLayout="row" fxLayoutAlign="center center" class="login-main">
+<div style="text-align: center; margin-bottom: -10%">
+     <img src={{logo}} style="width: 200px;height:200px">
+</div>
+<div style="text-align: center">
+
+<div fxLayout="row" fxLayoutAlign="center center" class="login-main" style="margin-left: 25%;width:120%">
 
      <mat-card >
          <mat-card-header>
-     
-               <mat-card-title>Login</mat-card-title>
-         
+               <div style="text-align: center;">
+               <mat-card-title style="color:darkgoldenrod" class="titleStyles">Login Hotel Royal Park</mat-card-title>
+          </div>
           </mat-card-header>
      
      
@@ -35,7 +40,7 @@
                     </mat-form-field>
      
                     <mat-card-actions align="end">
-                         <button  mat-raised-button color="primary" [disabled]="!loginForm.valid">Login</button>
+                         <button  mat-raised-button color="primary" [disabled]="!loginForm.valid" class="btn-xl">Login</button>
                     </mat-card-actions>
      
                </form>
@@ -54,3 +59,4 @@
          
      </mat-card>
      </div>
+</div>

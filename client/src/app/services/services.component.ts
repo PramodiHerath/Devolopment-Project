@@ -28,6 +28,7 @@ export class ServicesComponent implements OnInit {
     this.viewServices();
     
   }
+  
  viewServices(){
   this.service.getAllServices()
   .subscribe(

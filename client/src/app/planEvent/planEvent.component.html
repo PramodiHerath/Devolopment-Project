@@ -79,33 +79,33 @@
           </li>
           <li>
             <div class="checkbox">
-              <label><input type="checkbox" value="" id="Draping" (click)="addDraping($event)" formControlName="draping">Full Ball Room Draping(LKR120,000/- NETT)</label>
+              <label><input type="checkbox" value="" id="Draping" (click)="addDraping($event)" formControlName="draping">Full Ball Room Draping(LKR{{drapingPrice}}/- NETT)</label>
             </div>
           </li>
           
           <li>
             <div class="checkbox" style="display: inline-block">
-              <label><input type="checkbox" value="" (click)="addChampagne($event)" formControlName="champagne">Champagne Bottle for the Cahmpagne Fountain(LKR2000/- NETT)</label>
+          <label><input type="checkbox" value="" (click)="addChampagne($event)" formControlName="champagne">Champagne Bottle for the Cahmpagne Fountain(LKR{{ChampagnePrice}}/- NETT)</label>
             </div>
           </li>
           <li>
             <div class="checkbox" style="display: inline-block">
-              <label><input type="checkbox" value="" (click)="addDryIce($event)" formControlName="dryIce">Dry Ice(LKR3500/- NETT)</label>
+              <label><input type="checkbox" value="" (click)="addDryIce($event)" formControlName="dryIce">Dry Ice(LKR{{dryIcePrice}}/- NETT)</label>
             </div>
           </li>
           <li>
             <div class="checkbox" style="display: inline-block">
-              <label><input type="checkbox" value="" (click)="addMilkPlatter($event)" formControlName="milkPlatter">Milk Rice Platter for Couple(LKR2000/- NETT)</label>
+              <label><input type="checkbox" value="" (click)="addMilkPlatter($event)" formControlName="milkPlatter">Milk Rice Platter for Couple(LKR{{milkRicePlatterPrice}}/- NETT)</label>
             </div>
           </li>
           <li>
             <div class="checkbox" style="display: inline-block">
-              <label><input type="checkbox" value="" (click)="addDeco($event)" formControlName="deco">Decoration for Foyer(Basic-LKR25000/- NETT)</label>
+              <label><input type="checkbox" value="" (click)="addDeco($event)" formControlName="deco">Decoration for Foyer(Basic-LKR{{ decoPrice}}/- NETT)</label>
             </div>
           </li>
           <li>
             <div class="checkbox" style="display: inline-block">
-              <label><input type="checkbox" value="" (click)="addScreen($event)" formControlName="screenCheck">Screen and Projector(LKR6000/- NETT)</label>
+              <label><input type="checkbox" value="" (click)="addScreen($event)" formControlName="screenCheck">Screen and Projector(LKR{{screenPrice}}/- NETT)</label>
             </div>
             <div class="form-group" style="display: inline-block">
               <label for="Amount" style="display: inline-block; margin-left: 40px">Amount</label>
@@ -114,7 +114,7 @@
           </li>
           <li>
             <div class="checkbox" style="display: inline-block">
-              <label><input type="checkbox" value="" (click)="addTiffanyChairs($event)" formControlName="tiffanyChairsCheck">Tiffany Chairs(LKR200/- NETT Per Chair)</label>
+              <label><input type="checkbox" value="" (click)="addTiffanyChairs($event)" formControlName="tiffanyChairsCheck">Tiffany Chairs(LKR{{tiffanyChairsPrice}}/- NETT Per Chair)</label>
             </div>
             <div class="form-group" style="display: inline-block">
               <label for="Amount" style="display: inline-block; margin-left: 40px">Amount</label>
@@ -123,7 +123,7 @@
           </li>
           <li>
             <div class="checkbox" style="display: inline-block">
-              <label><input type="checkbox" value="" (click)="addMilkRicePortion($event)" formControlName="milkRicePortionCheck">Milk Rice Portion(LKR250/- NETT Per Person )</label>
+              <label><input type="checkbox" value="" (click)="addMilkRicePortion($event)" formControlName="milkRicePortionCheck">Milk Rice Portion(LKR{{ milkRicePortionPrice}}/- NETT Per Person )</label>
             </div>
             <div class="form-group" style="display: inline-block">
               <label for="Amount" style="display: inline-block; margin-left: 40px">Amount</label>
