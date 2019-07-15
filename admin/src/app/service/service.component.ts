@@ -19,18 +19,21 @@ update:boolean;
 delete:boolean;
 updatingService:String;
 newService:object;
+updatedService:object;
 updatingId:any
   
 addServiceForm = new FormGroup({
   name: new FormControl('',Validators.required),
-  price: new FormControl('',Validators.required)
+  price: new FormControl('',Validators.required),
+  amount: new FormControl('',Validators.required)
 }
 )
 
 updateServiceForm = new FormGroup({
   
   newName: new FormControl('',Validators.required),
-  newPrice: new FormControl('',Validators.required)
+  newPrice: new FormControl('',Validators.required),
+  newAmount: new FormControl('',Validators.required),
 }
 )
 
@@ -55,7 +58,8 @@ updateServiceForm = new FormGroup({
    addService(data){
     this.newService={
       serviceName:data.name,
-      servicePrice:data.price
+      servicePrice:data.price,
+      amount:data.amount
    }
     this.service.postServices(this.newService)
     .subscribe(
@@ -71,9 +75,28 @@ updateServiceForm = new FormGroup({
   }) 
  }
 
- updateService(){
-  this.bringUpdateService();
-  this.changedService=Object.assign({},this.updateServiceForm.value);
+ updateService(data){
+  // this.bringUpdateService();
+  console.log(data);
+  console.log(data.newPrice);
+  console.log(data.newName);
+  if(!data.newName){
+    this.changedService={
+      newName:this.updatingService,
+      newPrice:data.newPrice,
+      newAmount:data.newAmount
+    }
+    
+  }
+  else{
+    this.changedService={
+    newName:data.newName,
+    newPrice:data.newPrice,
+    newAmount:data.newAmount
+ }
+  }
+  
+  // this.changedService=Object.assign({},this.updateServiceForm.value);
   
   console.log(this.changedService)
   console.log(this.updatingId)
@@ -122,6 +145,28 @@ updateServiceForm = new FormGroup({
     
   }
 
+  amountSelect(event){
+    if(event.checked){
+
+      this.addServiceForm .patchValue({amount:true});
+    }
+    else if(!event.checked){
+      // let index=this.
+      this.addServiceForm .patchValue({amount:false});
+    }
+  }
+
+  amountSelectUpdate(event){
+    if(event.checked){
+
+      this.updateServiceForm .patchValue({newAmount:true});
+    }
+    else if(!event.checked){
+      // let index=this.
+      this.updateServiceForm .patchValue({newAmount:false});
+    }
+  }
+
   
 
   bringUpdateForm(service){
@@ -130,13 +175,14 @@ updateServiceForm = new FormGroup({
      console.log(service.name);
      this.updatingService=service.name;
      this.updatingId=service._id;
+     this.updateServiceForm .patchValue({newAmount:false});
   }
 
   bringAddService(){
      this.update=false;
      this.delete=false;
      this.add=true;
-     
+     this.addServiceForm .patchValue({amount:false});
 
   }
   bringUpdateService(){
@@ -154,6 +200,7 @@ updateServiceForm = new FormGroup({
  }
  
   ngOnInit() {
+  
   }
 
 }

@@ -1,12 +1,12 @@
 
 .booking-wrapper {
     background-color:#ffcccc;
-    padding: 5px 0;
+    padding: 5px 5px 5px 5px;
     opacity: 0.75;
     /* position: absolute; */
     z-index: 9998;
     /* bottom: 0; */
-    width: 100%;
+    width:50%;
     height: 150px;
 }
 .btn-xl {
@@ -23,7 +23,7 @@
 .btn-xxl {
     padding: 10px 20px 10px 20px ;
     font-size: 50px;
-    color: #846837;
+    color: #70521f;
     font-family: fantasy;
     border-radius: 10px;
     width:100%;

@@ -2,11 +2,11 @@ const Joi=require('joi');
 const express = require('express');
 const app=express();
 const mongoose = require('mongoose');
-
+const path = require("path");
 
 
 const Category=require('./routes/category');
-const Menu=require('./routes/menu');
+const Menu=require('./routes/menus');
 const Item=require('./routes/item');
 const Client=require('./routes/client');
 const User=require('./routes/user');
@@ -15,6 +15,7 @@ const SerachItem=require('./routes/searchItem');
 const Counter=require('./routes/counter');
 const Service=require('./routes/services');
 const categoryItems=require('./routes/categoryItems');
+const menuItems=require('./routes/menuItems');
 
 
 
@@ -39,6 +40,8 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
+app.use("/images", express.static(path.join("images")));
+
 app.use('/api/categories', Category);
 app.use('/api/menus', Menu);
 app.use('/api/item', Item);
@@ -49,6 +52,7 @@ app.use('/api/searchItem', SerachItem);
 app.use('/api/counter', Counter);
 app.use('/api/services', Service);
 app.use('/api/categoryItems', categoryItems);
+app.use('/api/menuItems', menuItems);
 
 
 

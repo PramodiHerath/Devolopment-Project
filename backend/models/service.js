@@ -9,12 +9,15 @@ const serviceSchema = new mongoose.Schema({
     name: {
       type: String,
       required: true,
-      maxlength: 150
+      
     },
     price: {
         type: Number,
         required: true,
     },
+    amount:{
+      type:Boolean
+    }
     
   });
   

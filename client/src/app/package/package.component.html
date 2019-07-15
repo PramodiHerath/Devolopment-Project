@@ -1,4 +1,4 @@
-<div style="text-align: center">
+<!-- <div style="text-align: center">
 
   <div>
     <img src={{royalSilver1}}>
@@ -16,5 +16,37 @@
       <img src={{royalSilver4}}>
     </div>
 
+  </div> -->
+
+<div>
+  <div id="contentToConvert">
+  <div align="center" >
+    <img src={{logo}}>
+    <h1 class="headings">HOTEL ROYAL PARK</h1>
+    <h2 class="menuName">{{menu.menuName}}</h2>
   </div>
 
+  <div align="center">
+    <h4 class="rate">RATE : {{menu.menuPrice}}/- PER PERSON</h4>
+  </div>
+
+  <br>
+  <br>
+  
+  <div align="center">
+  <div  *ngFor="let menuCatergory of menu.menuCategoryItems">
+    <h2 class="categoryName">{{menuCatergory.categoryName}} <span style="font-size: 20px">(Choose Any: {{menuCatergory.choiceOf}})</span></h2>
+    <div *ngFor="let catItem of menuCatergory.itemsList">
+      <div class="items">{{catItem.name}}</div>
+    </div>
+    <h6>Additional charge for {{menuCatergory.categoryName}} Category: {{menuCatergory.categoryPrice}}</h6>
+   </div>
+</div>
+
+</div>
+
+<div align="right">  
+  <a class="btn btn-primary btn-xl" (click)="downloadPdf()">DOWNLOAD PDF</a>
+</div> 
+
+</div>

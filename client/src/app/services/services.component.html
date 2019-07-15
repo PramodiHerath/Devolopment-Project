@@ -4,13 +4,72 @@
 <br>
 <br>
 <br>
+<!-- carousal starts -->
+<div class="">
+    
+	<carousel>
+	  
+		<slide>
+		  <img src={{pic1}} alt="First slide" class="img-responsive center-block" style="display: block; width: 100%;">
+		</slide>
+  
+		<slide>
+		  <img src={{pic2}} alt="Second slide" class="img-responsive center-block" style="display: block; width: 100%;">
+		</slide>
+  
+		<slide>
+		  <img src={{pic3}} alt="Third slide" class="img-responsive center-block" style="display: block; width: 100%;">
+		</slide>
+  
+		<div class="carousel-caption">
+			<div class="carousal-inner">
+			  
+				<div class="form-group">
+				  <button [routerLink]="['/booking']" name="BookNow" class="btn btn-primary btn-xl" required="required">Book Now</button>
+				</div>
+			  
+			</div>
+		</div>
+	  </carousel>
+	 
+  </div>
+  <!-- carousal ends -->
+
+<br>
+<br>
+
+  <div class="container-fluid">
+	<div class="row spacing">
+		<div class="col-md-7 square-box7" style="margin-right: 1%; width:66% ">
+			<h1 class="left-heading menu-heading">Services</h1>
+			<p class="menu-para-text">Services We Offer:</p>
+				<ul class="menus-list-style" *ngFor="let service of services">
+					<li>{{service.name}}<br>Price = Rs. {{service.price}}</li>
+				</ul>
+		</div>
+		<div class="col-md-4 square-box6 img-responsive" >
+				<!-- image	 -->
+		</div>
+	</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
 <!-- menu cards start -->
 
-<div class="container-fluid" style="margin-bottom: 10px;">
+<!-- <div class="container-fluid" style="margin-bottom: 10px;">
 	<div class="raw">
 		<div class="col-md-3">
 			<div class="card">
-  			<img src={{champagne}} class="card-img-top" alt="..." style="height: 400px">
+  			<img src={{champagne}} class="card-img-top img-responsive" alt="..." style="height: 400px">
   			<div class="card-body">
     			<h5 class="card-title titleStyles">Full Ball Room Draping</h5>
     			<p class="card-text">Rate: Rs.{{drapingPrice}}/-</p>
@@ -105,6 +164,6 @@
   </div>
   
   
-</div>
+</div> -->
 
 <!-- menu cards end -->

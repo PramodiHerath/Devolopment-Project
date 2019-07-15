@@ -23,7 +23,7 @@ export const appRoutes: Routes= [
   {path: 'BookingTulip', component:BookingTulipComponent},
   {path: 'royalSilver', component:RoyalSilverComponent},
   {path: 'planEvent', component:PlanEventComponent},
-  {path:'package/:id',component: PackageComponent}, 
+  {path:'package/:menuId',component: PackageComponent}, 
   {path:'',component:HomeComponent},
   {path:'**',redirectTo:'',pathMatch:'full'}
 

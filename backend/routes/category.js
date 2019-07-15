@@ -12,8 +12,7 @@ router.post('/', async (req, res) => {
    let categorytoCreate = new Category({ 
      _id: counter.value+1,
     name: req.body.categoryName,
-    price: req.body.categoryPrice,
-    choiceOf:req.body.choiceOf
+    price: req.body.categoryPrice
   })
   
   categorytoCreate = await categorytoCreate.save();
@@ -37,8 +36,8 @@ router.put('/:id',async (req, res) => {
     const category = await Category.findByIdAndUpdate(req.params.id,
       { 
         name: req.body.newName,
-        price: req.body.newPrice,
-        choiceOf: req.body.newChoice
+        price: req.body.newPrice
+        
         
       }, { new: true });
       if (!category) return res.status(404).send('The category with the given name was not found.');

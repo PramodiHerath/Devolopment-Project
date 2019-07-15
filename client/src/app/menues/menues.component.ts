@@ -47,9 +47,9 @@ export class MenuesComponent implements OnInit {
   bringTable(){
     this.router.navigate(['/planEvent'])
   }
-  bringRoyalSilver(id){
-    console.log(id);
-      this.router.navigate(['/package',id]);
+  bringMenu(menu){
+    console.log(menu._id);
+      this.router.navigate(['/package',menu._id]);
   }
   ngOnInit() {
 

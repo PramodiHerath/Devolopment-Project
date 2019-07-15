@@ -13,4 +13,9 @@ getAllMenus(){
   return this.http.get(this.baseUrl+'menus');
   
 }
+
+getMenu(menuId){
+  return this.http.get(this.baseUrl+'menus/'+menuId);
+}
+
 }

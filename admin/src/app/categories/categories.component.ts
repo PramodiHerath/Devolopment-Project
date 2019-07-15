@@ -27,16 +27,15 @@ updatingId:any;
 
 addCategoryForm = new FormGroup({
   name: new FormControl('',Validators.required),
-  price: new FormControl('',Validators.required),
-  choice: new FormControl('',Validators.required)
+  price: new FormControl('',Validators.required)
+
 }
 )
 
 updateCategoryForm = new FormGroup({
   
   newName: new FormControl('',Validators.required),
-  newPrice: new FormControl('',Validators.required),
-  newChoice: new FormControl('',Validators.required)
+  newPrice: new FormControl('',Validators.required)
 }
 )
 
@@ -62,8 +61,7 @@ updateCategoryForm = new FormGroup({
    addCategory(data){
       this.newCategory={
         categoryName:data.name,
-        categoryPrice:data.price,
-        choiceOf:data.choice
+        categoryPrice:data.price
      }
       this.service.postCategories(this.newCategory)
       .subscribe(

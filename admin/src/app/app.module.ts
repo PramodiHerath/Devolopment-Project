@@ -19,7 +19,7 @@ import { CategoryItemsComponent } from './categoryItems/categoryItems.component'
 import { ServiceComponent } from './service/service.component';
 import { MainMenusComponent } from './mainMenus/mainMenus.component';
 import { ViewMenuComponent } from './viewMenu/viewMenu.component';
-import { ViewMenuItemsComponent } from './viewMenuItems/viewMenuItems.component';
+import { UpdateMenuComponent } from './updateMenu/updateMenu.component';
 
 
 @NgModule({
@@ -37,7 +37,7 @@ import { ViewMenuItemsComponent } from './viewMenuItems/viewMenuItems.component'
       ServiceComponent,
       MainMenusComponent,
       ViewMenuComponent,
-      ViewMenuItemsComponent
+      UpdateMenuComponent
    ],
    imports: [
       BrowserAnimationsModule,

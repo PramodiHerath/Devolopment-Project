@@ -37,7 +37,7 @@ export class PlanEventComponent implements OnInit {
   }
   )
 
-  
+  selectedMenu:any;
   menus:any;
   menuItems:any;
   items:any;
@@ -64,7 +64,7 @@ export class PlanEventComponent implements OnInit {
   MilkRicePortionCharge:number;
   menuCharge:number=0;
   ShowBudget:any;
-
+  additionalMenuCharges=0;
   
   drapingPrice:number;
   ChampagnePrice:number;
@@ -81,6 +81,7 @@ export class PlanEventComponent implements OnInit {
   royalSilverPic= '/assets/images/royalSilver.jpg';
   royalGoldPic= '/assets/images/royalGold.jpg';
   royalPlatinumPic= '/assets/images/royalPlatinum.jpg';
+
   viewServices(){
   this.serviceService.getAllServices()
   .subscribe(
@@ -131,13 +132,20 @@ export class PlanEventComponent implements OnInit {
 
 
    selectMenu(menu){
-     console.log(menu.item[0].categoryId);
+     
+     this.selectedMenu=menu.name;
+     this.menuPrice=menu.price;
       this.clicked=true;
       this.menuItemService.getMenuItems(menu._id)
       .subscribe(
         response=>{
           console.log(response);
            this.menuItems=response;
+           this.menuItems.forEach(element => {
+            element.selectedItems=0;
+            element.additionalCharges=0;
+           });
+           
            
       },
         error=>{
@@ -147,100 +155,120 @@ export class PlanEventComponent implements OnInit {
 
    }
 
+   chooseItem(event,menuCatergory){
+    if(event.checked){
+      menuCatergory.selectedItems++;
+      if(menuCatergory.selectedItems>menuCatergory.choiceOf){
+        menuCatergory.additionalCharges+=menuCatergory.categoryPrice;
+        this.additionalMenuCharges+=menuCatergory.categoryPrice;
+      }
+    }
+    else if(!event.checked){
+      if(menuCatergory.selectedItems>menuCatergory.choiceOf){
+        menuCatergory.additionalCharges-=menuCatergory.categoryPrice
+        this.additionalMenuCharges-=menuCatergory.categoryPrice;
+      }
+      menuCatergory.selectedItems--;
+    }
+    console.log(this.additionalMenuCharges);
+   }
 
-addDraping(event: Event){
-  const checkbox = event.target as HTMLInputElement;
 
-  if (checkbox.checked) {
-    this.Draping=120000;
+
+
+   //services
+addDraping(event){
+  // const checkbox = event.target as HTMLInputElement;
+
+  if (event.checked) {
+    this.Draping=this.drapingPrice;
     
   }
-  else if(!checkbox.checked){
+  else if(!event.checked){
     this.Draping=0;
     
   }
     
 }
-addChampagne(event: Event){
-  const checkbox = event.target as HTMLInputElement;
+addChampagne(event){
+  // const checkbox = event.target as HTMLInputElement;
 
-  if (checkbox.checked) {
-    this.Champagne=2000;
+  if (event.checked) {
+    this.Champagne=this.ChampagnePrice;
     
   }
-  else if(!checkbox.checked){
+  else if(!event.checked){
     this.Champagne=0;
     
   }
 }
-addDryIce(event: Event){
-  const checkbox = event.target as HTMLInputElement;
+addDryIce(event){
+  // const checkbox = event.target as HTMLInputElement;
 
-  if (checkbox.checked) {
-    this.DryIce=3500;
+  if (event.checked) {
+    this.DryIce=this.dryIcePrice;
     
   }
-  else if(!checkbox.checked){
+  else if(!event.checked){
     this.DryIce=0;
     
   }
 }
-addMilkPlatter(event: Event){
-  const checkbox = event.target as HTMLInputElement;
+addMilkPlatter(event){
+  // const checkbox = event.target as HTMLInputElement;
 
-  if (checkbox.checked) {
-    this.MilkPlatter=2000;
+  if (event.checked) {
+    this.MilkPlatter=this.milkRicePlatterPrice;
     
   }
-  else if(!checkbox.checked){
+  else if(!event.checked){
     this.MilkPlatter=0;
     
   }
 }
-addDeco(event: Event){
-  const checkbox = event.target as HTMLInputElement;
+addDeco(event){
+  // const checkbox = event.target as HTMLInputElement;
 
-  if (checkbox.checked) {
-    this.Deco=120000;
+  if (event.checked) {
+    this.Deco=this.decoPrice;
     
   }
-  else if(!checkbox.checked){
-    this.Deco=25000;
+  else if(!event.checked){
+    this.Deco=0;
     
   }
 }
-addScreen(event: Event){
-  const checkbox = event.target as HTMLInputElement;
+addScreen(event){
+  // const checkbox = event.target as HTMLInputElement;
 
-  if (checkbox.checked) {
-    this.Screen=6000;
+  if (event.checked) {
+    this.Screen=this.screenPrice;
     
   }
-  else if(!checkbox.checked){
+  else if(!event.checked){
     this.Screen=0;
     
   }
 }
-addTiffanyChairs(event: Event){
-  const checkbox = event.target as HTMLInputElement;
+addTiffanyChairs(event){
+  // const checkbox = event.target as HTMLInputElement;
 
-  if (checkbox.checked) {
-    this.TiffanyChairs=200;
+  if (event.checked) {
+    this.TiffanyChairs=this.tiffanyChairsPrice;
     
   }
-  else if(!checkbox.checked){
+  else if(!event.checked){
     this.TiffanyChairs=0;
     
   }
 }
-addMilkRicePortion(event: Event){
-  const checkbox = event.target as HTMLInputElement;
+addMilkRicePortion(event){
+  // const checkbox = event.target as HTMLInputElement;
 
-  if (checkbox.checked) {
-    this.MilkRicePortion=200;
-    
+  if (event.checked) {
+    this.MilkRicePortion=this.milkRicePortionPrice;
   }
-  else if(!checkbox.checked){
+  else if(!event.checked){
     this.MilkRicePortion=0;
     
   }
@@ -248,8 +276,10 @@ addMilkRicePortion(event: Event){
 
 // on Click of view rough budget button calculating budget and showing it 
 calculateBudget(data){
-  if(this.menuPrice){
+  if(this.menuPrice&&data.capacity){
+
   this.Capacity=+data.capacity;
+  this.menuPrice+=this.additionalMenuCharges;
   this.menuCharge=this.menuPrice*this.Capacity;
   this.Duration=+data.duration;
   this.ScreenAmount=+data.screen;
@@ -274,7 +304,7 @@ calculateBudget(data){
   console.log(this.Budget);
 }
 else{
-  alert("Please select your menu first");
+  alert("Please select your menu and enter the capacity first");
 }
 }
 // end of calculating and displaying rough budget

@@ -9,7 +9,7 @@ export class MenuItemsService {
 constructor(private http:HttpClient) { }
 
 getMenuItems(menuId){
-  return this.http.get(this.baseUrl+'menuItems'+menuId);
+  return this.http.get(this.baseUrl+'menuItems/'+menuId);
 }
 
 }

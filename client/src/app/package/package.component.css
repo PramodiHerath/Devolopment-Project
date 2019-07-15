@@ -1,0 +1,41 @@
+.headings{
+    font-family: fantasy;
+    font-size: 40px;
+    text-align: center;
+    color: #846837
+}
+.menuName{
+    font-family: EB Garamond;
+    font-size: 40px;
+    text-align: center;
+    color: silver
+}
+.rate{
+    font-family: Cinzel;
+    font-size: 25px;
+    text-align: center;
+    color: rgb(192, 192, 192)
+}
+
+.items{
+    font-family: Cinzel;
+    font-size: 20px;
+    text-align: center;
+    color: rgb(39, 2, 2)
+}
+.categoryName{
+    font-family: Cinzel;
+    font-size: 25px;
+    text-align: center;
+    color: rgb(165, 127, 4)
+}
+.btn-xl {
+    padding: 10px 20px;
+    font-size: 15px;
+    border-radius: 10px;
+    border-color: #846837;
+    width:150px;
+    background-color: rgb(231, 198, 154);
+    color: #846837
+
+}

@@ -34,17 +34,27 @@
 <div class="container-fluid" *ngIf="clicked">
     <div class="row spacing">
       <div class="col-md-11 square-box7" style="margin-right: 3%; margin-left: 3%; width:94%; ">
-        <h1 class="left-heading menu-heading">Customize Your Menu</h1>
+        <h1 class="left-heading menu-heading">Customize Your Menu : {{selectedMenu}}</h1>
         <p class="menu-para-text">Additional Choices will Add a category price per plate:</p>
-          <ul class="menus-list-style" *ngFor="let item of items">
-            <li>{{item.name}}</li>
-            <div class="form-check">
+          <div class="menus-list-style" *ngFor="let menuCatergory of menuItems" align="left">
+            <h2 style="font-style: italic">{{menuCatergory.categoryName}} Choose Any: {{menuCatergory.choiceOf}}</h2>
+            <ul *ngFor="let catItem of menuCatergory.itemsList">
+              <mat-checkbox (change)="chooseItem($event,menuCatergory)">{{catItem.name}}</mat-checkbox>
+            <!-- <div class="form-check">
                 <label class="form-check-label">
-                  <input  type="checkbox" id="compulsoryCheckbox" class="form-check-input" value=""  > <br>Choose Item
+                  <br>Choose Item
                 </label>
-              </div>
+                </div> -->
             
-          </ul>
+              
+            </ul>
+            <h2>Additional charge for {{menuCatergory.categoryName}} Category: {{menuCatergory.additionalCharges}}</h2>
+            <h3>----------------------------------------------------</h3>
+          </div>
+          <div>
+
+          </div>
+         
     </div>
   </div>
 </div>
@@ -79,33 +89,39 @@
           </li>
           <li>
             <div class="checkbox">
-              <label><input type="checkbox" value="" id="Draping" (click)="addDraping($event)" formControlName="draping">Full Ball Room Draping(LKR{{drapingPrice}}/- NETT)</label>
+              <!-- <label><input type="checkbox" value="" id="Draping" (click)="addDraping($event)" formControlName="draping">Full Ball Room Draping(LKR{{drapingPrice}}/- NETT)</label> -->
+              <mat-checkbox (change)="addDraping($event)" formControlName="draping">Full Ball Room Draping(LKR{{drapingPrice}}/- NETT)</mat-checkbox>
             </div>
           </li>
           
           <li>
             <div class="checkbox" style="display: inline-block">
-          <label><input type="checkbox" value="" (click)="addChampagne($event)" formControlName="champagne">Champagne Bottle for the Cahmpagne Fountain(LKR{{ChampagnePrice}}/- NETT)</label>
+          <!-- <label><input type="checkbox" value="" (click)="addChampagne($event)" formControlName="champagne">Champagne Bottle for the Cahmpagne Fountain(LKR{{ChampagnePrice}}/- NETT)</label> -->
+          <mat-checkbox (change)="addChampagne($event)" formControlName="champagne">Champagne Bottle for the Cahmpagne Fountain(LKR{{ChampagnePrice}}/- NETT)</mat-checkbox>
             </div>
           </li>
           <li>
             <div class="checkbox" style="display: inline-block">
-              <label><input type="checkbox" value="" (click)="addDryIce($event)" formControlName="dryIce">Dry Ice(LKR{{dryIcePrice}}/- NETT)</label>
+              <!-- <label><input type="checkbox" value="" (click)="addDryIce($event)" formControlName="dryIce">Dry Ice(LKR{{dryIcePrice}}/- NETT)</label><label><input type="checkbox" value="" (click)="addDryIce($event)" formControlName="dryIce">Dry Ice(LKR{{dryIcePrice}}/- NETT)</label> -->
+              <mat-checkbox (change)="addDryIce($event)" formControlName="dryIce">Dry Ice(LKR{{dryIcePrice}}/- NETT)</mat-checkbox>
             </div>
           </li>
           <li>
             <div class="checkbox" style="display: inline-block">
-              <label><input type="checkbox" value="" (click)="addMilkPlatter($event)" formControlName="milkPlatter">Milk Rice Platter for Couple(LKR{{milkRicePlatterPrice}}/- NETT)</label>
+              <!-- <label><input type="checkbox" value="" (click)="addMilkPlatter($event)" formControlName="milkPlatter">Milk Rice Platter for Couple(LKR{{milkRicePlatterPrice}}/- NETT)</label> -->
+              <mat-checkbox (change)="addMilkPlatter($event)" formControlName="milkPlatter">Milk Rice Platter for Couple(LKR{{milkRicePlatterPrice}}/- NETT)</mat-checkbox>
             </div>
           </li>
           <li>
             <div class="checkbox" style="display: inline-block">
-              <label><input type="checkbox" value="" (click)="addDeco($event)" formControlName="deco">Decoration for Foyer(Basic-LKR{{ decoPrice}}/- NETT)</label>
+              <!-- <label><input type="checkbox" value="" (click)="addDeco($event)" formControlName="deco">Decoration for Foyer(Basic-LKR{{ decoPrice}}/- NETT)</label> -->
+              <mat-checkbox (change)="addDeco($event)" formControlName="deco">Decoration for Foyer(Basic-LKR{{ decoPrice}}/- NETT)</mat-checkbox>
             </div>
           </li>
           <li>
             <div class="checkbox" style="display: inline-block">
-              <label><input type="checkbox" value="" (click)="addScreen($event)" formControlName="screenCheck">Screen and Projector(LKR{{screenPrice}}/- NETT)</label>
+              <!-- <label><input type="checkbox" value="" (click)="addScreen($event)" formControlName="screenCheck">Screen and Projector(LKR{{screenPrice}}/- NETT)</label> -->
+              <mat-checkbox (change)="addScreen($event)" formControlName="screenCheck">Screen and Projector(LKR{{screenPrice}}/- NETT)</mat-checkbox>
             </div>
             <div class="form-group" style="display: inline-block">
               <label for="Amount" style="display: inline-block; margin-left: 40px">Amount</label>
@@ -114,7 +130,8 @@
           </li>
           <li>
             <div class="checkbox" style="display: inline-block">
-              <label><input type="checkbox" value="" (click)="addTiffanyChairs($event)" formControlName="tiffanyChairsCheck">Tiffany Chairs(LKR{{tiffanyChairsPrice}}/- NETT Per Chair)</label>
+              <!-- <label><input type="checkbox" value="" (click)="addTiffanyChairs($event)" formControlName="tiffanyChairsCheck">Tiffany Chairs(LKR{{tiffanyChairsPrice}}/- NETT Per Chair)</label> -->
+              <mat-checkbox (change)="addTiffanyChairs($event)" formControlName="tiffanyChairsCheck">Tiffany Chairs(LKR{{tiffanyChairsPrice}}/- NETT Per Chair)</mat-checkbox>
             </div>
             <div class="form-group" style="display: inline-block">
               <label for="Amount" style="display: inline-block; margin-left: 40px">Amount</label>
@@ -123,7 +140,8 @@
           </li>
           <li>
             <div class="checkbox" style="display: inline-block">
-              <label><input type="checkbox" value="" (click)="addMilkRicePortion($event)" formControlName="milkRicePortionCheck">Milk Rice Portion(LKR{{ milkRicePortionPrice}}/- NETT Per Person )</label>
+              <!-- <label><input type="checkbox" value="" (click)="addMilkRicePortion($event)" formControlName="milkRicePortionCheck">Milk Rice Portion(LKR{{ milkRicePortionPrice}}/- NETT Per Person )</label> -->
+              <mat-checkbox (change)="addMilkRicePortion($event)" formControlName="milkRicePortionCheck">Milk Rice Portion(LKR{{ milkRicePortionPrice}}/- NETT Per Person )</mat-checkbox>
             </div>
             <div class="form-group" style="display: inline-block">
               <label for="Amount" style="display: inline-block; margin-left: 40px">Amount</label>

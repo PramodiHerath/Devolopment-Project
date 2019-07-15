@@ -1,0 +1,103 @@
+
+<admin-navBar></admin-navBar>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container"   style="margin-top:120px" >
+  <!-- <h3></h3> -->
+          <div >
+              <div class="row">
+                  <div class="col-sm-7 square-box7" > 
+                      
+     <mat-card >
+        <mat-card-header>
+    
+              <mat-card-title>Update Menu {{menu.menuName}}</mat-card-title>
+        
+         </mat-card-header>
+    
+    
+        <mat-card-content fxLayout="column">
+    
+              <form [formGroup]="updateMenuForm"  (ngSubmit)="update()" >
+                   <mat-form-field hintLabel="Enter Menu Name" appearance="outline">
+                        <mat-label>New Menu Name</mat-label>
+                        <input formControlName="name" matInput
+                        placeholder="Menu Name" >
+                        <!-- <div *ngIf="addMenuForm.get('menuName').touched && addMenuForm.get('menuName').invalid"> -->
+                             <!-- <mat-error *ngIf="loginForm.get('email').errors.required">Email is required</mat-error>
+                             <mat-error *ngIf="loginForm.get('email').errors.email">Email address invalid</mat-error> -->
+                        <!-- </div> -->
+                        
+                   </mat-form-field>
+                    
+                   <br>
+    
+                   <mat-form-field hintLabel="Min 8 characters" appearance="outline">
+                        <mat-label> New Price</mat-label>
+                        <input formControlName="price" matInput  
+                         placeholder="price" >
+                        <!-- <div *ngIf="addMenuForm.get('price').touched && addMenuForm.get('price').invalid">
+                   
+                        </div>
+                         -->
+                   </mat-form-field>
+    
+                   <mat-card-actions align="end">
+                        <button   type="submit" mat-raised-button color="primary" class="btn-xl">Update</button>
+                   </mat-card-actions>
+    
+              </form>
+              <!-- <div>
+                   <button (click)="imagePicker.click()">Pick Image</button>
+                   <input type="file" #imagePicker hidden (change)="onImagePicked($event)">
+              </div>
+              
+              <div class="image-preview" *ngIf="imagePreview !== ''&& createMenuForm.get('image').valid">
+                    <img [src]="imagePreview" [alt]="createMenuForm.value.name">
+              </div> -->
+
+              <div *ngFor="let category of categoryList">
+                   <h3>{{category.categoryName}}</h3>
+                   <h5>{{category.selectedItemsList.length}} Numer of Items Selected</h5>
+                    <label> <input [(ngModel)]="category.choiceof" placeholder="Choice of"> Number of Items Are Allowed </label>
+                   <ul *ngFor="let item of category.selectedItemsList ">
+                    <li>{{item.name}}</li>
+                    </ul>
+              </div>
+
+    
+         </mat-card-content>
+
+    
+        
+             
+    
+        
+    </mat-card>
+                  </div>
+                  
+                  <div class="col-sm-5">
+                       <div *ngFor="let category of categories">
+                            <mat-expansion-panel style="outline: rgba(0, 0, 139, 0.829) solid 1px">
+                              <mat-expansion-panel-header>
+                                <mat-panel-title style="font-size: 24px">
+                                  Select {{category.categoryName}}
+                                </mat-panel-title>
+                              </mat-expansion-panel-header>
+                              <div *ngFor="let item of category.itemsList">
+                                    <span>
+                                      <mat-checkbox color="warn" class="example-margin" (change)="itemSelect($event,item)" value="{{item._id}}">{{item.name}}</mat-checkbox>
+                                    </span>
+                                  
+                                </div>
+                            </mat-expansion-panel>
+                         </div>
+                      
+                  </div>
+              </div>
+          </div>
+</div>

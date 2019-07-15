@@ -11,15 +11,20 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class MainMenusComponent implements OnInit {
 
+  imagePreview;
+
   categories:any;
   items=[];
   categoryList=[];
   Menu:any;
+  choiceOf=[];
 
   createMenuForm = new FormGroup({
     name: new FormControl('',Validators.required),
     price: new FormControl('',Validators.required),
-    item: new FormControl('')
+    item: new FormControl(''),
+    choice:new FormControl(''),
+    image:new FormControl(''),
   }
   )
 
@@ -36,10 +41,14 @@ export class MainMenusComponent implements OnInit {
         this.categories=response;
         console.log(this.categories);
 
+        console.log(this.categories[0].itemsList[0]);
+
+
         for(let i=0;i<this.categories.length;i++){
           let category={
             categoryName:this.categories[i].categoryName,
-            selectedItemsList:[]
+            selectedItemsList:[],
+            choiceof:0
          } 
           this.categoryList.push(category);
         }
@@ -84,9 +93,27 @@ export class MainMenusComponent implements OnInit {
   }
 
   create(){
+    console.log(this.categoryList);
+    this.categoryList.forEach((category)=>{
+      let choice={
+        category:category.categoryName,
+        noOfChoice:category.choiceof
+      }
+      this.choiceOf.push(choice);
+    })
+    this.createMenuForm.patchValue({choice:this.choiceOf}); 
     this.createMenuForm.patchValue({item:this.items});
     this.Menu=Object.assign({},this.createMenuForm.value);
-    console.log(this.Menu);
+   
+
+    // const menuData=new FormData();
+
+    // menuData.append("name",this.createMenuForm.value.name);
+    // menuData.append("price",this.createMenuForm.value.price);
+    // menuData.append("item",this.createMenuForm.value.item);
+    // menuData.append("choice",this.createMenuForm.value.choice);
+    // menuData.append("image",this.createMenuForm.value.image);
+    // console.log(menuData);
     this.menuService.addMenus(this.Menu)
     .subscribe(
       response=>{
@@ -100,4 +127,17 @@ export class MainMenusComponent implements OnInit {
       console.log(error);
   }) 
   }
+
+
+  // onImagePicked(event: Event) {
+  //   const file = (event.target as HTMLInputElement).files[0];
+  //   this.createMenuForm.patchValue({ image: file });
+  //   this.createMenuForm.get("image").updateValueAndValidity();
+  //   const reader = new FileReader();
+  //   reader.onload = () => {
+  //     this.imagePreview = reader.result;
+  //   };
+  //   reader.readAsDataURL(file);
+  // }
+
 }

@@ -14,10 +14,6 @@ const categorySchema = new mongoose.Schema({
     price: {
         type: Number,
         required: true,
-    },
-    choiceOf:{
-      type: Number,
-        required: true,
     }
     
   });

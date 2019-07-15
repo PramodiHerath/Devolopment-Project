@@ -30,7 +30,9 @@
 <!-- carousal ends -->
 
 <!-- plan event button starts -->
+<div align="center">
 <div class="booking-wrapper"><button type="button" class="btn btn-light btn-xxl btn-block" (click)="bringTable()">Plan Your Event Now</button></div>
+</div>
 <!-- plan event button ends -->
 
 <!-- detail raw starts -->
@@ -67,7 +69,7 @@
   			<div class="card-body">
     			<h5 class="card-title titleStyles">{{menu.name}}</h5>
     			<p class="card-text">Rate: Rs.{{menu.price}}/- per person</p>
-    			<a class="btn btn-primary btn-xl" (click)="bringRoyalSilver(menu1)">Veiw Detail</a>
+    			<a class="btn btn-primary btn-xl" (click)="bringMenu(menu)">Veiw Detail</a>
   			</div>
 			</div>
 		</div>

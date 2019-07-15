@@ -1,5 +1,4 @@
 import { MainMenusComponent } from './mainMenus/mainMenus.component';
-import { ViewMenuItemsComponent } from './viewMenuItems/viewMenuItems.component';
 import { ServiceComponent } from './service/service.component';
 import { CategoryItemsComponent } from './categoryItems/categoryItems.component';
 
@@ -13,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import {Routes} from '@angular/router'
 import { HomeComponent } from './home/home.component';
 import { ViewMenuComponent } from './viewMenu/viewMenu.component';
+import { UpdateMenuComponent } from './updateMenu/updateMenu.component';
 
 
 export const appRoutes: Routes= [
@@ -26,7 +26,7 @@ export const appRoutes: Routes= [
     {path:'services',component:ServiceComponent},
     {path:'viewMenu',component:ViewMenuComponent},
     {path:'createMenu',component:MainMenusComponent},
-    {path:'viewMenuItems/:menuId',component:ViewMenuItemsComponent},
+    {path:'updateMenu/:menuId',component:UpdateMenuComponent},
     {path:'',component: LoginComponent},
     {path:'categoryItem/:categoryId',component: CategoryItemsComponent},
     {path:'**',redirectTo:'',pathMatch:'full'}
