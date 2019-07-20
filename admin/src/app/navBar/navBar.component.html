@@ -28,13 +28,16 @@
             <a class="nav-link " [routerLink]="['/services']">Services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " [routerLink]="['/home']">Reservations</a>
+            <a class="nav-link " [routerLink]="['/reservations']">Reservations</a>
           </li>
           <li class="nav-item">
             <a class="nav-link " [routerLink]="['/receptionists']">Users</a>
           </li>
           <li class="nav-item">
             <a class="nav-link " (click)="reports()" *ngIf=isAdmin>Reports</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " [routerLink]="['/createclient']">CreateClient</a>
           </li>
       </ul>
 

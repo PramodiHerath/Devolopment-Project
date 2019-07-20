@@ -4,17 +4,21 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt=require('bcrypt');
 const {Client} = require('../models/client');
+const {Counter} = require('../models/counter'); 
+
 
 router.post('/', async (req, res) => {
-  const passwordSalt=await bcrypt.genSalt(10);
-  const passwordHash=await bcrypt.hash(req.body.password,passwordSalt);
+  const client= await Client.findOne({name:req.body.name});
+  if (client) return res.status(400).send('Client Exists.');
+
+  let counter=await Counter.findOneAndUpdate({ "name" : "Client" },{ $inc: { "value" : 1 } });
 
    let clienttoCreate = new Client({ 
-    _id: req.body.clientName,
-    name: req.body.clientName,
-    telephoneNumber: req.body.clientPhoneNumber,
-    emailAddress: req.body.clientEmailAddress,
-    password: passwordHash
+    _id: counter.value+1,
+    name: req.body.name,
+    telephoneNumber: req.body.telephoneNumber,
+    emailAddress: req.body.emailAddress,
+    
     
   })
   

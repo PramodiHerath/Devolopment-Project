@@ -1,3 +1,4 @@
+import { CreateclientComponent } from './createclient/createclient.component';
 import { MainMenusComponent } from './mainMenus/mainMenus.component';
 import { ServiceComponent } from './service/service.component';
 import { CategoryItemsComponent } from './categoryItems/categoryItems.component';
@@ -13,6 +14,9 @@ import {Routes} from '@angular/router'
 import { HomeComponent } from './home/home.component';
 import { ViewMenuComponent } from './viewMenu/viewMenu.component';
 import { UpdateMenuComponent } from './updateMenu/updateMenu.component';
+import { ConfirmedBookingsComponent } from './ConfirmedBookings/ConfirmedBookings.component';
+import { ReservationsComponent } from './reservations/reservations.component';
+import { CreateConfirmedBookingComponent } from './createConfirmedBooking/createConfirmedBooking.component';
 
 
 export const appRoutes: Routes= [
@@ -20,12 +24,16 @@ export const appRoutes: Routes= [
     {path:'login',component:LoginComponent},
     {path:'home',component:HomeComponent,},
     {path:'menus',component:MenusComponent,},
+    {path:'createclient',component:CreateclientComponent,},
     {path:'categories',component:CategoriesComponent},
     {path:'item',component:ItemComponent,},
     {path:'receptionists',component:ReceptionistsComponent},
     {path:'services',component:ServiceComponent},
     {path:'viewMenu',component:ViewMenuComponent},
     {path:'createMenu',component:MainMenusComponent},
+    {path:'reservations',component:ReservationsComponent},
+    {path:'confirmedBookings',component:ConfirmedBookingsComponent},
+    {path:'createConfirmedBookings',component:CreateConfirmedBookingComponent},
     {path:'updateMenu/:menuId',component:UpdateMenuComponent},
     {path:'',component: LoginComponent},
     {path:'categoryItem/:categoryId',component: CategoryItemsComponent},

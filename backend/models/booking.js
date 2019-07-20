@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
-const {clientSchema}= require('./client');
-const {serviceSchema}= require('./service');
-const {hallSchema}= require('./hall');
+const {Client}= require('./client');
+const {Service}= require('./service');
+const {Hall}= require('./hall');
 const {Payment}= require('./payment');
+const {Item}= require('./item');
 
 const bookingSchema = new mongoose.Schema({
     _id:{
@@ -12,8 +13,6 @@ const bookingSchema = new mongoose.Schema({
     status: {
       type: String,
       required: true,
-      minlength: 5,
-      maxlength: 50
     },
     date: {
         type: Date,
@@ -22,54 +21,56 @@ const bookingSchema = new mongoose.Schema({
     time:{
         type: String,
         required: true,
-
     },
     eventType:{
         type: String,
         required: true,
-
     },
     capacity:{
         type: Number,
         required: true,
+    },
+    menu:{
+        type: new mongoose.Schema({
+            _id:{
+                type:Number
+
+            },
+            name:{
+                type:String
+               
+            },  
+            price:{
+                type:Number
+               
+            },
+            item:[{
+                type: Number,
+                ref: Item
+            }]
+        }),
+       
 
     },
     hallId:{
-        type: hallSchema,
-        required: true
+        type: Number,
+        ref: Hall
     },
-    client:{
-        type: new mongoose.Schema({
-            _id:{
-                type:String,
-                required: true
-            },
-            name: {
-                type: String,
-                required: true,
-                minlength: 5,
-                maxlength: 50
-              },
-            emailAddress:{
-                type: String,
-                required: true,
-        
-            },
-
-
-
-        })
+    clientId:{
+        type: String,
+        ref: Client
     },
     serviceId:[
         {
-            type: serviceSchema,
-            required: true
+            type: Number,
+            ref: Service
         }
     ],
-    paymentId:{
-        type: mongoose.Schema.Types.ObjectId,
+    paymentId:[{
+        type: Number,
         ref: Payment
-    }
+      
+    }]
   });
   
   const Booking = mongoose.model('Booking', bookingSchema);

@@ -21,6 +21,11 @@ import { MainMenusComponent } from './mainMenus/mainMenus.component';
 import { ViewMenuComponent } from './viewMenu/viewMenu.component';
 import { UpdateMenuComponent } from './updateMenu/updateMenu.component';
 
+import { CreateclientComponent } from './createclient/createclient.component';
+import { ConfirmedBookingsComponent } from './ConfirmedBookings/ConfirmedBookings.component';
+import { ReservationsComponent } from './reservations/reservations.component';
+import { CreateConfirmedBookingComponent } from './createConfirmedBooking/createConfirmedBooking.component';
+
 
 @NgModule({
    declarations: [
@@ -37,7 +42,11 @@ import { UpdateMenuComponent } from './updateMenu/updateMenu.component';
       ServiceComponent,
       MainMenusComponent,
       ViewMenuComponent,
-      UpdateMenuComponent
+      UpdateMenuComponent,
+      CreateclientComponent,
+      ConfirmedBookingsComponent,
+      ReservationsComponent,
+      CreateConfirmedBookingComponent
    ],
    imports: [
       BrowserAnimationsModule,

@@ -27,6 +27,9 @@ export class HomeComponent implements OnInit {
   bringServiceComponent(){
     this.router.navigate(['/services']);
   }
+  bringReservationsComponent(){
+    this.router.navigate(['/reservations']);
+  }
 
   constructor(private router: Router,private authService:AuthService) { }
 
