@@ -6,17 +6,48 @@
 <br>
 <div class="container-fluid">
   <div class="row spacing">
-    <div class="col-md-8 square-box7" style="margin-right: 3%; width:66% ">
-      <h1 class="left-heading menu-heading">Booking Form - Royal Tulip</h1>
+    <div class="col-md-7 square-box7">
+      <h1 class="left-heading menu-heading">Booking Form</h1>
       <p class="menu-para-text">Please Fill And Submit</p>
 <!-- form starts -->
-      <form [formGroup]="tulipBookingForm" (ngSubmit) = "updateBookingTable(tulipBookingForm.value)">
+      <form [formGroup]="bookingForm" (ngSubmit) = "updateBookingTable(bookingForm.value)">
         <ul class="menus-list-style">
+            <li>
+                <div class="form-group">
+                  <mat-form-field>
+                    <mat-label>Hall</mat-label>
+                    <mat-select formControlName="hall">
+                      <mat-option *ngFor="let hall of halls" [value]="hall._id">
+                        {{hall.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </li>
+              <li>
+                  <mat-form-field>
+                    <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                </li>
+                <li>
+                    <mat-radio-group aria-label="Select an option" formControlName="dayNight">
+                      <mat-radio-button value="1" style="margin-right: 10px">Day Event</mat-radio-button>
+                      <mat-radio-button value="2">Night Event</mat-radio-button>
+                    </mat-radio-group>
+                </li>
+                <li>
+                    <mat-form-field>
+                    <mat-label>Duration</mat-label>
+                    <input  formControlName="duration"  matInput placeholder="duration in hrs">
+                    </mat-form-field>
+                  </li>
           <li>
             <div class="form-group">
               <mat-form-field>
                 <mat-label>Event Type</mat-label>
-                <mat-select>
+                <mat-select formControlName="type">
                   <mat-option *ngFor="let type of eventTypes" [value]="type">
                     {{type}}
                   </mat-option>
@@ -25,55 +56,72 @@
             </div>
           </li>
           <li>
-            <div class="form-group">
-              <mat-form-field>
-                <mat-label>Capacity</mat-label>
-                <mat-select>
-                  <mat-option *ngFor="let type of eventTypes" [value]="type">
-                    {{type}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
+            <mat-form-field>
+            <mat-label>No. of Participants</mat-label>
+            <input  formControlName="capacity"  matInput placeholder="No. of Participants">
+            </mat-form-field>
+          </li>
+          <li *ngFor="let menu of menus">
+            <button mat-button (click)="selectMenu(menu)">{{menu.name}}</button>
           </li>
           <li>
-            <div class="form-group">
               <mat-form-field>
-                <mat-label>Payment Method</mat-label>
-                <mat-select>
-                  <mat-option *ngFor="let type of eventTypes" [value]="type">
-                    {{type}}
-                  </mat-option>
-                </mat-select>
+                  <input matInput placeholder="Client"  [matAutocomplete]="auto" (keyup)="searchClient($event)" formControlName="clientId">
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let client of clients" [value]="client._id">      
+                      <span>{{client.name}}</span> 
+                    </mat-option>
+                  </mat-autocomplete>
               </mat-form-field>
-            </div>
           </li>
           
           <li>
-            <mat-radio-group aria-label="Select an option">
-              <mat-radio-button value="1" style="margin-right: 10px">Day Event</mat-radio-button>
-              <mat-radio-button value="2">Night Event</mat-radio-button>
-            </mat-radio-group>
-          </li>
-          <li>
             <mat-form-field>
-              <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-          </li>
-          <li>
-            <mat-form-field>
-              <textarea matInput placeholder="Special Remarks"></textarea>
+              <textarea matInput placeholder="Special Remarks" formControlName="remarks"></textarea>
             </mat-form-field>
           </li>
           
         </ul>
+        <li *ngFor="let service of displayServices">
+            <mat-checkbox (change)="chooseService($event,service)">{{service.name}}</mat-checkbox>
+            <input [(ngModel)]="service.quantity" *ngIf="service.amount&&service.isSelected">
+          </li>
         
+          
           <div class="form-group">
             <input name="ViewRoughBudget" type="submit" class="btn btn-primary btn-xl" value="Make a Tentative Booking" required="required" >
           </div>
           
+
         
         </form>
+        <button (click)="click()">click</button>
     </div>
+    <div class="col-md-5 square-box7" *ngIf="clicked">
+        <h1 class="left-heading menu-heading">Customize Your Menu : {{selectedMenu}}</h1>
+        <p class="menu-para-text">Additional Choices will Add a category price per plate:</p>
+          <div class="menus-list-style" *ngFor="let menuCatergory of menuItems" align="left">
+            <h2 style="font-style: italic">{{menuCatergory.categoryName}} Choose Any: {{menuCatergory.choiceOf}}</h2>
+            <ul *ngFor="let catItem of menuCatergory.itemsList">
+              <mat-checkbox (change)="chooseItem($event,menuCatergory)">{{catItem.name}}</mat-checkbox>
+            <!-- <div class="form-check">
+                <label class="form-check-label">
+                  <br>Choose Item
+                </label>
+                </div> -->
+            
+              
+            </ul>
+            <h2>Additional charge for {{menuCatergory.categoryName}} Category: {{menuCatergory.additionalCharges}}</h2>
+            <h3>----------------------------------------------------</h3>
+          </div>
+          <div>
+
+          </div>
+         
+    </div>
+    
+  </div>
+</div>
+
+    

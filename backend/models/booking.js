@@ -60,11 +60,25 @@ const bookingSchema = new mongoose.Schema({
         type: String,
         ref: Client
     },
-    serviceId:[
-        {
+    serviceId:[{
+        type: new mongoose.Schema({
+        _id:{
+            type:Number
+
+        },
+        name:{
+            type:String
+           
+        },  
+        price:{
+            type:Number
+           
+        },
+        quantity:{
             type: Number,
-            ref: Service
         }
+    }),
+    }
     ],
     paymentId:[{
         type: Number,

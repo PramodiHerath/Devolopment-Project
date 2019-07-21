@@ -29,8 +29,15 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
-    const client = await client.find();
+    const client = await Client.find();
     res.send(client);
   });
 
+router.get('/searchClient', async (req, res) => {
+  let clientNamePattern=req.query.clientName;
+  pattern= new RegExp(clientNamePattern,"i");
+
+    const client = await Client.find({name:pattern});
+    res.send(client);
+  });
 module.exports = router;  

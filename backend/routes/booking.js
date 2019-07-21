@@ -28,5 +28,9 @@ router.post('/', async (req, res) => {
   res.send(bookingtoCreate);
 
 });
+router.get('/', async (req, res) => {
+  const booking = await Booking.find().populate('serviceId');
+  res.send(booking);
+});
 
 module.exports = router;  

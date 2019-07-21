@@ -17,6 +17,7 @@ const Service=require('./routes/services');
 const categoryItems=require('./routes/categoryItems');
 const menuItems=require('./routes/menuItems');
 const Booking=require('./routes/booking');
+const Halls=require('./routes/halls');
 
 
 
@@ -55,6 +56,7 @@ app.use('/api/services', Service);
 app.use('/api/categoryItems', categoryItems);
 app.use('/api/menuItems', menuItems);
 app.use('/api/booking', Booking);
+app.use('/api/halls', Halls);
 
 
 

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-const {Halls} = require('../models/hall');
+const {Hall} = require('../models/hall');
 
 const {Counter} = require('../models/counter');
 
@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
   });
   
   router.get('/', async (req, res) => {
-      const hall = await Halls.find();
+      const hall = await Hall.find();
       res.send(hall);
     });
   

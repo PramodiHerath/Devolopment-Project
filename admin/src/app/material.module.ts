@@ -17,7 +17,8 @@ import { MatDatepickerModule,
         MatExpansionModule,
         MatInputModule, 
         MatSortModule,
-       
+        MatAutocompleteModule,
+        MatSelectModule,
         MatPaginatorModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -34,7 +35,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatProgressSpinnerModule,
     MatIconModule,
     MatCheckboxModule,
+    MatAutocompleteModule,
     // FormsModule,
+    MatSelectModule,
     MatListModule,
     MatRadioModule,
     MatPaginatorModule,
@@ -60,6 +63,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatPaginatorModule,
     MatGridListModule,
     MatRadioModule,
+    MatAutocompleteModule,
+    MatSelectModule,
     // MatFormsModule,
 
     BrowserAnimationsModule
