@@ -56,6 +56,9 @@ const bookingSchema = new mongoose.Schema({
         type: Number,
         ref: Hall
     },
+    remarks:{
+        type:String
+    },
     clientId:{
         type: String,
         ref: Client

@@ -12,15 +12,15 @@ router.post('/', async (req, res) => {
    let bookingtoCreate = new Booking({ 
     _id: counter.value+1,
     status: req.body.status,
-    date:req.body.date,
+    date:new Date(req.body.date),
     time:req.body.time,
     eventType:req.body.eventType,
     capacity:req.body.capacity,
     menu:req.body.menu,
     hallId:req.body.hall,
-    clientId:req.body.client,
+    clientId:req.body.clientId,
     serviceId:req.body.services,
-    paymentId:req.body.payment
+    paymentId:req.body.paymentId
   })
   
    bookingtoCreate= await bookingtoCreate.save();

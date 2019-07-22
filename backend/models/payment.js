@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const {Client}= require('./client')
 
 const paymentSchema = new mongoose.Schema({
     
@@ -19,6 +19,11 @@ const paymentSchema = new mongoose.Schema({
     date:{
       type: Date,
       required: true,
+    },
+    clientId:{
+      type: Number,
+      ref: Client
+
     }
     
     
@@ -26,5 +31,5 @@ const paymentSchema = new mongoose.Schema({
   
 const Payment = mongoose.model('Payment', paymentSchema);
 
-exports.Payement = Payment; 
+exports.Payment = Payment; 
 exports.paymentSchema = paymentSchema;
