@@ -14,13 +14,24 @@
 <!-- form starts -->
       <form [formGroup]="bookingForm" (ngSubmit) = "updateBookingTable(bookingForm.value)">
         <ul class="menus-list-style">
-                
             <li>
+                <div class="form-group">
+                  <mat-form-field>
+                    <mat-label>Event Type</mat-label>
+                    <mat-select formControlName="eventType">
+                      <mat-option *ngFor="let type of eventTypes" [value]="type">
+                        {{type}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </li>
+            <!-- <li>
                     <mat-radio-group aria-label="Select an option" formControlName="time">
                       <mat-radio-button value="day" style="margin-right: 10px">Day Event</mat-radio-button>
                       <mat-radio-button value="night">Night Event</mat-radio-button>
                     </mat-radio-group>
-            </li>
+            </li> -->
           
           <li>
             <mat-form-field>
@@ -61,7 +72,7 @@
 
         <li *ngFor="let service of servicesAmountTrue">
           <mat-checkbox (change)="chooseService($event,service)">{{service.name}}</mat-checkbox>
-          <input [(ngModel)]="service.quantity" [ngModelOptions]="{standalone: true}" *ngIf="service.amount&&service.isSelected">
+          <input [(ngModel)]="service.quantity" [ngModelOptions]="{standalone: true}" *ngIf="service.amount&&service.isSelected" required="required">
         </li>
         
         </ul>
@@ -100,6 +111,24 @@
          
     </div>
     
+  </div>
+</div>
+
+<div class="container-fluid" *ngIf="showSummary">
+	<div class="row spacing">
+		<div class="col-md-12 square-box7" style="margin-right: 1%; width:66% ">
+			<h1 class="left-heading menu-heading">Booking Summary</h1>
+			<p class="menu-para-text">Booked Menu Items:</p>
+				<ul class="menus-list-style" *ngFor="let item of items">
+          <li>{{item}}</li>
+        </ul>
+        <h4 class="menu-para-text">Total Menu Charge: Rs. {{totalMenuCharge}} /-</h4>
+      <p class="menu-para-text">Booked Services:</p>
+        <ul class="menus-list-style" *ngFor="let service of selectedServices">
+          <li>{{service.name}}</li>
+        </ul>
+        <h4 class="menu-para-text">Total Service Charge: Rs. {{serviceCharges}} /-</h4>
+		</div>
   </div>
 </div>
 

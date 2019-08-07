@@ -17,7 +17,7 @@ export class HallDateSelectionComponent implements OnInit {
   }
   )
 
-  eventTypes:string[]=['Wedding','Whole Day Function','Half Day Function'];
+  
   halls;
   allowDay:boolean;
   allowNight:boolean;
@@ -56,17 +56,31 @@ export class HallDateSelectionComponent implements OnInit {
     this.date=this.checkAvailabilityForm.value.date;
     CreateConfirmedBookingComponent.selectedDate=this.date;
     CreateConfirmedBookingComponent.selectedHall=this.hallId;
-    CreateConfirmedBookingComponent.selectedTime=this.date;
+    CreateConfirmedBookingComponent.selectedTime=this.time;
 
     this.route.navigate(['/createConfirmedBookings']);
   }
 
   selectNight(){
     this.time="night";
+    this.hallId=this.checkAvailabilityForm.value.hall;
+    this.date=this.checkAvailabilityForm.value.date;
+    CreateConfirmedBookingComponent.selectedDate=this.date;
+    CreateConfirmedBookingComponent.selectedHall=this.hallId;
+    CreateConfirmedBookingComponent.selectedTime=this.time;
+
+    this.route.navigate(['/createConfirmedBookings']);
   }
 
   selectWholeDay(){
     this.time="wholeDay";
+    this.hallId=this.checkAvailabilityForm.value.hall;
+    this.date=this.checkAvailabilityForm.value.date;
+    CreateConfirmedBookingComponent.selectedDate=this.date;
+    CreateConfirmedBookingComponent.selectedHall=this.hallId;
+    CreateConfirmedBookingComponent.selectedTime=this.time;
+
+    this.route.navigate(['/createConfirmedBookings']);
 
   }
 

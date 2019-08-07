@@ -45,8 +45,7 @@ const bookingSchema = new mongoose.Schema({
                
             },
             item:[{
-                type: Number,
-                ref: Item
+                type:String
             }]
         }),
        
