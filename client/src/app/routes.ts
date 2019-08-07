@@ -11,6 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { BookingTulipComponent } from './BookingTulip/BookingTulip.component';
 import { RoyalSilverComponent } from './royalSilver/royalSilver.component';
 import { PlanEventComponent } from './planEvent/planEvent.component';
+import { RateUsComponent } from './RateUs/RateUs.component';
 
 export const appRoutes: Routes= [
   {path:'halls',component:HallDetailComponent},
@@ -23,6 +24,7 @@ export const appRoutes: Routes= [
   {path: 'BookingTulip', component:BookingTulipComponent},
   {path: 'royalSilver', component:RoyalSilverComponent},
   {path: 'planEvent', component:PlanEventComponent},
+  {path: 'rateUs', component:RateUsComponent},
   {path:'package/:menuId',component: PackageComponent}, 
   {path:'',component:HomeComponent},
   {path:'**',redirectTo:'',pathMatch:'full'}

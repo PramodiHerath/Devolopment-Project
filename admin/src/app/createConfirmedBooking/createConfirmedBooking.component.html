@@ -5,6 +5,7 @@
 <br>
 <br>
 <br>
+
 <div class="container-fluid">
   <div class="row spacing">
     <div class="col-md-7 square-box7" style="margin-left: 2%">
@@ -13,43 +14,14 @@
 <!-- form starts -->
       <form [formGroup]="bookingForm" (ngSubmit) = "updateBookingTable(bookingForm.value)">
         <ul class="menus-list-style">
+                
             <li>
-                <div class="form-group">
-                  <mat-form-field>
-                    <mat-label>Hall</mat-label>
-                    <mat-select formControlName="hall">
-                      <mat-option *ngFor="let hall of halls" [value]="hall._id">
-                        {{hall.name}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-              </li>
-              <li>
-                  <mat-form-field>
-                    <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                  </mat-form-field>
-                </li>
-                <li>
                     <mat-radio-group aria-label="Select an option" formControlName="time">
                       <mat-radio-button value="day" style="margin-right: 10px">Day Event</mat-radio-button>
                       <mat-radio-button value="night">Night Event</mat-radio-button>
                     </mat-radio-group>
-                </li>
-          <li>
-            <div class="form-group">
-              <mat-form-field>
-                <mat-label>Event Type</mat-label>
-                <mat-select formControlName="eventType">
-                  <mat-option *ngFor="let type of eventTypes" [value]="type">
-                    {{type}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-          </li>
+            </li>
+          
           <li>
             <mat-form-field>
             <mat-label>No. of Participants</mat-label>

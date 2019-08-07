@@ -8,6 +8,7 @@ import { MenuService } from '../services/menu.service';
 import { ServiceService } from '../services/service.service';
 import { PaymentService } from '../services/payment.service';
 import { BookingService } from '../services/booking.service';
+import { MatDatepickerInputEvent } from '@angular/material';
 
 @Component({
   selector: 'createConfirmedBooking',
@@ -16,12 +17,16 @@ import { BookingService } from '../services/booking.service';
 })
 export class CreateConfirmedBookingComponent implements OnInit {
 
-  eventTypes:string[]=['Wedding','Whole Day Function','Half Day Function'];
+  static selectedHall;
+  static selectedDate;
+  static selectedTime;
+ 
   halls;
   menus:any;
   selectedMenu:any;
   menuPrice:number;
   clicked:boolean;
+ 
   menuItems:any;
   additionalMenuCharges=0;
   clients:any;
@@ -63,7 +68,13 @@ export class CreateConfirmedBookingComponent implements OnInit {
     this.viewMenus();
     this.loadClients();
     this.viewServices();
+    console.log("component hallid");
+    console.log(CreateConfirmedBookingComponent.selectedHall);
+    console.log(CreateConfirmedBookingComponent.selectedDate);
     }
+
+    
+
 
   loadClients(){
     this.clientService.getClients()

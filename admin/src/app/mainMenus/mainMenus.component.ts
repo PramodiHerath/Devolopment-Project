@@ -18,12 +18,14 @@ export class MainMenusComponent implements OnInit {
   categoryList=[];
   Menu:any;
   choiceOf=[];
+  image:any;
 
   createMenuForm = new FormGroup({
     name: new FormControl('',Validators.required),
     price: new FormControl('',Validators.required),
     item: new FormControl(''),
     choice:new FormControl(''),
+    menuImagePath:new FormControl(''),
     image:new FormControl(''),
   }
   )
@@ -103,41 +105,62 @@ export class MainMenusComponent implements OnInit {
     })
     this.createMenuForm.patchValue({choice:this.choiceOf}); 
     this.createMenuForm.patchValue({item:this.items});
-    this.Menu=Object.assign({},this.createMenuForm.value);
+    
    
 
-    // const menuData=new FormData();
+    const menuData=new FormData();
 
     // menuData.append("name",this.createMenuForm.value.name);
     // menuData.append("price",this.createMenuForm.value.price);
     // menuData.append("item",this.createMenuForm.value.item);
     // menuData.append("choice",this.createMenuForm.value.choice);
-    // menuData.append("image",this.createMenuForm.value.image);
-    // console.log(menuData);
-    this.menuService.addMenus(this.Menu)
+    menuData.append("image",this.createMenuForm.value.image,this.createMenuForm.value.name);
+    menuData.append("title",this.createMenuForm.value.name);
+
+    console.log("before");
+    this.menuService.addMenuPhoto(menuData)
     .subscribe(
       response=>{
       alert('succesfully added');
       console.log(response);
-      this.createMenuForm.reset();
-      this.router.navigate(['/viewMenu']);
-  },
-      error=>{
-      alert('An unexpected error occurred.');
-      console.log(error);
-  }) 
+      this.createMenuForm.patchValue({menuImagePath:response});
+      this.Menu=Object.assign({},this.createMenuForm.value);
+
+      this.menuService.addMenus(this.Menu)
+      .subscribe(
+        response=>{
+        alert('succesfully added');
+        console.log(response);
+        this.createMenuForm.reset();
+        this.router.navigate(['/viewMenu']);
+      },
+          error=>{
+          alert('An unexpected error occurred.');
+          console.log(error);
+      }) 
+    },
+        error=>{
+        alert('An unexpected error occurred.');
+        console.log(error);
+    }) ;
+    
+
+    console.log(menuData);
+    
+
+}
+
+
+  onImagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.image=file;
+    this.createMenuForm.patchValue({ image: file });
+    this.createMenuForm.get("image").updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result;
+    };
+    reader.readAsDataURL(file);
   }
-
-
-  // onImagePicked(event: Event) {
-  //   const file = (event.target as HTMLInputElement).files[0];
-  //   this.createMenuForm.patchValue({ image: file });
-  //   this.createMenuForm.get("image").updateValueAndValidity();
-  //   const reader = new FileReader();
-  //   reader.onload = () => {
-  //     this.imagePreview = reader.result;
-  //   };
-  //   reader.readAsDataURL(file);
-  // }
 
 }

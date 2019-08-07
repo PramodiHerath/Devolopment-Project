@@ -10,37 +10,43 @@ const {Category} = require('../models/category');
 const multer = require("multer");
 
 
-// const MIME_TYPE_MAP = {
-//   "image/png": "png",
-//   "image/jpeg": "jpg",
-//   "image/jpg": "jpg"
-// };
+const MIME_TYPE_MAP = {
+  "image/png": "png",
+  "image/jpeg": "jpg",
+  "image/jpg": "jpg"
+};
 
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     const isValid = MIME_TYPE_MAP[file.mimetype];
-//     let error = new Error("Invalid mime type");
-//     if (isValid) {
-//       error = null;
-//     }
-//     cb(error, "images");
-//   },
-//   filename: (req, file, cb) => {
-//     const name = file.originalname
-//       .toLowerCase()
-//       .split(" ")
-//       .join("-");
-//     const ext = MIME_TYPE_MAP[file.mimetype];
-//     cb(null, name + "-" + Date.now() + "." + ext);
-//   }
-// });
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const isValid = MIME_TYPE_MAP[file.mimetype];
+    let error = new Error("Invalid mime type");
+    if (isValid) {
+      error = null;
+    }
+    cb(error, "images");
+  },
+  filename: (req, file, cb) => {
+    const name = file.originalname
+      .toLowerCase()
+      .split(" ")
+      .join("-");
+    const ext = MIME_TYPE_MAP[file.mimetype];
+    cb(null, name + "-" + Date.now() + "." + ext);
+  }
+});
 
-// multer({ storage: storage }).single("image"),
 
+
+
+router.post('/images',multer({ storage: storage }).single("image"), async (req, res) => {
+ const url = req.protocol + "://" + req.get("host");
+ let menuImagePath=url + "/images/" + req.file.filename;
+ res.send(JSON.stringify(menuImagePath));
+});
 
 router.post('/', async (req, res) => {
 
-  // const url = req.protocol + "://" + req.get("host");
+ 
 
   let itemArrLength=req.body.item.length;
   let choiceArrLength=req.body.choice.length;
@@ -72,7 +78,8 @@ router.post('/', async (req, res) => {
     price: req.body.price,
     item:req.body.item,
     choice:choice,
-    // menuImagePath:url + "/images/" + req.file.filename
+    menuImagePath:  req.body.menuImagePath,
+    
   })
   
     menutoCreate = await menutoCreate.save();

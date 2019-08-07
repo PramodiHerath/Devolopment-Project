@@ -1,0 +1,21 @@
+.square-box7 {
+    background-color: #de9e0929;
+    min-height: 576px;
+    height: auto;
+    width: 66%;
+    margin-right: 1%;
+}
+.menu-para-text {
+    font-size: 18px;
+    color: #846837;
+    font-family: 'Raleway', sans-serif;
+    line-height: 29px;
+    margin-left: 2%;
+    margin-bottom: 27px;
+}
+.left-heading {
+    text-align: center;
+    color: #846837;
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+}

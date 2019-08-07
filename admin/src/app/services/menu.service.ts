@@ -15,6 +15,9 @@ getAllMenus(){
 addMenus(newMenu){
   return this.http.post(this.baseUrl+'menus',newMenu);
 }
+addMenuPhoto(newMenu){
+  return this.http.post(this.baseUrl+'menus/images',newMenu);
+}
 getMenu(menuId){
   return this.http.get(this.baseUrl+'menus/'+menuId);
 }

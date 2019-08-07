@@ -14,7 +14,7 @@ export class ReservationsComponent implements OnInit {
 
   bringConfirmedBookings(){
 
-    this.router.navigate(['/createConfirmedBookings']);
+    this.router.navigate(['/hallDateSelection']);
   }
   ngOnInit() {
   }

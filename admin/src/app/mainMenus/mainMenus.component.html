@@ -50,14 +50,16 @@
                    </mat-card-actions>
     
               </form>
-              <!-- <div>
+
+               <div>
                    <button (click)="imagePicker.click()">Pick Image</button>
                    <input type="file" #imagePicker hidden (change)="onImagePicked($event)">
               </div>
               
-              <div class="image-preview" *ngIf="imagePreview !== ''&& createMenuForm.get('image').valid">
+              <div class="image-preview" *ngIf="imagePreview !== ''">
                     <img [src]="imagePreview" [alt]="createMenuForm.value.name">
-              </div> -->
+              </div> 
+
 
               <div *ngFor="let category of categoryList">
                    <h3>{{category.categoryName}}</h3>

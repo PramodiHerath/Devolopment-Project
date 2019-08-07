@@ -1,0 +1,55 @@
+
+<div class="container-fluid">
+  <div class="row spacing">
+    <div class="col-md-7 square-box7" style="margin-left: 2%">
+      <h1 class="left-heading menu-heading">Check Date Availability</h1>
+      <p class="menu-para-text">Please Hall and Date</p>
+<!-- form starts -->
+      <form [formGroup]="checkAvailabilityForm" (ngSubmit) = "checkAvailability(checkAvailabilityForm.value)">
+        <ul class="menus-list-style">
+            <li>
+                <div class="form-group">
+                  <mat-form-field>
+                    <mat-label>Hall</mat-label>
+                    <mat-select formControlName="hall">
+                      <mat-option *ngFor="let hall of halls" [value]="hall._id">
+                        {{hall.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </li>
+              <!-- <li>
+                <div class="form-group">
+                  <mat-form-field>
+                    <mat-label>Event Type</mat-label>
+                    <mat-select formControlName="eventType">
+                      <mat-option *ngFor="let type of eventTypes" [value]="type">
+                        {{type}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </li> -->
+              <li>
+                  <mat-form-field>
+                    <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                </li>
+            </ul>
+
+              <div class="form-group">
+                <input name="checkAvailability" type="submit" class="btn btn-primary btn-xl" value="Check Availability" required="required" >
+              </div>
+
+            </form>
+
+            <button type="button"  [disabled]="allowDay" class="btn btn-primary btn-table" *ngIf="reservations"   (click)="selectDay()">Book Day</button>
+            <button type="button"  [disabled]="allowNight" class="btn btn-primary btn-table"  *ngIf="reservations"  (click)="selectNight()">Book Night</button>
+            <button type="button"  [disabled]="allowFullday" class="btn btn-primary btn-table"  *ngIf="reservations" (click)="selectWholeDay()">Book Whole Day</button>
+          
+          </div>
+      </div>
+  </div>

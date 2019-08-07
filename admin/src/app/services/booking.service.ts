@@ -12,4 +12,10 @@ postConfirmedBooking(newBooking){
   return this.http.post(this.baseUrl+'booking',newBooking)
 }
 
+checkAvailability(hallId,date,month,year){
+  return this.http.get(this.baseUrl+'booking/checkAvailability?hallId='+hallId+'&date='+date+'&month='+month+'&year='+year)
 }
+
+}
+
+// http://localhost:3000/api/booking/checkAvailability?hallId=3&date=25&month=8&year=2019

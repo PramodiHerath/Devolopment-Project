@@ -37,6 +37,7 @@ import { CheckboxFormatDirective } from './checkbox-format.directive';
 import { PlanEventComponent } from './planEvent/planEvent.component';
 import { RoyalGoldComponent } from './royalGold/royalGold.component';
 import { RoyalPlatinumComponent } from './royalPlatinum/royalPlatinum.component';
+import { RateUsComponent } from './RateUs/RateUs.component';
 
 
 
@@ -61,18 +62,11 @@ import { RoyalPlatinumComponent } from './royalPlatinum/royalPlatinum.component'
       CheckboxFormatDirective,
       PlanEventComponent,
       RoyalGoldComponent,
-      RoyalPlatinumComponent
+      RoyalPlatinumComponent,
+      RateUsComponent
    ],
    imports: [
-
-      // JwtModule.forRoot({
-      //    config: {
-      //      tokenGetter: function  tokenGetter() {
-      //           return     localStorage.getItem('access_token');},
-      //      whitelistedDomains: ['localhost:3000'],
-      //      blacklistedRoutes: ['http://localhost:3000/auth/login']
-      //    }
-      //  }),
+     
       BrowserModule,
       RouterModule.forRoot(appRoutes),
       AlertModule.forRoot(),

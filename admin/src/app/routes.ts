@@ -17,6 +17,7 @@ import { UpdateMenuComponent } from './updateMenu/updateMenu.component';
 import { ConfirmedBookingsComponent } from './ConfirmedBookings/ConfirmedBookings.component';
 import { ReservationsComponent } from './reservations/reservations.component';
 import { CreateConfirmedBookingComponent } from './createConfirmedBooking/createConfirmedBooking.component';
+import { HallDateSelectionComponent } from './hallDateSelection/hallDateSelection.component';
 
 
 export const appRoutes: Routes= [
@@ -33,6 +34,7 @@ export const appRoutes: Routes= [
     {path:'createMenu',component:MainMenusComponent},
     {path:'reservations',component:ReservationsComponent},
     {path:'confirmedBookings',component:ConfirmedBookingsComponent},
+    {path:'hallDateSelection',component:HallDateSelectionComponent},
     {path:'createConfirmedBookings',component:CreateConfirmedBookingComponent},
     {path:'updateMenu/:menuId',component:UpdateMenuComponent},
     {path:'',component: LoginComponent},

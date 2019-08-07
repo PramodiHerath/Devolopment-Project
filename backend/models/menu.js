@@ -33,7 +33,7 @@ const menuSchema = new mongoose.Schema({
         noOfChoice:{
             type: Number
         }}],
-    // menuImagePath: { type: String, required: true }
+    menuImagePath: { type: String, required: true }
 
 
   });
