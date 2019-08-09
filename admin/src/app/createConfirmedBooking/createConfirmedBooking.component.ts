@@ -17,11 +17,18 @@ import { MatDatepickerInputEvent } from '@angular/material';
 })
 export class CreateConfirmedBookingComponent implements OnInit {
 
+  //To get details from halldateselection component
   static selectedHall;
   static selectedDate;
   static selectedTime;
- 
-  eventTypes:string[]=['Wedding','Whole Day Function','Half Day Function'];
+
+  //hall date and time saved to backend
+  confirmedHall;
+  confirmedDate;
+  confirmedTime;
+
+
+  eventTypes:string[]=[' Day Wedding','Night Wedding','Other'];
   halls;
   menus:any;
   selectedMenu:any;
@@ -37,13 +44,16 @@ export class CreateConfirmedBookingComponent implements OnInit {
   serviceClicked:any;
   servicesAmountTrue=[];
   servicesAmountFalse=[];
-  payments:any;
+  payment:any;
   client:any;
   clientPayments=[];
   items=[];
   booking:object;
   additionalMenuPrice=0;
   totalMenuPrice:number;
+  totalBookingCharge=0;
+  amountpaying:any;
+  paymentType:any;
   menuId:any;
 
   servicePrice:number;
@@ -65,11 +75,17 @@ export class CreateConfirmedBookingComponent implements OnInit {
     remarks:new FormControl('',Validators.required),
     clientId:new FormControl('',Validators.required),
     paymentId:new FormControl('',Validators.required),
-    services:new FormControl('',Validators.required)
+    services:new FormControl('',Validators.required),
+    totalBookingCharge:new FormControl('',Validators.required),
+    damageCharge:new FormControl('',Validators.required),
+    totalCharge:new FormControl('',Validators.required)
   }
   )
 
-  constructor(private router: Router,private serviceService:ServiceService,private hallService:HallsService,private menuService:MenuService,private menuItemService:MenuItemsService,private clientService:ClientService,private paymentService:PaymentService,private bookingService:BookingService) { }
+  constructor(private router: Router,private serviceService:ServiceService
+    ,private hallService:HallsService,private menuService:MenuService,
+    private menuItemService:MenuItemsService,private clientService:ClientService,
+    private paymentService:PaymentService,private bookingService:BookingService) { }
 
   ngOnInit() {
     // this.bringHalls();
@@ -78,6 +94,10 @@ export class CreateConfirmedBookingComponent implements OnInit {
     this.viewServices();
     // console.log(CreateConfirmedBookingComponent.selectedDate);
   
+    this.confirmedHall=CreateConfirmedBookingComponent.selectedHall;
+    this.confirmedDate=CreateConfirmedBookingComponent.selectedDate;
+    this.confirmedTime=CreateConfirmedBookingComponent.selectedTime;
+    console.log(this.confirmedHall);
     }
 
     
@@ -226,13 +246,8 @@ export class CreateConfirmedBookingComponent implements OnInit {
     }
     console.log(this.selectedServices);
    }
-   
-   updateBookingTable(data){
-    // console.log(this.selectedServices);
-    // console.log(data.clientId);
-    this.client=data.clientId;
-    this.paymentsArr(this.client);
-    // console.log(this.items);
+
+   calculateMenuCharges(){
     this.menuItems.forEach(category => {
       this.additionalMenuPrice+=category.additionalCharges;
      });
@@ -240,6 +255,74 @@ export class CreateConfirmedBookingComponent implements OnInit {
      console.log(this.menuPrice);
      this.totalMenuPrice=this.menuPrice+this.additionalMenuPrice;
      console.log(this.totalMenuPrice);
+     this.totalMenuCharge=this.totalMenuPrice*this.bookingForm.value.capacity;
+     console.log(this.totalMenuCharge);
+   }
+
+   calculateServiceCharges(){
+    this.selectedServices.forEach(service => {
+          if(service.amount){
+            console.log(service.quantity);
+            this.serviceQuantity=service.quantity;
+            this.servicePrice=service.price;
+            this. fullServicePrice=this.serviceQuantity*this.servicePrice;
+            this.serviceCharges+=this.fullServicePrice;
+          }
+          if(!service.amount){
+          this.servicePrice=service.price;
+          this.serviceCharges+=this.servicePrice;
+        }
+         });
+         console.log(this.serviceCharges);
+        
+
+   }
+
+   calculateTotalBookingCharge(){
+    this.totalBookingCharge=this.totalMenuCharge+this.serviceCharges;
+   }
+
+   showInvoice(){
+     this.calculateMenuCharges();
+     this.calculateServiceCharges();
+     this.calculateTotalBookingCharge();
+    this.showSummary=true;
+   }
+
+   makePayment(){
+ 
+    
+     let payment={
+      paymentType:this.paymentType,
+       amount:this.amountpaying,
+       date:new Date(),
+      clientId:this.bookingForm.value.clientId
+
+     }
+     console.log(payment);
+     this.paymentService.makePayment(payment)
+     .subscribe(response=>{
+       this.payment=response;
+       console.log(response);
+       this.updateBookingTable(this.payment._id);
+     },
+      (error:Response)=>{
+
+     })
+   }
+   
+   updateBookingTable(paymentId){
+
+    this.clientPayments.push(paymentId);
+
+    // console.log(this.selectedServices);
+    // console.log(data.clientId);
+    this.client=this.bookingForm.value.clientId;
+    // this.paymentsArr(this.client);
+    // console.log(this.items);
+   if(this.confirmedTime!='wholeDay'){
+    this.bookingForm.patchValue({eventType:'Other'});
+   }
     this.bookingForm.patchValue({services:this.selectedServices});
     this.bookingForm.patchValue({menu:{
       _id:this.menuId,
@@ -252,30 +335,20 @@ export class CreateConfirmedBookingComponent implements OnInit {
     this.bookingForm.patchValue({hall:CreateConfirmedBookingComponent.selectedHall});
     this.bookingForm.patchValue({date:CreateConfirmedBookingComponent.selectedDate});
     this.bookingForm.patchValue({time:CreateConfirmedBookingComponent.selectedTime});
+    this.bookingForm.patchValue({totalBookingCharge:this.totalBookingCharge});
+    this.bookingForm.patchValue({damageCharge:0});
+    this.bookingForm.patchValue({totalCharge:this.totalBookingCharge});
+
+    
     this.booking=Object.assign({},this.bookingForm.value);
-    // console.log(this.booking);
+    console.log(this.booking);
     this.bookingService.postConfirmedBooking(this.booking)
     .subscribe(
       response=>{
       console.log(response);
-      // this.router.navigate(['/home']);
-      this.selectedServices.forEach(service => {
-        if(service.amount){
-          console.log(service.quantity);
-          this.serviceQuantity=service.quantity;
-          this.servicePrice=service.price;
-          this. fullServicePrice=this.serviceQuantity*this.servicePrice;
-          this.serviceCharges+=this.fullServicePrice;
-        }
-        if(!service.amount){
-        this.servicePrice=service.price;
-        this.serviceCharges+=this.servicePrice;
-      }
-       });
-       console.log(this.serviceCharges);
-       this.totalMenuCharge=this.totalMenuPrice*this.bookingForm.value.capacity;
-       console.log(this.totalMenuCharge);
-      this.showSummary=true;
+      this.router.navigate(['/home']);
+      
+    
       // this.bookingForm.reset();   
     },
       error=>{
@@ -285,25 +358,25 @@ export class CreateConfirmedBookingComponent implements OnInit {
 
   }
 
-  paymentsArr(client){
-    this.paymentService.getPayments()
-    .subscribe(
-      response=>{
-        console.log(response);
-        this.payments=response;
-        this.payments.forEach((payment) => {
-          if(payment.clientId==this.client){
-            this.clientPayments.push(payment);
-          }
-        });
+  // paymentsArr(client){
+  //   this.paymentService.getPayments()
+  //   .subscribe(
+  //     response=>{
+  //       console.log(response);
+  //       this.payments=response;
+  //       this.payments.forEach((payment) => {
+  //         if(payment.clientId==this.client){
+  //           this.clientPayments.push(payment);
+  //         }
+  //       });
          
-    },
-      error=>{
-        alert('An unexpected error occurred.');
-        console.log(error);
-    }) 
+  //   },
+  //     error=>{
+  //       alert('An unexpected error occurred.');
+  //       console.log(error);
+  //   }) 
 
 
-  }
+  // }
 
 }

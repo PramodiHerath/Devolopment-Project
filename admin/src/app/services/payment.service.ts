@@ -13,4 +13,9 @@ getPayments(){
   return this.http.get(this.baseUrl+'payment')
 }
 
+makePayment(payment){
+  return this.http.post(this.baseUrl+'payment',payment);
+
+}
+
 }

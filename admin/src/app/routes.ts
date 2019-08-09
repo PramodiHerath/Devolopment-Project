@@ -1,3 +1,4 @@
+import { CreateTentativeBookingComponent } from './createTentativeBooking/createTentativeBooking.component';
 import { CreateclientComponent } from './createclient/createclient.component';
 import { MainMenusComponent } from './mainMenus/mainMenus.component';
 import { ServiceComponent } from './service/service.component';
@@ -36,6 +37,7 @@ export const appRoutes: Routes= [
     {path:'confirmedBookings',component:ConfirmedBookingsComponent},
     {path:'hallDateSelection',component:HallDateSelectionComponent},
     {path:'createConfirmedBookings',component:CreateConfirmedBookingComponent},
+    {path:'createTentativeBookings',component:CreateTentativeBookingComponent},
     {path:'updateMenu/:menuId',component:UpdateMenuComponent},
     {path:'',component: LoginComponent},
     {path:'categoryItem/:categoryId',component: CategoryItemsComponent},

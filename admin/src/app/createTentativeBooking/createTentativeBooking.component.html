@@ -1,15 +1,57 @@
-
 <admin-navBar></admin-navBar>
 <br>
 <br>
 <br>
 <br>
 <br>
+<div class="table-responsive">
+  <table class="table table-hover table-dark data-table">
+    <thead>
+      <tr>
+        <th scope="col">BookingId</th>
+        <th scope="col">Client</th>
+        <th scope="col">Date</th>
+        <th scope="col">Email of Client</th>
+        <th scope="col">Phone Number of Client</th>
 
-<div class="container-fluid">
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-active" *ngFor= "let booking of tentativeBookings; index as i">
+        <td>{{booking._id}}</td>
+        <td>{{booking.date}}</td>
+        <td> {{booking.clientId.name}}</td>
+        <td> {{booking.clientId.telephoneNumber}}</td>
+        <td> {{booking.clientId.emailAddress}}</td>
+        <td><button *ngIf=confirm (click)=confirmBooking(booking) class="btn-table">Confirm</button></td>
+        <td><button *ngIf=delete (click)=deleteBooking(booking,i)  class="btn-table">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container-fluid" *ngIf="isAdmin">
+  <div class="raw" style="text-align: center">
+
+<div class="col-md-6">
+            
+    <a class="btn btn-primary btn-xl" (click)="bringConfirmBooking()">Confirm</a>
+
+</div>
+<div class="col-md-6">
+            
+  <a class="btn btn-primary btn-xl" (click)=" bringDeleteBooking()">Delete</a>
+
+</div>
+  </div>
+</div>  
+
+
+
+<div class="container-fluid" *ngIf=ShowConfirmationForm>
   <div class="row spacing">
     <div class="col-md-7 square-box7" style="margin-left: 2%">
-      <h1 class="left-heading menu-heading">Booking Form</h1>
+      <h1 class="left-heading menu-heading">Confirming the Tentative Booking </h1>
       <p class="menu-para-text">Please Fill And Submit</p>
       <div>
         <ul class="menus-list-style">
@@ -57,7 +99,7 @@
             </mat-form-field>
           </li>
           
-          <li>
+          <!-- <li>
               <mat-form-field>
                   <input matInput placeholder="Client"  [matAutocomplete]="auto" (keyup)="searchClient($event)" formControlName="clientId">
                   <mat-autocomplete #auto="matAutocomplete">
@@ -66,7 +108,7 @@
                     </mat-option>
                   </mat-autocomplete>
               </mat-form-field>
-          </li>
+          </li> -->
           
           <li>
             <mat-form-field>

@@ -16,6 +16,9 @@ export class ReservationsComponent implements OnInit {
 
     this.router.navigate(['/hallDateSelection']);
   }
+  bringTentativeBookings(){
+    this.router.navigate(['/createTentativeBookings']);
+  }
   ngOnInit() {
   }
 

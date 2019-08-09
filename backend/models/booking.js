@@ -24,7 +24,6 @@ const bookingSchema = new mongoose.Schema({
     },
     eventType:{
         type: String,
-        required: true,
     },
     capacity:{
         type: Number,
@@ -86,7 +85,16 @@ const bookingSchema = new mongoose.Schema({
         type: Number,
         ref: Payment
       
-    }]
+    }],
+    bookingCharge:{
+        type:Number
+    },
+    damageCharge:{
+        type:Number
+    },
+    totalCharge:{
+        type:Number
+    }
   });
   
   const Booking = mongoose.model('Booking', bookingSchema);

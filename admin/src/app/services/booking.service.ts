@@ -13,7 +13,19 @@ postConfirmedBooking(newBooking){
 }
 
 checkAvailability(hallId,date,month,year){
-  return this.http.get(this.baseUrl+'booking/checkAvailability?hallId='+hallId+'&date='+date+'&month='+month+'&year='+year)
+  return this.http.get(this.baseUrl+'booking/checkAvailability/all?hallId='+hallId+'&date='+date+'&month='+month+'&year='+year)
+}
+
+getTentativeBookings(){
+  return this.http.get(this.baseUrl+'booking/tentative/all')
+}
+
+confirmTentativeBooking(bookingId,booking){
+  return this.http.put(this.baseUrl+'booking/'+bookingId,booking)
+}
+
+deleteTativeBooking(bookingId){
+  return this.http.delete(this.baseUrl + 'booking/'+ bookingId)
 }
 
 }
