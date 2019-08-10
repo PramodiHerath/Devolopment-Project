@@ -19,6 +19,9 @@ export class ReservationsComponent implements OnInit {
   bringTentativeBookings(){
     this.router.navigate(['/createTentativeBookings']);
   }
+  bringCloseBookings(){
+    this.router.navigate(['/closeConfirmedBookings']);
+  }
   ngOnInit() {
   }
 

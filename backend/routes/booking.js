@@ -23,6 +23,7 @@ router.post('/', async (req, res) => {
     paymentId:req.body.paymentId,
     bookingCharge:req.body.totalBookingCharge,
     damageCharge:req.body.damageCharge,
+    durationCharge:req.body.durationCharge,
     totalCharge:req.body.totalCharge
   })
   
@@ -64,7 +65,9 @@ router.get('/checkAvailability/all', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-  const booking = await Booking.find({_id:req.params.id}).populate('clientId').populate('paymentId');
+  const booking = await Booking.findById({_id:req.params.id}).populate('clientId').populate('paymentId');
+  
+  if (!booking) return res.status(404).send('The booking with the given id was not found.');
   res.send(booking);
 });
 
@@ -84,9 +87,20 @@ router.put('/:id',async (req, res) => {
     paymentId:req.body.paymentId,
     bookingCharge:req.body.totalBookingCharge,
     damageCharge:req.body.damageCharge,
+    damageCharge:req.body.durationCharge,
     totalCharge:req.body.totalCharge
       
       
+    }, { new: true });
+    if (!booking) return res.status(404).send('The booking with the given name was not found.');
+  res.send(booking);
+});
+
+router.put('/updateConfirmedBooking/all/:id',async (req, res) => {
+  const booking = await Booking.findByIdAndUpdate(req.params.id,
+    { 
+    paymentId:req.body.paymentId,
+
     }, { new: true });
     if (!booking) return res.status(404).send('The booking with the given name was not found.');
   res.send(booking);

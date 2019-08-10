@@ -1,3 +1,4 @@
+
 <admin-navBar></admin-navBar>
 
 
@@ -9,7 +10,7 @@
 <div class="container-fluid">
     <div class="row spacing">
       <div class="col-md-12 square-box7" style="margin-left: 1%; margin-right: 1%;width: 98%">
-        <h1 class="left-heading menu-heading">Make Payments</h1>
+        <h1 class="left-heading menu-heading">Close Confirmed Booking</h1>
             <p class="menu-para-text">Please Enter the Booking Id to View History</p>
             
             <form class="border border-light p-5" (ngSubmit)="viewHistory()">
@@ -34,13 +35,30 @@
                             </div>
                             <br>
                             <br>
+                            <h3>Total Booking Charge = Rs. {{booking.bookingCharge}}</h3>
                             <h3>Total Paid Amount : Rs.{{totalPaidAmount}}</h3>
-                            <h3>Total Booking Charge to be Paid = Rs. {{booking.bookingCharge}}</h3>
+                            <h3>{{message}}</h3>
+                            
                             </div>
                             <form class="border border-light p-5" (ngSubmit)="makePayment()">
+                                <div class="form-group">
+                                    <input type="text" name="NoOfHrs" [(ngModel)]="NoOfHrs" id="NoOfHrs" class="form-control mb-4" placeholder="Enter the Number of Hours Event Went"
+                                     style="height: 50px; width:50%;font-size: 15px" (keyup)="calculateDurationCharges()">
+                                </div>
+                                <h3  class="menu-para-text">Duration Charge : Rs.{{durationCharge}}</h3>
+                                <div class="form-group">
+                                    <input type="text" name="damageCharges" [(ngModel)]="damageCharges" id="damageCharges" class="form-control mb-4" placeholder="Enter Damage Charges"
+                                     style="height: 50px; width:50%;font-size: 15px" (keyup)="calculateDamageCharges()">
+                                </div>
+                                <h3  class="menu-para-text">{{damageChargeMessage}}</h3>
+                                <div class="form-group">
+                                    <button type="button"  (click)="calculateFinalBalance()" class="btn btn-primary btn-table">Final Balance</button>
+                                    </div>
+                                <h3  class="menu-para-text">{{finalBalanceMessage}}</h3>
+
 
                                 <!-- Booking Id -->
-                                <div class="form-group">
+                                <div class="form-group" *ngIf="clientOwe">
                                         <mat-form-field>
                                                 <mat-label>Payment Type</mat-label>
                                                 <mat-select [(value)]="paymentType">

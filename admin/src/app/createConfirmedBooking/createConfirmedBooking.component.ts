@@ -78,6 +78,7 @@ export class CreateConfirmedBookingComponent implements OnInit {
     services:new FormControl('',Validators.required),
     totalBookingCharge:new FormControl('',Validators.required),
     damageCharge:new FormControl('',Validators.required),
+    durationCharge:new FormControl('',Validators.required),
     totalCharge:new FormControl('',Validators.required)
   }
   )
@@ -337,6 +338,7 @@ export class CreateConfirmedBookingComponent implements OnInit {
     this.bookingForm.patchValue({time:CreateConfirmedBookingComponent.selectedTime});
     this.bookingForm.patchValue({totalBookingCharge:this.totalBookingCharge});
     this.bookingForm.patchValue({damageCharge:0});
+    this.bookingForm.patchValue({durationCharge:0});
     this.bookingForm.patchValue({totalCharge:this.totalBookingCharge});
 
     

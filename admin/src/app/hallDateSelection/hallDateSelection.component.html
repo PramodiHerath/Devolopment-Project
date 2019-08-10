@@ -7,9 +7,9 @@
 <br>
 <div class="container-fluid">
   <div class="row spacing">
-    <div class="col-md-7 square-box7" style="margin-left: 2%">
+    <div class="col-md-12 square-box7" style="margin-left: 1%; margin-right: 1%;width: 98%">
       <h1 class="left-heading menu-heading">Check Date Availability</h1>
-      <p class="menu-para-text">Please Hall and Date</p>
+      <p class="menu-para-text">Please Select Hall and Date</p>
 <!-- form starts -->
       <form [formGroup]="checkAvailabilityForm" (ngSubmit) = "checkAvailability(checkAvailabilityForm.value)">
         <ul class="menus-list-style">
@@ -36,7 +36,7 @@
             </ul>
 
               <div class="form-group">
-                <input name="checkAvailability" type="submit" class="btn btn-primary btn-xl" value="Check Availability" required="required" >
+                <input name="checkAvailability" type="submit"  [disabled]="!checkAvailabilityForm.valid" class="btn btn-primary btn-xl" value="Check Availability" required="required" >
               </div>
              
 

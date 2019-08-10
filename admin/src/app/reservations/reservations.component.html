@@ -1,23 +1,42 @@
 <admin-navBar></admin-navBar>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 <div class="container-fluid">
         <div class="raw">
-            <div class="col-md-6">
-                <div class="card">
+            <div class="col-md-4">
+                <!-- <div class="card">
                   <img src={{ConfirmedBookings}} class="card-img-top cardImages" alt="...">
                   <div class="card-body">
                     
-                    <a class="btn btn-primary btn-xl" (click)="bringConfirmedBookings()" >Show</a>
+                    <a class="btn btn-primary btn-xl" (click)="bringConfirmedBookings()" >Make Bookings</a>
                   </div>
-                </div>
+                </div> -->
+                <a class="btn btn-primary btn-xl" (click)="bringConfirmedBookings()" >Make Bookings</a>
             </div>
     
-            <div class="col-md-6">
-                    <div class="card">
+            <div class="col-md-4">
+                    <!-- <div class="card">
                         <img src={{TentativeBookings}} class="card-img-top cardImages" alt="...">
                         <div class="card-body">
                             
-                            <a  class="btn btn-primary btn-xl"  (click)="bringTentativeBookings()">Show</a>
+                            <a  class="btn btn-primary btn-xl"  (click)="bringTentativeBookings()">Handle</a>
                         </div>
-                    </div>
+                    </div> -->
+                    <a  class="btn btn-primary btn-xl"  (click)="bringTentativeBookings()">Tentative Booking <br> Details</a>
                 </div>
+                
+            <div class="col-md-4">
+                <!-- <div class="card">
+                    <img src={{TentativeBookings}} class="card-img-top cardImages" alt="...">
+                    <div class="card-body">
+                        
+                        <a  class="btn btn-primary btn-xl"  (click)="bringTentativeBookings()">Handle</a>
+                    </div>
+                </div> -->
+                <a  class="btn btn-primary btn-xl"  (click)="bringCloseBookings()">Close Confirmed Bookings</a>
+            </div>
                 </div>

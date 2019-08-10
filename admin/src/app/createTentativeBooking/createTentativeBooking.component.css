@@ -65,3 +65,13 @@ th{
   font-size: 16px;
   font-weight: 500;
 }
+.btn-xl {
+  padding: 10px 20px;
+  font-size: 20px;
+  border-radius: 20px;
+  border-color: #846837;
+  width:100%;
+  background-color: rgb(243, 207, 160);
+  color: #846837
+
+}

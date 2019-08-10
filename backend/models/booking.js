@@ -92,6 +92,9 @@ const bookingSchema = new mongoose.Schema({
     damageCharge:{
         type:Number
     },
+    durationCharge:{
+        type:Number
+    },
     totalCharge:{
         type:Number
     }

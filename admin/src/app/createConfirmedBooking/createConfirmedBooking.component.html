@@ -152,7 +152,7 @@
         <h4 class="menu-para-text">Total Service Charge: Rs. {{serviceCharges}} /-</h4>
 
         <h4 class="menu-para-text">Total Booking Charge: Rs. {{totalBookingCharge}} /-</h4>
-        <p class="menu-para-text">Amount Paying<span><input [(ngModel)]="amountpaying" placeholder="Amount"></span></p>
+        <p class="menu-para-text">Key Money Payment<span><input [(ngModel)]="amountpaying" placeholder="Amount"></span></p>
         
         <mat-form-field>
           <mat-label>Payment Type</mat-label>
@@ -168,7 +168,8 @@
                 </mat-option>
           </mat-select>
         </mat-form-field>
-        <button (click)="makePayment()">Submit</button>
+        <br>
+        <button class="btn btn-primary btn-xl" style="width:30%" (click)="makePayment()">Submit</button>
       </div>
   </div>
 </div>

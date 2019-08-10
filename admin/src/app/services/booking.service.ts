@@ -24,8 +24,17 @@ confirmTentativeBooking(bookingId,booking){
   return this.http.put(this.baseUrl+'booking/'+bookingId,booking)
 }
 
+updateConfirmedBooking(bookingId,payments){
+  return this.http.put(this.baseUrl+'booking/updateConfirmedBooking/all/'+bookingId,payments)
+}
+
 deleteTativeBooking(bookingId){
   return this.http.delete(this.baseUrl + 'booking/'+ bookingId)
+}
+
+
+getBookingPaymentHistory(bookingId){
+  return this.http.get(this.baseUrl+'booking/'+bookingId)
 }
 
 }

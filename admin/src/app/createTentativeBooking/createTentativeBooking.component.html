@@ -35,12 +35,12 @@
 
 <div class="col-md-6">
             
-    <a class="btn btn-primary btn-xl" (click)="bringConfirmBooking()">Confirm</a>
+    <a class="btn btn-primary btn-xl" (click)="bringConfirmBooking()" style="width:25%">Confirm</a>
 
 </div>
 <div class="col-md-6">
             
-  <a class="btn btn-primary btn-xl" (click)=" bringDeleteBooking()">Delete</a>
+  <a class="btn btn-primary btn-xl" (click)=" bringDeleteBooking()" style="width:25%">Delete</a>
 
 </div>
   </div>
@@ -138,7 +138,7 @@
         
           
           <div class="form-group">
-            <input name="ConfirmedBooking" type="submit" class="btn btn-primary btn-xl" value="Make a Confirmed Booking" required="required" [disabled]="bookingForm.value.capacity<150" >
+            <input name="ConfirmedBooking" type="submit" class="btn btn-primary btn-xl" value="Make a Confirmed Booking" required="required" [disabled]="bookingForm.value.capacity<150" style="width:60%" >
           </div>
           
 
@@ -194,7 +194,7 @@
         <h4 class="menu-para-text">Total Service Charge: Rs. {{serviceCharges}} /-</h4>
 
         <h4 class="menu-para-text">Total Booking Charge: Rs. {{totalBookingCharge}} /-</h4>
-        <p class="menu-para-text">Amount Paying<span><input [(ngModel)]="amountpaying" placeholder="Amount"></span></p>
+        <p class="menu-para-text">Key Money Payment<span><input [(ngModel)]="amountpaying" placeholder="Amount"></span></p>
         
         <mat-form-field>
           <mat-label>Payment Type</mat-label>
@@ -210,7 +210,7 @@
                 </mat-option>
           </mat-select>
         </mat-form-field>
-        <button (click)="makePayment()">Submit</button>
+        <button (click)="makePayment()" class="btn btn-primary btn-xl">Submit</button>
       </div>
   </div>
 </div>
