@@ -20,6 +20,7 @@ payingAmount=0;
 paymentType;
 clientId;
 payment;
+toBePaid=0;
 
 
 
@@ -70,7 +71,12 @@ this.payments.forEach((payment)=>{
               this.totalPaidAmount+=payment.amount;
           }
         );
+        let charge=this.booking.bookingCharge;
+        let keyMoney=this.booking.keyMoney;
+        let balance=this.totalPaidAmount-keyMoney;
+        this.toBePaid=charge-balance;
         console.log(this.totalPaidAmount);
+        console.log(this.toBePaid);
   
 }
 

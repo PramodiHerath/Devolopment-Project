@@ -1,6 +1,7 @@
 import { BookingService } from './../services/booking.service';
 import { Component, OnInit } from '@angular/core';
 import { PaymentService } from '../services/payment.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'closeConfirmedBookings',
@@ -14,12 +15,16 @@ export class CloseConfirmedBookingsComponent implements OnInit {
   booking;
   clientId;
   payments=[];
+  payment;
+  totalCharge=0;
 
 
   totalPaidAmount=0;
   balance=0;
   totalBookingCharge=0;
   message:String;
+  paymentType;
+  payingAmount=0;
   
 
   NoOfHrs;
@@ -30,7 +35,7 @@ export class CloseConfirmedBookingsComponent implements OnInit {
   finalBalanceMessage:string;
   clientOwe:boolean;
 
-  constructor(private bookingService: BookingService, private paymentService:PaymentService) { }
+  constructor(private router:Router, private bookingService: BookingService, private paymentService:PaymentService) { }
 
   ngOnInit() {
   }
@@ -61,7 +66,10 @@ export class CloseConfirmedBookingsComponent implements OnInit {
           this.showHistory=false;
           alert('Tentative Booking. Confirm Before Proceed');
         }
-       
+        else if(this.booking.status=="closed"){
+          this.showHistory=false;
+          alert('This Booking is Already Closed.');
+        }
     },
     (error:Response)=>{
         
@@ -109,7 +117,10 @@ export class CloseConfirmedBookingsComponent implements OnInit {
       console.log(this.balance);
       console.log(this.damageCharges);
       console.log(this.durationCharge);
-      this.finalBalance=this.balance-(this.damageCharges+this.durationCharge);
+      console.log(this.finalBalance);
+      this.totalCharge=this.durationCharge+this.damageCharges+this.totalBookingCharge;
+      console.log(this.totalCharge);
+      this.finalBalance=this.balance-this.damageCharges-this.durationCharge;
       console.log(this.finalBalance);
       if(this.finalBalance>=0){
         this.finalBalanceMessage="Returning "+this.finalBalance+" Rupees to The Client";
@@ -122,6 +133,58 @@ export class CloseConfirmedBookingsComponent implements OnInit {
         this.clientOwe=true;
       }
 
+    }
+
+    makePayment(){
+      if(this.payingAmount>0){
+        let payment={
+          paymentType:this.paymentType,
+           amount:this.payingAmount,
+           date:new Date(),
+          clientId:this.clientId
+      
+         }
+         console.log(payment);
+         this.paymentService.makePayment(payment)
+         .subscribe(response=>{
+           this.payment=response;
+           console.log(response);
+           this.updateBookingTable(this.payment._id);
+           this.router.navigate(['/home']);
+         },
+          (error:Response)=>{
+      
+         })
+      }
+      
+    }
+
+    updateBookingTable(paymentId){
+
+      this.payments.push(paymentId);
+    let bookinObct={
+      status:"closed",
+      paymentId:this.payments,
+      damageCharge: this.damageCharges,
+      durationCharge:this.durationCharge,
+      totalCharge:this.totalCharge
+
+    }
+    
+      this.bookingService.closeConfirmedBooking(this.booking._id,bookinObct)
+      .subscribe(
+        response=>{
+        console.log(response);
+        
+        
+      
+        // this.bookingForm.reset();   
+      },
+        error=>{
+        console.log(error);
+      }) 
+    
+    
     }
 
  

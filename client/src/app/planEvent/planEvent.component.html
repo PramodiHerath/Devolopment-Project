@@ -15,7 +15,7 @@
     <div class="raw" fxLayout="row" >
       <div class="col-md-" *ngFor="let menu of menus">
         <div class="card">
-          <img src={{royalSilverPic}} class="card-img-top" alt="...">
+          <img src={{menu.menuImagePath}} class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title titleStyles">{{menu.name}}</h5>
             <p class="card-text">Rate: Rs.{{menu.price}}/- per person</p>

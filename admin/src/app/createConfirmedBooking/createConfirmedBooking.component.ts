@@ -79,6 +79,7 @@ export class CreateConfirmedBookingComponent implements OnInit {
     totalBookingCharge:new FormControl('',Validators.required),
     damageCharge:new FormControl('',Validators.required),
     durationCharge:new FormControl('',Validators.required),
+    keyMoney:new FormControl('',Validators.required),
     totalCharge:new FormControl('',Validators.required)
   }
   )
@@ -290,8 +291,33 @@ export class CreateConfirmedBookingComponent implements OnInit {
     this.showSummary=true;
    }
 
+  confirmation(){
+    if(this.amountpaying==25000){
+      this.makePayment();
+    }
+    else if(this.amountpaying<25000){
+      
+        if (confirm("Key Money Payement is less than Rs. 25000!")) {
+        this.makePayment();
+      } else {
+        
+      }
+    }
+    else if(this.amountpaying>25000){
+      if (confirm("Key Money Payement is greater than Rs. 25000!")) {
+        this.makePayment();
+      } else {
+        
+      }
+    }
+
+  }
+
+
    makePayment(){
- 
+
+    
+   
     
      let payment={
       paymentType:this.paymentType,
@@ -337,6 +363,7 @@ export class CreateConfirmedBookingComponent implements OnInit {
     this.bookingForm.patchValue({date:CreateConfirmedBookingComponent.selectedDate});
     this.bookingForm.patchValue({time:CreateConfirmedBookingComponent.selectedTime});
     this.bookingForm.patchValue({totalBookingCharge:this.totalBookingCharge});
+    this.bookingForm.patchValue({keyMoney:this.amountpaying});
     this.bookingForm.patchValue({damageCharge:0});
     this.bookingForm.patchValue({durationCharge:0});
     this.bookingForm.patchValue({totalCharge:this.totalBookingCharge});

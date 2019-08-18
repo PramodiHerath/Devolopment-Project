@@ -62,10 +62,10 @@
 
 <!-- menu cards start -->
 <div class="container-fluid">
-	<div class="raw" fxLayout="row" >
-		<div class="col-md-" *ngFor="let menu of menus">
+	<div class="raw justify-content-center" fxLayout="row" >
+		<div class="col-md-4" *ngFor="let menu of menus">
 			<div class="card">
-  			<img src={{menu.menuImagePath}} class="card-img-top" alt="...">
+  			<img src={{menu.menuImagePath}} class="card-img-top" alt="..." style="height: 350px">
   			<div class="card-body">
     			<h5 class="card-title titleStyles">{{menu.name}}</h5>
     			<p class="card-text">Rate: Rs.{{menu.price}}/- per person</p>

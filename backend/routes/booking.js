@@ -24,6 +24,7 @@ router.post('/', async (req, res) => {
     bookingCharge:req.body.totalBookingCharge,
     damageCharge:req.body.damageCharge,
     durationCharge:req.body.durationCharge,
+    keyMoney:req.body.keyMoney,
     totalCharge:req.body.totalCharge
   })
   
@@ -88,6 +89,7 @@ router.put('/:id',async (req, res) => {
     bookingCharge:req.body.totalBookingCharge,
     damageCharge:req.body.damageCharge,
     damageCharge:req.body.durationCharge,
+    keyMoney:req.body.keyMoney,
     totalCharge:req.body.totalCharge
       
       
@@ -105,6 +107,21 @@ router.put('/updateConfirmedBooking/all/:id',async (req, res) => {
     if (!booking) return res.status(404).send('The booking with the given name was not found.');
   res.send(booking);
 });
+
+router.put('/closeConfirmedBooking/all/:id',async (req, res) => {
+  const booking = await Booking.findByIdAndUpdate(req.params.id,
+    {
+    status:req.body.status,
+    paymentId:req.body.paymentId,
+    damageCharge: req.body.damageCharges,
+    durationCharge:req.body.durationCharge,
+    totalCharge:req.body.totalCharge
+
+    }, { new: true });
+    if (!booking) return res.status(404).send('The booking with the given name was not found.');
+  res.send(booking);
+});
+
 
 router.delete('/:id',async (req, res) => {
   const booking = await Booking.findByIdAndDelete(req.params.id);
