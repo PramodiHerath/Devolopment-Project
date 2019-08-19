@@ -1,0 +1,174 @@
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container-fluid">
+    <div class="row spacing justify-content-center">
+      <div class="col-md-7 square-box7" style="margin-left: 2%">
+        <h1 class="left-heading menu-heading">Booking Form</h1>
+        <p class="menu-para-text">Please Fill And Submit</p>
+        <div>
+          <ul class="menus-list-style">
+            <li>
+              {{confirmedHall.name}}
+  
+            </li>
+            <li>
+              {{confirmedDate}}
+            </li>
+            <li> 
+              {{confirmedTime}}
+  
+            </li>
+           
+          </ul>
+        </div>
+        
+  <!-- form starts -->
+        <form [formGroup]="bookingForm" (ngSubmit) = "showInvoice()">
+          <ul class="menus-list-style">
+              <li *ngIf="confirmedTime=='wholeDay'">
+                  <div class="form-group">
+                    <mat-form-field>
+                      <mat-label>Event Type</mat-label>
+                      <mat-select formControlName="eventType">
+                        <mat-option *ngFor="let type of eventTypes" [value]="type">
+                          {{type}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </li>
+              <!-- <li>
+                      <mat-radio-group aria-label="Select an option" formControlName="time">
+                        <mat-radio-button value="day" style="margin-right: 10px">Day Event</mat-radio-button>
+                        <mat-radio-button value="night">Night Event</mat-radio-button>
+                      </mat-radio-group>
+              </li> -->
+            
+            <li>
+              <mat-form-field>
+              <mat-label>No. of Participants</mat-label>
+              <input  formControlName="capacity"  matInput placeholder="No. of Participants">
+              </mat-form-field>
+            </li>
+            
+            <li>
+                <mat-form-field>
+                    <input matInput placeholder="Client"  [matAutocomplete]="auto" (keyup)="searchClient($event)" formControlName="clientId">
+                    <mat-autocomplete #auto="matAutocomplete">
+                      <mat-option *ngFor="let client of clients" [value]="client._id">      
+                        <span>{{client.name}}</span> 
+                      </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </li>
+            
+            <li>
+              <mat-form-field>
+                <textarea matInput placeholder="Special Remarks" formControlName="remarks"></textarea>
+              </mat-form-field>
+            </li>
+            
+          </ul>
+  
+  
+          <ul class="menus-list-style">
+              <mat-label>Choose Menu</mat-label>
+              <li *ngFor="let menu of menus">
+                <button mat-button (click)="selectMenu(menu)">{{menu.name}}</button>
+              </li>
+              <mat-label>Choose Services</mat-label>
+              <li *ngFor="let service of servicesAmountFalse">
+              <mat-checkbox (change)="chooseService($event,service)">{{service.name}}</mat-checkbox>
+              </li>
+  
+          <li *ngFor="let service of servicesAmountTrue">
+            <mat-checkbox (change)="chooseService($event,service)">{{service.name}}</mat-checkbox>
+            <input [(ngModel)]="service.quantity" [ngModelOptions]="{standalone: true}" *ngIf="service.amount&&service.isSelected" required="required">
+          </li>
+          
+          </ul>
+          
+            
+            <div class="form-group">
+              <input name="ConfirmedBooking" type="submit" class="btn btn-primary btn-xl" value="Make a Confirmed Booking" required="required" [disabled]="bookingForm.value.capacity<150" >
+            </div>
+            
+  
+          
+          </form>
+      </div>
+  
+      <div class="col-md-4 square-box7" *ngIf="clicked" style="margin-left: 2%">
+          <h1 class="left-heading menu-heading">Customize Your Menu : {{selectedMenu}}</h1>
+          <p class="menu-para-text">Additional Choices will Add a category price per plate:</p>
+            <div class="menus-list-style" *ngFor="let menuCatergory of menuItems" align="left">
+              <h2 style="font-style: italic">{{menuCatergory.categoryName}} Choose Any: {{menuCatergory.choiceOf}}</h2>
+              <ul *ngFor="let catItem of menuCatergory.itemsList">
+                <mat-checkbox (change)="chooseItem($event,menuCatergory,catItem)">{{catItem.name}}</mat-checkbox>
+              <!-- <div class="form-check">
+                  <label class="form-check-label">
+                    <br>Choose Item
+                  </label>
+                  </div> -->
+              
+                
+              </ul>
+              <h2>Additional charge for {{menuCatergory.categoryName}} Category: {{menuCatergory.additionalCharges}}</h2>
+              <h3>----------------------------------------------------</h3>
+            </div>
+            <div>
+  
+            </div>
+           
+      </div>
+      
+    </div>
+  </div>
+  
+  <div class="container-fluid" *ngIf="showSummary">
+      <div class="row spacing">
+          <div class="col-md-12 square-box7" style="margin-right: 1%; width:66% ">
+              <h1 class="left-heading menu-heading">Booking Summary</h1>
+              <p class="menu-para-text">Booked Menu Items:</p>
+                  <ul class="menus-list-style" *ngFor="let item of items">
+            <li>{{item}}</li>
+          </ul>
+          <h4 class="menu-para-text">Menu Price: Rs. {{menuPrice}} /-</h4>
+          <h4 class="menu-para-text">Additional Menu Charges: Rs. {{additionalMenuPrice}} /-</h4>
+          <h4 class="menu-para-text">Total Menu Price: Rs. {{totalMenuPrice}} /-</h4>
+          <h4 class="menu-para-text">Capacity: {{bookingForm.value.capacity}} heads</h4>
+          <h4 class="menu-para-text">Total Menu Charge: Rs. {{totalMenuCharge}} /-</h4>
+  
+        <p class="menu-para-text">Booked Services:</p>
+          <ul class="menus-list-style" *ngFor="let service of selectedServices">
+            <li>{{service.name}}</li>
+          </ul>
+          <h4 class="menu-para-text">Total Service Charge: Rs. {{serviceCharges}} /-</h4>
+  
+          <h4 class="menu-para-text">Total Booking Charge: Rs. {{totalBookingCharge}} /-</h4>
+          <p class="menu-para-text">Key Money Payment<span><input [(ngModel)]="amountpaying" placeholder="Amount"></span></p>
+          
+          <mat-form-field>
+            <mat-label>Payment Type</mat-label>
+            <mat-select [(value)]="paymentType">
+              <mat-option value="Cash">
+                Cash
+              </mat-option >
+              <mat-option value="Card">
+                  Card
+                </mat-option>
+                <mat-option value="Cheque">
+                    Cheque
+                  </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
+          <button class="btn btn-primary btn-xl" style="width:30%" (click)="confirmation()">Submit</button>
+        </div>
+    </div>
+  </div>
+  

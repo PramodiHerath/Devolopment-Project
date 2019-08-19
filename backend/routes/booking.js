@@ -44,25 +44,23 @@ router.get('/checkAvailability/all', async (req, res) => {
   let monthQuery=req.query.month;
   let yearQuery=req.query.year;
   let hallIdQuery=req.query.hallId;
-  const booking = await Booking.aggregate([
-    {$match:{hallId:parseInt(hallIdQuery)}},
-    {
-      $project:{
-        time:1,
-        date:1,
-        status:1,
-        clientId:1,
-        day:{$dayOfMonth:'$date'},
-        month:{$month:'$date'},
-        year:{$year:'$date'},
-        hallId:1,
+  let bookingDetailstoSend=[]
+  const bookings = await Booking.find({hallId:hallIdQuery})
+
+  
+  bookings.forEach(booking=>{
+
+    if(new Date(booking.date).getMonth()==parseInt(monthQuery)){
+        if(new Date(booking.date).getFullYear()==parseInt(yearQuery)){
+          if(new Date(booking.date).getDate()==parseInt(dateQuery)){
+            console.log(new Date(booking.date).getMonth())
+            bookingDetailstoSend.push(booking);
+          }
+          
+        }  
     }
-    },
-    {$match:{day:parseInt(dateQuery)}},
-    {$match:{month:parseInt(monthQuery)}},
-    {$match:{year:parseInt(yearQuery)}},
-  ])
-  res.send(booking);
+})
+  res.send(bookingDetailstoSend);
 });
 
 router.get('/:id', async (req, res) => {
@@ -75,6 +73,14 @@ router.get('/:id', async (req, res) => {
 router.get('/tentative/all', async (req, res) => {
   const booking = await Booking.find({status:'tentative'}).populate('clientId').populate('hallId');
   res.send(booking);
+});2
+
+router.get('/getClientBookings/all', async (req, res) => {
+
+  let clientIdQuery=req.query.clientId;
+  console.log(clientIdQuery)
+  const bookings = await Booking.find({clientId:clientIdQuery})
+  res.send(bookings);
 });
 
 router.put('/:id',async (req, res) => {

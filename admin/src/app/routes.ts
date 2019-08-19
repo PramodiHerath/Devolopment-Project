@@ -21,6 +21,7 @@ import { CreateConfirmedBookingComponent } from './createConfirmedBooking/create
 import { HallDateSelectionComponent } from './hallDateSelection/hallDateSelection.component';
 import { MakePaymentComponent } from './makePayment/makePayment.component';
 import { CloseConfirmedBookingsComponent } from './closeConfirmedBookings/closeConfirmedBookings.component';
+import { AddMembersComponent } from './addMembers/addMembers.component';
 
 
 export const appRoutes: Routes= [
@@ -42,6 +43,7 @@ export const appRoutes: Routes= [
     {path:'createConfirmedBookings',component:CreateConfirmedBookingComponent},
     {path:'closeConfirmedBookings',component:CloseConfirmedBookingsComponent},
     {path:'createTentativeBookings',component:CreateTentativeBookingComponent},
+    {path:'addMembers',component:AddMembersComponent},
     {path:'updateMenu/:menuId',component:UpdateMenuComponent},
     {path:'',component: LoginComponent},
     {path:'categoryItem/:categoryId',component: CategoryItemsComponent},

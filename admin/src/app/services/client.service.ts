@@ -17,5 +17,8 @@ searchClient(string){
 getClients(){
   return this.http.get(this.baseUrl+'client')
 }
+addAsMember(object){
+  return this.http.post(this.baseUrl+'client/sendEmail/toclient',object)
+}
 
 }

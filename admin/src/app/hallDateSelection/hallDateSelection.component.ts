@@ -188,11 +188,10 @@ loadClients(){
 
 searchClient(event){
 
-  console.log(this.checkAvailabilityForm.get('clientId').value);
   if((event.keyCode==40)||(event.keyCode==38)){
     return 
   }
-  this.clientService.searchClient(this.checkAvailabilityForm.get('clientId').value)
+  this.clientService.searchClient(this.tentativeClientId)
   .subscribe(response=>{
     this.clients=response;
     
@@ -202,9 +201,9 @@ searchClient(event){
   checkAvailability(data){
 
     let date=new Date(data.date);
-    date.setDate(date.getDate()-1);
+    date.setDate(date.getDate());
     let dateToCheck=date.getDate();
-    let month=(new Date(data.date)).getMonth()+1;
+    let month=(new Date(data.date)).getMonth();
     let year=(new Date(data.date)).getFullYear();
     let hallId=data.hall;
     console.log(hallId);

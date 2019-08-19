@@ -5,6 +5,37 @@ const jwt = require('jsonwebtoken');
 const bcrypt=require('bcrypt');
 const {Client} = require('../models/client');
 const {Counter} = require('../models/counter'); 
+const email=require('emailjs/email');
+
+router.post('/sendEmail/toclient', async (req, res) => {
+  
+  let clientEmail=req.body.email;
+  let url=req.body.url;
+
+  var server 	= email.server.connect({
+    user:    "weerakkody95dilshan", 
+    password:"dilshan12345", 
+    host:    "smtp.gmail.com", 
+    ssl:     true
+ });
+
+ // let url='https://www.google.com/';
+  
+ server.send({
+    text:   "ytrytfytfyt click- "+url, 
+    from:      "weerakkody95dilshan<weerakkody95dilshan@gmail.com>",
+    to:    clientEmail, 
+    //    cc:      "else <else@your-email.com>",
+    subject: "Register As Member Request"
+ }, function(err, message) {
+     if(err)
+ console.log(err);
+ else
+ return res.json({success: true, msg: 'sent'});
+  });
+
+
+});
 
 
 router.post('/', async (req, res) => {

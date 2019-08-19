@@ -40,6 +40,12 @@ getBookingPaymentHistory(bookingId){
   return this.http.get(this.baseUrl+'booking/'+bookingId)
 }
 
+// /getClientBookings
+
+getClientBookings(clientId){
+  return this.http.get(this.baseUrl+'booking/getClientBookings/all?clientId='+clientId)
+}
+
 }
 
 // http://localhost:3000/api/booking/checkAvailability?hallId=3&date=25&month=8&year=2019

@@ -22,22 +22,23 @@ export class RegisterComponent implements OnInit {
   constructor(private router: Router,private service:ClientService) { }
 
   create(){
-    if(this.registrationForm.valid){
-      this.newClient=Object.assign({},this.registrationForm.value);
-  console.log(this.newClient);
-  this.service.postClients(this.newClient)
-  .subscribe(
-    response=>{
-    console.log(response);
-    this.router.navigate(['/BookingTulip']);
-    this.registrationForm.reset();   
-  },
-    error=>{
-    alert('Client Already Exists.');
-    console.log(error);
-  }) 
+  //   if(this.registrationForm.valid){
+  //     this.newClient=Object.assign({},this.registrationForm.value);
+  // console.log(this.newClient);
+  // this.service.postClients(this.newClient)
+  // .subscribe(
+  //   response=>{
+  //   console.log(response);
+  //   this.router.navigate(['/BookingTulip']);
+  //   this.registrationForm.reset();   
+  // },
+  //   error=>{
+  //   alert('Client Already Exists.');
+  //   console.log(error);
+  // }) 
      
-  }
+  // }
+  this.router.navigate(['/BookingTulip']);
   }
 
   bringLoginForm(){

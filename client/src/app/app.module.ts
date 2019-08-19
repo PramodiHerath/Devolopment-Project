@@ -38,6 +38,7 @@ import { PlanEventComponent } from './planEvent/planEvent.component';
 import { RoyalGoldComponent } from './royalGold/royalGold.component';
 import { RoyalPlatinumComponent } from './royalPlatinum/royalPlatinum.component';
 import { RateUsComponent } from './RateUs/RateUs.component';
+import { TentativeBookingsComponent } from './tentativeBookings/tentativeBookings.component';
 
 
 
@@ -63,10 +64,10 @@ import { RateUsComponent } from './RateUs/RateUs.component';
       PlanEventComponent,
       RoyalGoldComponent,
       RoyalPlatinumComponent,
-      RateUsComponent
+      RateUsComponent,
+      TentativeBookingsComponent
    ],
    imports: [
-     
       BrowserModule,
       RouterModule.forRoot(appRoutes),
       AlertModule.forRoot(),
@@ -82,7 +83,7 @@ import { RateUsComponent } from './RateUs/RateUs.component';
       CarouselModule.forRoot()
    ],
    providers: [
-     Globals
+      Globals
    ],
    bootstrap: [
       AppComponent

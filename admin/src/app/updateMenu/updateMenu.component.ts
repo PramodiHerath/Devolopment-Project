@@ -161,11 +161,7 @@ selected(){
               console.log(this.categoryList);
                throw "break";
              }
-            //  else{
-            //    element.preSelected=false;
-            //    console.log(element);
-       
-            //  }
+            
            }) 
           }catch (e) { };
            
@@ -216,61 +212,7 @@ itemSelect(event,item){
   }
 }
 
-// create(){
-//   console.log(this.categoryList);
-//   this.categoryList.forEach((category)=>{
-//     let choice={
-//       category:category.categoryName,
-//       noOfChoice:category.choiceof
-//     }
-//     this.choiceOf.push(choice);
-//   })
-//   this.createMenuForm.patchValue({choice:this.choiceOf}); 
-//   this.createMenuForm.patchValue({item:this.items});
-  
- 
-
-//   const menuData=new FormData();
-
-//   // menuData.append("name",this.createMenuForm.value.name);
-//   // menuData.append("price",this.createMenuForm.value.price);
-//   // menuData.append("item",this.createMenuForm.value.item);
-//   // menuData.append("choice",this.createMenuForm.value.choice);
-//   menuData.append("image",this.createMenuForm.value.image,this.createMenuForm.value.name);
-//   menuData.append("title",this.createMenuForm.value.name);
-
-//   console.log("before");
-//   this.menuService.addMenuPhoto(menuData)
-//   .subscribe(
-//     response=>{
-//     alert('succesfully added');
-//     console.log(response);
-//     this.createMenuForm.patchValue({menuImagePath:response});
-//     this.Menu=Object.assign({},this.createMenuForm.value);
-
-//     this.menuService.addMenus(this.Menu)
-//     .subscribe(
-//       response=>{
-//       alert('succesfully added');
-//       console.log(response);
-//       this.createMenuForm.reset();
-//       this.router.navigate(['/viewMenu']);
-//     },
-//         error=>{
-//         alert('An unexpected error occurred.');
-//         console.log(error);
-//     }) 
-//   },
-//       error=>{
-//       alert('An unexpected error occurred.');
-//       console.log(error);
-//   }) ;
-  
-
-//   console.log(menuData);
-  
-
-// }
+//  
 
 
 

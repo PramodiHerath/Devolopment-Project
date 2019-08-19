@@ -29,6 +29,7 @@ import { HallDateSelectionComponent } from './hallDateSelection/hallDateSelectio
 import { MakePaymentComponent } from './makePayment/makePayment.component';
 import { CreateTentativeBookingComponent } from './createTentativeBooking/createTentativeBooking.component';
 import { CloseConfirmedBookingsComponent } from './closeConfirmedBookings/closeConfirmedBookings.component';
+import { AddMembersComponent } from './addMembers/addMembers.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { CloseConfirmedBookingsComponent } from './closeConfirmedBookings/closeC
       HallDateSelectionComponent,
       MakePaymentComponent,
       CreateTentativeBookingComponent,
-      CloseConfirmedBookingsComponent
+      CloseConfirmedBookingsComponent,
+      AddMembersComponent
    ],
    imports: [
       BrowserAnimationsModule,

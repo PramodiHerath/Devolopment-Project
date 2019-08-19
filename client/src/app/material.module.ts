@@ -10,6 +10,7 @@ import { MatDatepickerModule,
         MatProgressSpinnerModule,
         MatIconModule,
         MatCheckboxModule,
+        MatAutocompleteModule,
         // FormsModule,
         MatListModule,
         MatRadioModule,
@@ -30,6 +31,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatProgressSpinnerModule,
     MatIconModule,
     MatCheckboxModule,
+    MatAutocompleteModule,
     // FormsModule,
     MatSelectModule,
     MatListModule,
@@ -53,6 +55,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatRadioModule,
     MatGridListModule,
     MatSelectModule,
+    MatAutocompleteModule,
     // MatFormsModule,
 
     BrowserAnimationsModule
