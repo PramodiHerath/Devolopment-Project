@@ -12,6 +12,7 @@ import { BookingTulipComponent } from './BookingTulip/BookingTulip.component';
 import { RoyalSilverComponent } from './royalSilver/royalSilver.component';
 import { PlanEventComponent } from './planEvent/planEvent.component';
 import { RateUsComponent } from './RateUs/RateUs.component';
+import { TentativeBookingFormComponent } from './tentativeBookingForm/tentativeBookingForm.component';
 
 export const appRoutes: Routes= [
   {path:'halls',component:HallDetailComponent},
@@ -20,12 +21,12 @@ export const appRoutes: Routes= [
   {path:'login',component:LoginComponent},
   {path:'menues',component:MenuesComponent},
   {path:'booking',component:BookingComponent},
-  {path: 'register', component:RegisterComponent},
+  {path: 'register/:clientId', component:RegisterComponent},
   {path: 'BookingTulip', component:BookingTulipComponent},
   {path: 'royalSilver', component:RoyalSilverComponent},
   {path: 'planEvent', component:PlanEventComponent},
   {path: 'rateUs', component:RateUsComponent},
-  // {path: 'tentativeBookingForm', component:Tentative},
+  // {path: 'tentativeBookingForm', component:TentativeBookingFormComponent},
   {path:'package/:menuId',component: PackageComponent}, 
   {path:'',component:HomeComponent},
   {path:'**',redirectTo:'',pathMatch:'full'}

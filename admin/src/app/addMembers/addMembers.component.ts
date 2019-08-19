@@ -41,6 +41,7 @@ export class AddMembersComponent implements OnInit {
   bringDetails(client){
     this.clientId=client._id;
     this.email=client.emailAddress;
+    this.clientName=client.name;
     this.bookingService.getClientBookings(client._id)
     .subscribe(
       response=>{
@@ -58,7 +59,7 @@ export class AddMembersComponent implements OnInit {
   }
 
   addAsMember(){
-    this.url="http://localhost:4200/planEvent";
+    this.url="http://localhost:4200/register/"+this.clientId;
     let cleintObject={
       email:this.email,
       url:this.url

@@ -10,5 +10,11 @@ constructor(private http:HttpClient) { }
 postClients(newClient){
   return this.http.post(this.baseUrl+'client',newClient)
 }
+getClient(clientId){
+  return this.http.get(this.baseUrl+'client/'+clientId)
+}
+postMember(newMember){
+  return this.http.post(this.baseUrl+'member',newMember)
+}
 
 }

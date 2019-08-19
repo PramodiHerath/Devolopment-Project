@@ -19,6 +19,7 @@ const menuItems=require('./routes/menuItems');
 const Booking=require('./routes/booking');
 const Halls=require('./routes/halls');
 const Payment=require('./routes/payment');
+const Member=require('./routes/members');
 
 
 
@@ -59,6 +60,7 @@ app.use('/api/menuItems', menuItems);
 app.use('/api/booking', Booking);
 app.use('/api/halls', Halls);
 app.use('/api/payment', Payment);
+app.use('/api/member', Member);
 
 
 

@@ -1,6 +1,6 @@
 import { LoginService } from './../serviceshttp/login.service';
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ClientService } from '../serviceshttp/client.service';
 
@@ -10,35 +10,41 @@ import { ClientService } from '../serviceshttp/client.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+
   newClient:object;
+  clientId;
+  client;
 
   registrationForm = new FormGroup({
     name: new FormControl('',Validators.required),
-    telephoneNumber: new FormControl('',Validators.required),
-    emailAddress:new FormControl('',[Validators.email,Validators.required])
+    telePhoneNumber: new FormControl('',Validators.required),
+    emailAddress:new FormControl('',[Validators.email,Validators.required]),
+    password:new FormControl('',Validators.required),
     
   }
   )
-  constructor(private router: Router,private service:ClientService) { }
+  constructor(private router: Router,private clientService:ClientService,private route:ActivatedRoute) { }
+
+  newMember;
+
+  ngOnInit() {
+    this.bringClientDetails();
+  }
 
   create(){
-  //   if(this.registrationForm.valid){
-  //     this.newClient=Object.assign({},this.registrationForm.value);
-  // console.log(this.newClient);
-  // this.service.postClients(this.newClient)
-  // .subscribe(
-  //   response=>{
-  //   console.log(response);
-  //   this.router.navigate(['/BookingTulip']);
-  //   this.registrationForm.reset();   
+  //   this.newMember=Object.assign({},this.registrationForm.value);
+  //   console.log(this.newMember);
+  //   this.clientService.postMember(this.newMember)
+  //   .subscribe(
+  //     response=>{
+  //     console.log(response);
+  //     this.router.navigate(['/tentativeBookingForm']);
+        
   // },
-  //   error=>{
-  //   alert('Client Already Exists.');
-  //   console.log(error);
+  //     error=>{
+  //     alert('An unexpected error occurred.');
+  //     console.log(error);
   // }) 
-     
-  // }
-  this.router.navigate(['/BookingTulip']);
   }
 
   bringLoginForm(){
@@ -56,7 +62,35 @@ register(){
 }
   
 
-  ngOnInit() {
+bringClientDetails(){
+this.route.paramMap
+    .subscribe(params=>{
+      this.clientId=params.get('clientId');
+      console.log(this.clientId);
+      this.clientService.getClient(this.clientId)
+      .subscribe(
+        response=>{
+          console.log(response);
+          
+           this.client=response[0];
+           console.log(this.client);
+           console.log(this.client.name);
+           this.registrationForm.setValue({
+            name:this.client.name,
+            telephoneNumber:this.client.telephoneNumber,
+            emailAddress:this.client.emailAddress,
+            password:''
+          })
+      },
+        error=>{
+          alert('An unexpected error occurred.');
+          console.log(error);
+      })
+    })
+
+   
   }
+
+  
 
 }

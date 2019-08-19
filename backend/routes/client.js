@@ -64,6 +64,11 @@ router.get('/', async (req, res) => {
     res.send(client);
   });
 
+router.get('/:id', async (req, res) => {
+  const client = await Client.find({_id:req.params.id});
+  res.send(client);
+  });
+
 router.get('/searchClient', async (req, res) => {
   let clientNamePattern=req.query.clientName;
   pattern= new RegExp(clientNamePattern,"i");

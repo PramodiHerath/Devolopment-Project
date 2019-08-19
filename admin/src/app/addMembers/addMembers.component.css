@@ -66,6 +66,14 @@ th{
     color: #846837
 
 }
+.menu-para-text {
+  font-size: 18px;
+  color: #846837;
+  font-family: 'Raleway', sans-serif;
+  line-height: 29px;
+  margin-left: 2%;
+  margin-bottom: 27px;
+}
 /* .square-box6 {
     background-image: url('/assets/images/logo.jpg');
     width: 400px;

@@ -54,6 +54,10 @@ toBePaid=0;
           this.showHistory=false;
           alert('Tentative Booking. Confirm Before Proceed');
         }
+        else if(this.booking.status=="closed"){
+          this.showHistory=false;
+          alert('Confirmed Booking. No Payments Due');
+        }
        
     },
     (error:Response)=>{
