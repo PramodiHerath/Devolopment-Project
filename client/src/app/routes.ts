@@ -26,7 +26,7 @@ export const appRoutes: Routes= [
   {path: 'royalSilver', component:RoyalSilverComponent},
   {path: 'planEvent', component:PlanEventComponent},
   {path: 'rateUs', component:RateUsComponent},
-  // {path: 'tentativeBookingForm', component:TentativeBookingFormComponent},
+  {path: 'tentativeBookingForm', component:TentativeBookingFormComponent},
   {path:'package/:menuId',component: PackageComponent}, 
   {path:'',component:HomeComponent},
   {path:'**',redirectTo:'',pathMatch:'full'}

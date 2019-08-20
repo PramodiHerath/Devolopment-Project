@@ -22,6 +22,7 @@ import { HallDateSelectionComponent } from './hallDateSelection/hallDateSelectio
 import { MakePaymentComponent } from './makePayment/makePayment.component';
 import { CloseConfirmedBookingsComponent } from './closeConfirmedBookings/closeConfirmedBookings.component';
 import { AddMembersComponent } from './addMembers/addMembers.component';
+import { HandleClientsComponent } from './handleClients/handleClients.component';
 
 
 export const appRoutes: Routes= [
@@ -45,6 +46,7 @@ export const appRoutes: Routes= [
     {path:'createTentativeBookings',component:CreateTentativeBookingComponent},
     {path:'addMembers',component:AddMembersComponent},
     {path:'updateMenu/:menuId',component:UpdateMenuComponent},
+    {path:'handleClients',component:HandleClientsComponent},
     {path:'',component: LoginComponent},
     {path:'categoryItem/:categoryId',component: CategoryItemsComponent},
     {path:'**',redirectTo:'',pathMatch:'full'}

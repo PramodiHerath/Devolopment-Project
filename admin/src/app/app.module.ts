@@ -30,6 +30,7 @@ import { MakePaymentComponent } from './makePayment/makePayment.component';
 import { CreateTentativeBookingComponent } from './createTentativeBooking/createTentativeBooking.component';
 import { CloseConfirmedBookingsComponent } from './closeConfirmedBookings/closeConfirmedBookings.component';
 import { AddMembersComponent } from './addMembers/addMembers.component';
+import { HandleClientsComponent } from './handleClients/handleClients.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { AddMembersComponent } from './addMembers/addMembers.component';
       MakePaymentComponent,
       CreateTentativeBookingComponent,
       CloseConfirmedBookingsComponent,
-      AddMembersComponent
+      AddMembersComponent,
+      HandleClientsComponent
    ],
    imports: [
       BrowserAnimationsModule,

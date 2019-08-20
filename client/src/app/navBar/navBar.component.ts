@@ -13,7 +13,12 @@ export class NavBarComponent implements OnInit {
     this.navbarOpen = !this.navbarOpen;
   }
 
-  constructor() { }
+  constructor(private router:Router) { }
+
+  logOut(){
+    localStorage.removeItem('token');
+    this.router.navigate(['']);
+  }
 
   ngOnInit() {
   }

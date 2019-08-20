@@ -11,7 +11,7 @@
     <mat-card-content fxLayout="column">
 
           <form [formGroup]="loginForm" (ngSubmit)="getTentativeBookingForm()">
-               <mat-form-field hintLabel="Enter a valid Email Address" appearance="outline">
+               <mat-form-field  appearance="outline">
                     <mat-label>User Name</mat-label>
                     <input matInput
                     placeholder="User Name" formControlName="userName">
@@ -24,12 +24,12 @@
                 
                <br>
 
-               <mat-form-field hintLabel="Min 8 characters" appearance="outline">
+               <mat-form-field appearance="outline">
                     <mat-label>Password</mat-label>
                     <input matInput type="password" 
                      placeholder="password" formControlName="password">
                     <div *ngIf="loginForm.get('password').touched && loginForm.get('password').invalid">
-                         <mat-error *ngIf="password.errors.required">password is required</mat-error>
+                         <mat-error *ngIf="loginForm.get('password').errors.required">password is required</mat-error>
                     </div>
                     
                </mat-form-field>

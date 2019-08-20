@@ -21,5 +21,11 @@ addMenuPhoto(newMenu){
 getMenu(menuId){
   return this.http.get(this.baseUrl+'menus/'+menuId);
 }
+updateMenu(menuId,menu){
+  return this.http.put(this.baseUrl+'menus/'+menuId,menu);
+}
+deleteMenu(menuId){
+  return this.http.delete(this.baseUrl + 'menus/'+ menuId)
+}
 
 }

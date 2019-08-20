@@ -49,3 +49,11 @@
     color: #846837
 
 }
+.image-preview {
+  height: 5rem;
+  margin: 1rem 0;
+}
+
+.image-preview img {
+  height: 100%;
+}

@@ -17,7 +17,8 @@ export class RegisterComponent implements OnInit {
 
   registrationForm = new FormGroup({
     name: new FormControl('',Validators.required),
-    telePhoneNumber: new FormControl('',Validators.required),
+    clientId:new FormControl('',Validators.required),
+    telephoneNumber: new FormControl('',Validators.required),
     emailAddress:new FormControl('',[Validators.email,Validators.required]),
     password:new FormControl('',Validators.required),
     
@@ -32,23 +33,23 @@ export class RegisterComponent implements OnInit {
   }
 
   create(){
-  //   this.newMember=Object.assign({},this.registrationForm.value);
-  //   console.log(this.newMember);
-  //   this.clientService.postMember(this.newMember)
-  //   .subscribe(
-  //     response=>{
-  //     console.log(response);
-  //     this.router.navigate(['/tentativeBookingForm']);
+    this.newMember=Object.assign({},this.registrationForm.value);
+    console.log(this.newMember);
+    this.clientService.postMember(this.newMember)
+    .subscribe(
+      response=>{
+      console.log(response);
+      this.router.navigate(['/tentativeBookingForm']);
         
-  // },
-  //     error=>{
-  //     alert('An unexpected error occurred.');
-  //     console.log(error);
-  // }) 
+  },
+      error=>{
+      alert('An unexpected error occurred.');
+      console.log(error);
+  }) 
   }
 
   bringLoginForm(){
-    
+
     this.router.navigate(['/login']);
   }
 
@@ -78,6 +79,7 @@ this.route.paramMap
            console.log(this.client.name);
            this.registrationForm.setValue({
             name:this.client.name,
+            clientId:this.clientId,
             telephoneNumber:this.client.telephoneNumber,
             emailAddress:this.client.emailAddress,
             password:''

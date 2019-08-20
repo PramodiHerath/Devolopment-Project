@@ -34,34 +34,19 @@
              
 
             </form>
-            <h2 *ngIf="reservations">Confirmed Bookings</h2>
-            <button type="button"  [disabled]="allowDay" class="btn btn-primary btn-table" *ngIf="reservations"   (click)="selectDay()">Book Day</button>
-            <button type="button"  [disabled]="allowNight" class="btn btn-primary btn-table"  *ngIf="reservations"  (click)="selectNight()">Book Night</button>
-            <button type="button"  [disabled]="allowFullday" class="btn btn-primary btn-table"  *ngIf="reservations" (click)="selectWholeDay()">Book Whole Day</button>
 
             <h2 *ngIf="reservations">Tentative Bookings</h2>
-            <li *ngIf="reservations">
-                <mat-form-field>
-                    <input matInput placeholder="Client"  [matAutocomplete]="auto" (keyup)="searchClient($event)" [(ngModel)]="tentativeClientId">
-                    <mat-autocomplete #auto="matAutocomplete">
-                      <mat-option *ngFor="let client of clients" [value]="client._id">      
-                        <span>{{client.name}}</span> 
-                      </mat-option>
-                    </mat-autocomplete>
-                </mat-form-field>
-            </li>
+            
             <button type="button"  [disabled]="allowDay" class="btn btn-primary btn-table" *ngIf="reservations"   (click)="selectTentativeDay()">Book Day</button>
             <button type="button"  [disabled]="allowNight" class="btn btn-primary btn-table"  *ngIf="reservations"  (click)="selectTentativeNight()">Book Night</button>
             <button type="button"  [disabled]="allowFullday" class="btn btn-primary btn-table"  *ngIf="reservations" (click)="selectTentativeWholeDay()">Book Whole Day</button>
             <div *ngIf="showReservations" >
               <div *ngFor="let reservation of reservations">
                   <h4 class="menu-para-text"> Sorry! Date: {{reservation.date}} is not available</h4>
-                  <h4 class="menu-para-text">Booking Id: {{reservation._id}}</h4>
                 <h4 class="menu-para-text">Reserved Date: {{reservation.date}}</h4>
                 <h4 class="menu-para-text">Booking Status: {{reservation.status}}</h4>
-                <h4 class="menu-para-text">Reserved Hall: {{reservation.hallId}}</h4>
-                <h4 class="menu-para-text">Reserved Time: {{reservation.time}}</h4>
-                <h4 class="menu-para-text">Client Id: {{reservation.clientId}}</h4>
+                <h4>In case of a tentative booking please contact us for negotiations</h4>
+              
 
               </div>
 

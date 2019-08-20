@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryItemsService } from './../services/categoryItems.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -11,7 +11,8 @@ import { MenuService } from '../services/menu.service';
 })
 export class UpdateMenuComponent implements OnInit {
 
-  constructor(private categoryItemsService:CategoryItemsService,private route:ActivatedRoute,private menuItemService:MenuItemsService,private menuService:MenuService) { }
+  constructor(private categoryItemsService:CategoryItemsService,
+    private route:ActivatedRoute,private router:Router,private menuItemService:MenuItemsService,private menuService:MenuService) { }
 
   ngOnInit() {
     this.getCategoryItems();
@@ -40,6 +41,7 @@ export class UpdateMenuComponent implements OnInit {
   preSelectedCategoryItems=[];
   allowUpdate:boolean;
   image:any;
+  Menu;
 
 
 
@@ -49,6 +51,7 @@ menuPrice:any;
 menuItems:any;
 clicked:boolean=false;
 updatingMenu:any;
+imageChanged:boolean=false;
 
 
 bringMenu(){
@@ -65,9 +68,12 @@ bringMenu(){
          this.preSelectedCategoryItems=this.menu.menuCategoryItems;
          console.log(this.menu);
          console.log(this.menu.menuName);
+         this.imagePreview=this.menu.menuImagePath;
          this.updateMenuForm.setValue({
            name:this.menu.menuName,
            price:this.menu.menuPrice,
+           menuImagePath:this.menu.menuImagePath,
+           image:'',
            item:'',
            choice:''
            
@@ -224,6 +230,74 @@ update(){
     delete element.preSelected;
   });
 console.log(this.items);
+
+console.log(this.categoryList);
+    this.categoryList.forEach((category)=>{
+      let choice={
+        category:category.categoryName,
+        noOfChoice:category.choiceof
+      }
+      this.choiceOf.push(choice);
+    })
+    this.updateMenuForm.patchValue({choice:this.choiceOf}); 
+    this.updateMenuForm.patchValue({item:this.items});
+    
+  
+
+    console.log("before");
+
+  if(this.imageChanged){
+    const menuData=new FormData();
+
+    // menuData.append("name",this.createMenuForm.value.name);
+    // menuData.append("price",this.createMenuForm.value.price);
+    // menuData.append("item",this.createMenuForm.value.item);
+    // menuData.append("choice",this.createMenuForm.value.choice);
+    menuData.append("image",this.updateMenuForm.value.image,this.updateMenuForm.value.name);
+    menuData.append("title",this.updateMenuForm.value.name);
+    this.menuService.addMenuPhoto(menuData)
+    .subscribe(
+      response=>{
+      alert('succesfully added');
+      console.log(response);
+      this.updateMenuForm.patchValue({menuImagePath:response});
+      this.Menu=Object.assign({},this.updateMenuForm.value);
+
+      this.menuService.updateMenu(this.menuId,this.Menu)
+      .subscribe(
+        response=>{
+        alert('succesfully updated');
+        console.log(response);
+        this.updateMenuForm.reset();
+        this.router.navigate(['/viewMenu']);
+      },
+          error=>{
+          alert('An unexpected error occurred.');
+          console.log(error);
+      }) 
+    },
+        error=>{
+        alert('An unexpected error occurred.');
+        console.log(error);
+    }) ;
+  }else if(!this.imageChanged){
+    this.Menu=Object.assign({},this.updateMenuForm.value);
+
+    this.menuService.updateMenu(this.menuId,this.Menu)
+      .subscribe(
+        response=>{
+        alert('succesfully updated');
+        console.log(response);
+        this.updateMenuForm.reset();
+        this.router.navigate(['/viewMenu']);
+      },
+          error=>{
+          alert('An unexpected error occurred.');
+          console.log(error);
+      }) 
+  }
+
+    // console.log(menuData);
 }
 
 
@@ -235,6 +309,7 @@ onImagePicked(event: Event) {
   const reader = new FileReader();
   reader.onload = () => {
     this.imagePreview = reader.result;
+    this.imageChanged=true;
   };
   reader.readAsDataURL(file);
 }

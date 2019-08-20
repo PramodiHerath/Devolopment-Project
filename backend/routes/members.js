@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt=require('bcrypt');
+const {Counter} = require('../models/counter'); 
 
 const {Member} = require('../models/members');
 
@@ -18,9 +19,10 @@ router.post('/', async (req, res) => {
 
 
    let membertoCreate = new Member({ 
-    _id: req.body.name,
+    _id: counter.value+1,
+    clientId:req.body.clientId,
     name: req.body.name,
-    telePhoneNumber:req.body.telePhoneNumber,
+    telephoneNumber:req.body.telephoneNumber,
     password: passwordHash,
     emailAddress:req.body.emailAddress
     

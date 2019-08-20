@@ -23,6 +23,7 @@
           <td>{{menu.name}}</td>
           <td> {{menu.price}}</td>
           <td><button  class="btn-table"  (click)="onItemView(menu)">View Items</button></td>
+          <td><button  class="btn-table"  (click)="deleteMenu(menu,i)" *ngIf=bringDeleteMenu>Delete Menu</button></td>
         </tr>
       </tbody>
     </table>
@@ -35,7 +36,7 @@
       <a class="btn btn-primary btn-xl" (click)="bringcreateMenu()">Create Menu</a>
   </div>
   <div  class="col-md-6" >
-    <a class="btn btn-primary btn-xl" (click)="bringcreateMenu()">Delete Menu</a>
+    <a class="btn btn-primary btn-xl" (click)="bringdeleteMenu()">Delete Menu</a>
 </div>
 </div>
 </div>

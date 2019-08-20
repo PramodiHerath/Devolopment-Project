@@ -15,7 +15,7 @@ export class ViewMenuComponent implements OnInit {
 
 menus:any;
 isAdmin=this.authService.decodedToken.isAdmin;
-
+bringDeleteMenu:boolean=false;
 
 
 
@@ -50,8 +50,32 @@ onItemView(menu){
     
 }
    
+bringdeleteMenu(){
+  this.bringDeleteMenu=true;
+}
 
+deleteMenu(menu,i){
+  this.bringDeleteMenu=false;
+  this.menuService.deleteMenu(menu._id)
+  .subscribe(
+    response=>{
+    console.log(response)
+    this.menus.splice(i,1) 
+    alert('succesfully deleted')
+ },
+    (error: Response)=>{
+      if(error.status===404)
+      alert('This Menu is Already Deleted');
+      else{
+        alert('An unexpected error occurred.');
+        console.log(error);
+      }
+   
+})
  
+ }
+
+
 
 
 bringcreateMenu(){

@@ -17,4 +17,5 @@ postMember(newMember){
   return this.http.post(this.baseUrl+'member',newMember)
 }
 
+
 }

@@ -34,7 +34,8 @@ export class HallDateSelectionComponent implements OnInit {
   date:Date;
 
   constructor(private hallService:HallsService,
-    private bookingService: BookingService,private route:Router,private clientService:ClientService) { }
+    private bookingService: BookingService,private route:Router,
+    private clientService:ClientService) { }
 
   ngOnInit() {
     this.bringHalls();

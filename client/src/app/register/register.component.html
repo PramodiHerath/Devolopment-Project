@@ -26,9 +26,9 @@
 
              <mat-form-field class="full-width">
                 <mat-label>TelePhone Number</mat-label>
-                <input  matInput  placeholder="Phone number" name="phoneNumber" formControlName="telePhoneNumber">
-                <div *ngIf="registrationForm.get('telephoneNumber').touched && registrationForm.get('telePhoneNumber').invalid">
-                  <mat-error *ngIf="registrationForm.get('telePhoneNumber').errors.required">Phone number is required</mat-error>
+                <input  matInput  placeholder="Phone number" name="phoneNumber" formControlName="telephoneNumber">
+                <div *ngIf="registrationForm.get('telephoneNumber').touched && registrationForm.get('telephoneNumber').invalid">
+                  <mat-error *ngIf="registrationForm.get('telephoneNumber').errors.required">Phone number is required</mat-error>
                 </div>
              </mat-form-field>
 

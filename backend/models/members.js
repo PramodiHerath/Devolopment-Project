@@ -1,17 +1,21 @@
 const mongoose = require('mongoose');
-
+const {Client}= require('./client');
 
 const memberSchema = new mongoose.Schema({
     _id:{
         type: String,
      
     },
+    clientId:{
+        type: String,
+        ref: Client
+    },
     name: {
       type: String,
       required: true,
      
     },
-    telePhoneNumber: {
+    telephoneNumber: {
         type: Number,
         required: true,
     },
