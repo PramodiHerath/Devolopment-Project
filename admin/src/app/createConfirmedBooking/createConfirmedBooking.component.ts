@@ -9,6 +9,9 @@ import { ServiceService } from '../services/service.service';
 import { PaymentService } from '../services/payment.service';
 import { BookingService } from '../services/booking.service';
 import { MatDatepickerInputEvent } from '@angular/material';
+import * as jspdf from 'jspdf';
+import 'jspdf-autotable';
+
 
 @Component({
   selector: 'createConfirmedBooking',
@@ -48,6 +51,7 @@ export class CreateConfirmedBookingComponent implements OnInit {
   client:any;
   clientPayments=[];
   items=[];
+  categories=[];
   booking:object;
   additionalMenuPrice=0;
   totalMenuPrice:number;
@@ -97,9 +101,9 @@ export class CreateConfirmedBookingComponent implements OnInit {
     // console.log(CreateConfirmedBookingComponent.selectedDate);
   
     this.confirmedHall=CreateConfirmedBookingComponent.selectedHall;
-    this.confirmedDate=CreateConfirmedBookingComponent.selectedDate;
+    this.confirmedDate=new Date(CreateConfirmedBookingComponent.selectedDate).toDateString();
     this.confirmedTime=CreateConfirmedBookingComponent.selectedTime;
-    console.log(this.confirmedHall);
+   
     }
 
     
@@ -159,10 +163,11 @@ export class CreateConfirmedBookingComponent implements OnInit {
   }
 
   chooseItem(event,menuCatergory,catItem){
-    console.log(catItem);
+    console.log(menuCatergory);
     if(event.checked){
       menuCatergory.selectedItems++;
       this.items.push(catItem.name);
+      this.categories.push(menuCatergory.categoryName);
       if(menuCatergory.selectedItems>menuCatergory.choiceOf){
         menuCatergory.additionalCharges+=menuCatergory.categoryPrice;
         this.additionalMenuCharges+=menuCatergory.categoryPrice;
@@ -177,6 +182,14 @@ export class CreateConfirmedBookingComponent implements OnInit {
       this.items.forEach((item)=>{
         if(item==catItem.name){
           let index=this.items.indexOf(item);
+          if(index>-1){
+            this.items.splice(index,1);
+          }
+        }
+      })
+      this.categories.forEach((category)=>{
+        if(category==menuCatergory.categoryName){
+          let index=this.items.indexOf(category);
           if(index>-1){
             this.items.splice(index,1);
           }
@@ -246,7 +259,7 @@ export class CreateConfirmedBookingComponent implements OnInit {
         }
       })
     }
-    console.log(this.selectedServices);
+    // console.log(this.selectedServices);
    }
 
    calculateMenuCharges(){
@@ -254,17 +267,17 @@ export class CreateConfirmedBookingComponent implements OnInit {
       this.additionalMenuPrice+=category.additionalCharges;
      });
      console.log(this.additionalMenuPrice);
-     console.log(this.menuPrice);
+    //  console.log(this.menuPrice);
      this.totalMenuPrice=this.menuPrice+this.additionalMenuPrice;
-     console.log(this.totalMenuPrice);
+    //  console.log(this.totalMenuPrice);
      this.totalMenuCharge=this.totalMenuPrice*this.bookingForm.value.capacity;
-     console.log(this.totalMenuCharge);
+    //  console.log(this.totalMenuCharge);
    }
 
    calculateServiceCharges(){
     this.selectedServices.forEach(service => {
           if(service.amount){
-            console.log(service.quantity);
+            // console.log(service.quantity);
             this.serviceQuantity=service.quantity;
             this.servicePrice=service.price;
             this. fullServicePrice=this.serviceQuantity*this.servicePrice;
@@ -275,50 +288,50 @@ export class CreateConfirmedBookingComponent implements OnInit {
           this.serviceCharges+=this.servicePrice;
         }
          });
-         console.log(this.serviceCharges);
-        
-
-   }
+        //  console.log(this.serviceCharges);
+     }
 
    calculateTotalBookingCharge(){
     this.totalBookingCharge=this.totalMenuCharge+this.serviceCharges;
    }
 
    showInvoice(){
+    console.log(this.selectedServices);
      this.calculateMenuCharges();
      this.calculateServiceCharges();
      this.calculateTotalBookingCharge();
     this.showSummary=true;
+   
    }
 
   confirmation(){
-    if(this.amountpaying==25000){
-      this.makePayment();
-    }
-    else if(this.amountpaying<25000){
+    //commented partp
+    // if(this.amountpaying==25000){
+    //   this.makePayment();
+    // }
+    // else if(this.amountpaying<25000){
       
-        if (confirm("Key Money Payement is less than Rs. 25000!")) {
-        this.makePayment();
-      } else {
+    //     if (confirm("Key Money Payement is less than Rs. 25000!")) {
+    //     this.makePayment();
+    //   } else {
         
-      }
-    }
-    else if(this.amountpaying>25000){
-      if (confirm("Key Money Payement is greater than Rs. 25000!")) {
-        this.makePayment();
-      } else {
+    //   }
+    // }
+    // else if(this.amountpaying>25000){
+    //   if (confirm("Key Money Payement is greater than Rs. 25000!")) {
+    //     this.makePayment();
+    //   } else {
         
-      }
-    }
+    //   }
+    // }
+
+
+    this.generateInvoice();
 
   }
 
 
    makePayment(){
-
-    
-   
-    
      let payment={
       paymentType:this.paymentType,
        amount:this.amountpaying,
@@ -383,29 +396,133 @@ export class CreateConfirmedBookingComponent implements OnInit {
       error=>{
       console.log(error);
     }) 
-
-
   }
 
-  // paymentsArr(client){
-  //   this.paymentService.getPayments()
-  //   .subscribe(
-  //     response=>{
-  //       console.log(response);
-  //       this.payments=response;
-  //       this.payments.forEach((payment) => {
-  //         if(payment.clientId==this.client){
-  //           this.clientPayments.push(payment);
+  invoiceItemData=[];
+  rowSpanData=[];
+  cumalativeRowSpanData=[];
+  catergoriesAndItemsSorted=[];
+
+
+  generateInvoice(){
+    let catergoryRawSpanCumalitive=0;
+    for(let i=0;i<this.categories.length;i++){
+      let catergoryRawSpan=0;
+      let categoryName=this.categories[i];
+      let itemName=this.items[i];
+      let categoryAndItem={
+        category:categoryName,
+        item:itemName
+      };
+      this.catergoriesAndItemsSorted.push(categoryAndItem);
+      catergoryRawSpanCumalitive++;
+      catergoryRawSpan++;
+      for(let j=i+1;j<this.categories.length;j++){
+        if(categoryName==this.categories[j]){
+          let categoryAndItem={
+            category:categoryName,
+            item:this.items[j]
+          };
+          this.catergoriesAndItemsSorted.push(categoryAndItem);
+          catergoryRawSpanCumalitive++;
+          catergoryRawSpan++;
+          this.categories.splice(j,1);
+          this.items.splice(j,1);
+          j--
+        }
+      }
+      this.rowSpanData.push(catergoryRawSpan);
+      this.cumalativeRowSpanData.push(catergoryRawSpanCumalitive);
+    }
+
+   for(let i=0;i<this.catergoriesAndItemsSorted.length;i++){
+    let categoryItem=[];
+    categoryItem.push(this.catergoriesAndItemsSorted[i].category);
+    categoryItem.push(this.catergoriesAndItemsSorted[i].item);
+    this.invoiceItemData.push(categoryItem);
+   }
+   console.log(this.catergoriesAndItemsSorted);
+   console.log(this.rowSpanData);
+   console.log(this.cumalativeRowSpanData);
+
+  //  this.invoiceItemData= this.invoiceItemData.map(row => Object.keys(row).map(key => row[key]));
+           
+  //  let rowSpanNumber=0;
+
+  //  for (var i = 0; i < this.invoiceItemData.length; i++) {
+  //          let row = this.invoiceItemData[i];
+  //          if (rowSpanNumber== 0) {
+  //            console.log(i);
+  //              row.unshift({rowSpan: this.rowSpanData[0], content: this.invoiceItemData[i].category, styles: {valign: 'middle', halign: 'left'}});
+  //              rowSpanNumber++;
+  //          }
+  //          if (this.cumalativeRowSpanData[rowSpanNumber-1]== i) {
+  //           console.log(i);
+  //             row.unshift({rowSpan: this.rowSpanData[0], content: this.invoiceItemData[i].category, styles: {valign: 'middle', halign: 'left'}});
+  //             rowSpanNumber++;
   //         }
-  //       });
-         
-  //   },
-  //     error=>{
-  //       alert('An unexpected error occurred.');
-  //       console.log(error);
-  //   }) 
+  //    }
 
+   
+    
+    let client=this.clients.find(client=>client._id==this.bookingForm.value.clientId);
+    console.log(client)
+    let doc=new jspdf();
+    doc.setFontSize(22);
+    doc.setTextColor(40);
+    doc.setFontStyle('normal');
+    doc.text("Hotel Royal Park",80,25);
+    doc.setFontSize(15);
+    doc.text(client.name,14,38);
+    doc.text(client.telephoneNumber.toString(),14,45);
+    doc.text(new Date().toDateString(),14,52);
+    doc.text("Hotel Royal Park",130,38);
+    doc.text("Kiribathgoda",130,45);
+    doc.text("Tel-0112829829",130,52);
 
-  // }
+    doc.text("Event Date :"+this.confirmedDate,14,62);
+    if(this.confirmedTime=='wholeDay'){
+      doc.text("Event Time :"+this.bookingForm.value.eventType,14,69);
+    }
+    else{
+      doc.text("Event Time :"+this.confirmedTime,14,69);
+    }
+    doc.text("Hall:"+this.confirmedHall.name,14,76);
 
+    let head=[['Category','Items']];
+
+    doc.autoTable({
+      head: head,
+      body: this.invoiceItemData,
+      margin: {top: 85},
+      
+      headStyles: {
+        fontSize: 12
+    },
+    footStyles: {
+        fontSize: 15
+    },
+    bodyStyles: {
+      fontSize: 9,
+    },
+    didDrawPage: function (data) {
+      
+      
+  }, 
+  });
+  doc.text("Services ",14,doc.autoTable.previous.finalY+10);
+  doc.setFontSize(13);
+  for(let i=0;i<this.selectedServices.length;i++){
+    if(this.selectedServices[i].amount){
+      doc.text(this.selectedServices[i].name+"-"+this.selectedServices[i].quantity,14,doc.autoTable.previous.finalY+10+(i+1)*7);
+    }
+    else{
+      doc.text(this.selectedServices[i].name,14,doc.autoTable.previous.finalY+10+(i+1)*7);
+    }
+  }
+
+    doc.save('Invoice.pdf');
+    
+  }
+ 
 }
