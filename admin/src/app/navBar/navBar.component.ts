@@ -1,6 +1,8 @@
 import { Router } from '@angular/router';
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
+import * as jspdf from 'jspdf'; 
+import 'jspdf-autotable';
 
 @Component({
   selector: 'admin-navBar',
@@ -13,6 +15,8 @@ export class NavBarComponent implements OnInit {
   isAdmin=this.authService.decodedToken.isAdmin;
   logo='/assets/images/logo.jpg';
   
+  
+  
   navbarOpen = false;
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;
@@ -22,11 +26,11 @@ export class NavBarComponent implements OnInit {
   ngOnInit() {
   }
 
-  reports(){
-  console.log(this.role)
-  }
+  
   logOut(){
     localStorage.removeItem('token');
     this.router.navigate(['']);
   }
+
+  
 }

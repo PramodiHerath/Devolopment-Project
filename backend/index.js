@@ -21,7 +21,8 @@ const Booking=require('./routes/booking');
 const Halls=require('./routes/halls');
 const Payment=require('./routes/payment');
 const Member=require('./routes/members');
-
+const Rating=require('./routes/ratings');
+const RatingReport=require('./routes/ratingReport');
 
 
 
@@ -63,6 +64,8 @@ app.use('/api/booking', Booking);
 app.use('/api/halls', Halls);
 app.use('/api/payment', Payment);
 app.use('/api/member', Member);
+app.use('/api/rating', Rating);
+app.use('/api/ratingReport', RatingReport);
 
 
 

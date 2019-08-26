@@ -24,7 +24,7 @@
                  </ul>
             </div>
             <!-- <button (click)="selected()">trigger</button> -->
-            <button  color="primary" class="btn-xl" (click)="selected()">Update</button>
+            <button *ngIf="isAdmin" color="primary" class="btn-xl" (click)="selected()">Update</button>
 
           </div>
      </div>

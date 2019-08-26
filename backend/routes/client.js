@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt=require('bcrypt');
 const {Client} = require('../models/client');
+const {Member} = require('../models/members');
 const {Counter} = require('../models/counter'); 
 const email=require('emailjs/email');
 
@@ -63,13 +64,36 @@ router.get('/', async (req, res) => {
     const client = await Client.find();
     res.send(client);
   });
+  
+  router.get('/withoutMembers/all', async (req, res) => {
+    let clientsToSend=[];
+    const clients = await Client.find();
+    const members=await Member.find();
+    clients.forEach(client => {
+      let isMember=false;
+      members.forEach(member=>{
+        if(client._id==member.clientId){
+          isMember=true;
+          return;
+        }
+      })
 
+      if(!isMember){
+        clientsToSend.push(client)
+      }
+      
+    });
+
+    
+    res.send(clientsToSend);
+  });
 router.get('/:id', async (req, res) => {
   const client = await Client.find({_id:req.params.id});
   res.send(client);
   });
 
-router.get('/searchClient', async (req, res) => {
+router.get('/searchClient/AllClients', async (req, res) => {
+  console.log("cd")
   let clientNamePattern=req.query.clientName;
   pattern= new RegExp(clientNamePattern,"i");
 

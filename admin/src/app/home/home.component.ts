@@ -30,6 +30,9 @@ export class HomeComponent implements OnInit {
   bringReservationsComponent(){
     this.router.navigate(['/reservations']);
   }
+  bringReports(){
+    this.router.navigate(['/reports']);
+  }
 
   constructor(private router: Router,private authService:AuthService) { }
 

@@ -5,6 +5,7 @@ import { BookingService } from './../services/booking.service';
 import { HallsService } from './../services/halls.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'hallDateSelection',
   templateUrl: './hallDateSelection.component.html',
@@ -18,7 +19,7 @@ export class HallDateSelectionComponent implements OnInit {
   }
   )
 
-  
+   isAdmin=this.authService.decodedToken.isAdmin;
   halls;
   allowDay:boolean;
   allowNight:boolean;
@@ -35,7 +36,7 @@ export class HallDateSelectionComponent implements OnInit {
 
   constructor(private hallService:HallsService,
     private bookingService: BookingService,private route:Router,
-    private clientService:ClientService) { }
+    private clientService:ClientService, private authService:AuthService) { }
 
   ngOnInit() {
     this.bringHalls();

@@ -38,4 +38,10 @@ isLogedin(){
 
   return true;
 }
+
+getReport(){
+  return this.http.get(this.baseUrl+'ratingReport')
+}
+
+
 }

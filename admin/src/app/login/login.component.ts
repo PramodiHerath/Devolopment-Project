@@ -28,8 +28,8 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/home']);
     },
       error=>{
-      alert('An unexpected error occurred.');
-      console.log(error);
+      alert(error.error);
+      console.log(error.error);
     })
     
   }

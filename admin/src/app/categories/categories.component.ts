@@ -39,7 +39,8 @@ updateCategoryForm = new FormGroup({
 }
 )
 
-  constructor(private service:CategoriesService,private router:Router, private authService:AuthService) {
+  constructor(private service:CategoriesService,private router:Router,
+     private authService:AuthService) {
    this.viewCategories();
    
    }

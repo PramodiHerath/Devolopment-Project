@@ -26,10 +26,9 @@
                         <mat-label>Menu Name</mat-label>
                         <input formControlName="name" matInput
                         placeholder="Menu Name" >
-                        <!-- <div *ngIf="addMenuForm.get('menuName').touched && addMenuForm.get('menuName').invalid"> -->
-                             <!-- <mat-error *ngIf="loginForm.get('email').errors.required">Email is required</mat-error>
-                             <mat-error *ngIf="loginForm.get('email').errors.email">Email address invalid</mat-error> -->
-                        <!-- </div> -->
+                        <div *ngIf="createMenuForm.get('name').touched && createMenuForm.get('name').invalid">
+                         <mat-error *ngIf="createMenuForm.get('name').errors.required">name is required</mat-error>
+                        </div>
                         
                    </mat-form-field>
                     
@@ -39,10 +38,11 @@
                         <mat-label>Price</mat-label>
                         <input formControlName="price" matInput  
                          placeholder="price" >
-                        <!-- <div *ngIf="addMenuForm.get('price').touched && addMenuForm.get('price').invalid">
-                   
+                        <div *ngIf="createMenuForm.get('price').touched && createMenuForm.get('price').invalid">
+                              <mat-error *ngIf="createMenuForm.get('price').errors.required">price is required</mat-error>
+                         
                         </div>
-                         -->
+                        
                    </mat-form-field>
     
                    <mat-card-actions align="end">

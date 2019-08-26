@@ -11,11 +11,15 @@ postClients(newClient){
   return this.http.post(this.baseUrl+'client',newClient)
 }
 searchClient(string){
-  return this.http.get(this.baseUrl + 'client/searchClient?clientName='+string);
+  return this.http.get(this.baseUrl + 'client/searchClient/AllClients?clientName='+string);
 }
 
 getClients(){
   return this.http.get(this.baseUrl+'client')
+}
+
+getClientsWithNoMembership(){
+  return this.http.get(this.baseUrl+'client/withoutMembers/all')
 }
 
 addAsMember(object){

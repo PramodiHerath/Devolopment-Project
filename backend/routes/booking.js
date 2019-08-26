@@ -24,6 +24,7 @@ router.post('/', async (req, res) => {
     bookingCharge:req.body.totalBookingCharge,
     damageCharge:req.body.damageCharge,
     durationCharge:req.body.durationCharge,
+    taxCharge:req.body.taxCharge,
     keyMoney:req.body.keyMoney,
     totalCharge:req.body.totalCharge
   })

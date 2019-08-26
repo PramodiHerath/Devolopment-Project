@@ -41,15 +41,18 @@
              
 
             </form>
-            <h2 *ngIf="reservations">Confirmed Bookings</h2>
-            <button type="button"  [disabled]="allowDay" class="btn btn-primary btn-table" *ngIf="reservations"   (click)="selectDay()">Book Day</button>
-            <button type="button"  [disabled]="allowNight" class="btn btn-primary btn-table"  *ngIf="reservations"  (click)="selectNight()">Book Night</button>
-            <button type="button"  [disabled]="allowFullday" class="btn btn-primary btn-table"  *ngIf="reservations" (click)="selectWholeDay()">Book Whole Day</button>
-
+            <h2 *ngIf="reservations && isAdmin">Confirmed Bookings</h2>
+            <br>
+            <br>
+            <button  type="button"  [disabled]="allowDay" class="btn btn-primary btn-table" *ngIf="reservations && isAdmin"   (click)="selectDay()">Book Day</button>
+            <button  type="button"  [disabled]="allowNight" class="btn btn-primary btn-table"  *ngIf="reservations && isAdmin"  (click)="selectNight()">Book Night</button>
+            <button  type="button"  [disabled]="allowFullday" class="btn btn-primary btn-table"  *ngIf="reservations && isAdmin" (click)="selectWholeDay()">Book Whole Day</button>
+            <br>
+            <br>
             <h2 *ngIf="reservations">Tentative Bookings</h2>
             <li *ngIf="reservations">
-                <mat-form-field>
-                    <input matInput placeholder="Client"  [matAutocomplete]="auto" (keyup)="searchClient($event)" [(ngModel)]="tentativeClientId">
+                <mat-form-field style="font-size: 20px">
+                    <input matInput placeholder="Client"  [matAutocomplete]="auto" (keyup)="searchClient($event)" [(ngModel)]="tentativeClientId" required>
                     <mat-autocomplete #auto="matAutocomplete">
                       <mat-option *ngFor="let client of clients" [value]="client._id">      
                         <span>{{client.name}}</span> 
@@ -57,6 +60,8 @@
                     </mat-autocomplete>
                 </mat-form-field>
             </li>
+            <br>
+            <br>
             <button type="button"  [disabled]="allowDay" class="btn btn-primary btn-table" *ngIf="reservations"   (click)="selectTentativeDay()">Book Day</button>
             <button type="button"  [disabled]="allowNight" class="btn btn-primary btn-table"  *ngIf="reservations"  (click)="selectTentativeNight()">Book Night</button>
             <button type="button"  [disabled]="allowFullday" class="btn btn-primary btn-table"  *ngIf="reservations" (click)="selectTentativeWholeDay()">Book Whole Day</button>

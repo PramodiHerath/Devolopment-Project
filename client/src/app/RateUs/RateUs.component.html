@@ -4,13 +4,121 @@
 <br>
 <br>
 <div class="container-fluid">
-	<div class="row spacing" style="text-align: center">
-		<div class="col-md-12 square-box7" style="margin-right: 1%; margin-left: 1%; width: 98%">
-			<h1 class="left-heading menu-heading">We Value Your Feedbacks</h1>
-      <p class="menu-para-text">please rate and submit</p>
-      
+	<div class="row spacing justify-content-center" style="text-align: center">
+		<div class="col-md-10 square-box7" style="margin-right: 1%; margin-left: 1%; width: 98%">
 			
+			<h1 class="left-heading menu-heading">We Value Your Feedbacks</h1>
+      <p class="menu-para-text">PLEASE RATE AND SUBMIT</p>
+      
+			 
+	  <div class=" raw border border-light p-5">
+			<input type="text" name="clientName" [(ngModel)]="clientName" id="clientName" class="form-control mb-4"  style="height: 50px; width:50%;font-size: 15px" required>
+		  <h1 class="left-heading menu-heading" style="text-align: left">Food</h1>
+		  <!-- <h3>Drink</h3> -->
+		  <div class="col-md-4" class="menu-para-text">
+				<section>
+				  <b>Drink</b>
+				  <bar-rating [(rate)]="drink" [max]="10" [theme]="'horizontal'"></bar-rating><h1>{{drink}}</h1>
+				</section>
+			  </div>
+			  <div class="col-md-4" class="menu-para-text">
+					<section>
+					  <b>Main Course</b>
+					  <bar-rating [(rate)]="mainCourse" [max]="10" [theme]="'horizontal'"></bar-rating><h1>{{mainCourse}}</h1>
+					</section>
+				  </div>
+				  <div class="col-md-4" class="menu-para-text">
+						<section>
+						  <b>Desserts</b>
+						  <bar-rating [(rate)]="dessert" [max]="10" [theme]="'horizontal'"></bar-rating><h1>{{dessert}}</h1>
+						</section>
+					  </div>
+		 
+
+		
+		</div>
+
+		<div class=" raw border border-light p-5">
+				<h1 class="left-heading menu-heading" style="text-align: left">Staff</h1>
+				<!-- <h3>Drink</h3> -->
+				<div class="col-md-4" class="menu-para-text">
+					  <section>
+						<b>Receptionist</b>
+						<bar-rating [(rate)]="receptionist" [max]="10" [theme]="'horizontal'"></bar-rating><h1>{{receptionist}}</h1>
+					  </section>
+					</div>
+					<div class="col-md-4" class="menu-para-text">
+						  <section>
+							<b>Buffet Staff</b>
+							<bar-rating [(rate)]="buffetStaff" [max]="10" [theme]="'horizontal'"></bar-rating><h1>{{buffetStaff}}</h1>
+						  </section>
+						</div>
+						<div class="col-md-4" class="menu-para-text">
+								<section>
+								  <b>Banquet Manager</b>
+								  <bar-rating [(rate)]="manager" [max]="10" [theme]="'horizontal'"></bar-rating><h1>{{manager}}</h1>
+								</section>
+							  </div>
+			
+			  </div>
+
+			  <div class=" raw border border-light p-5">
+					<h1 class="left-heading menu-heading" style="text-align: left">services</h1>
+					
+					<div class="col-md-4" class="menu-para-text">
+						  <section>
+							<b>Sanitary Facilities</b>
+							<bar-rating [(rate)]="sanitary" [max]="10" [theme]="'horizontal'"></bar-rating><h1>{{sanitary}}</h1>
+						  </section>
+						</div>
+						<div class="col-md-4" class="menu-para-text">
+							  <section>
+								<b>Decoration</b>
+								<bar-rating [(rate)]="decoration" [max]="10" [theme]="'horizontal'"></bar-rating><h1>{{decoration}}</h1>
+							  </section>
+							</div>
+							<div class="col-md-4" class="menu-para-text">
+								  <section>
+									<b>Equipments</b>
+									<bar-rating [(rate)]="equipment" [max]="10" [theme]="'horizontal'"></bar-rating><h1>{{equipment}}</h1>
+								  </section>
+								</div>
+				   
+		  
+				  
+				  </div>
+
+
+				  <div class=" raw border border-light p-5">
+						<h1 class="left-heading menu-heading" style="text-align: left">Other</h1>
+						
+						<div class="col-md-4" class="menu-para-text">
+							  <section>
+								<b>Air Conditioning</b>
+								<bar-rating [(rate)]="air" [max]="10" [theme]="'horizontal'"></bar-rating><h1>{{air}}</h1>
+							  </section>
+							</div>
+							<div class="col-md-4" class="menu-para-text">
+								  <section>
+									<b>Lights</b>
+									<bar-rating [(rate)]="lights" [max]="10" [theme]="'horizontal'"></bar-rating><h1>{{lights}}</h1>
+								  </section>
+								</div>
+								<div class="col-md-4" class="menu-para-text">
+									  <section>
+										<b>Sounds</b>
+										<bar-rating [(rate)]="sounds" [max]="10" [theme]="'horizontal'"></bar-rating><h1>{{sounds}}</h1>
+									  </section>
+									</div>
+					   
+			  
+					  
+					  </div>
+
+			<div style="text-align: right"><button class="btn-table" (click)="rate()" style="text-align: left">Record Rate</button></div>
 		</div>
 		
+		
 	</div>
+	
 	</div>

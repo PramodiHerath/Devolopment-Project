@@ -56,6 +56,7 @@ export class CreateConfirmedBookingComponent implements OnInit {
   additionalMenuPrice=0;
   totalMenuPrice:number;
   totalBookingCharge=0;
+  bookingChargesbeforeTax=0;
   amountpaying:any;
   paymentType:any;
   menuId:any;
@@ -65,6 +66,7 @@ export class CreateConfirmedBookingComponent implements OnInit {
   fullServicePrice=0;
   serviceCharges=0;
   totalMenuCharge=0;
+  taxCharge=0;
 
 
 
@@ -84,7 +86,8 @@ export class CreateConfirmedBookingComponent implements OnInit {
     damageCharge:new FormControl('',Validators.required),
     durationCharge:new FormControl('',Validators.required),
     keyMoney:new FormControl('',Validators.required),
-    totalCharge:new FormControl('',Validators.required)
+    totalCharge:new FormControl('',Validators.required),
+    taxCharge:new FormControl('',Validators.required),
   }
   )
 
@@ -263,6 +266,7 @@ export class CreateConfirmedBookingComponent implements OnInit {
    }
 
    calculateMenuCharges(){
+     this.additionalMenuPrice=0;
     this.menuItems.forEach(category => {
       this.additionalMenuPrice+=category.additionalCharges;
      });
@@ -275,6 +279,7 @@ export class CreateConfirmedBookingComponent implements OnInit {
    }
 
    calculateServiceCharges(){
+     this.serviceCharges=0;
     this.selectedServices.forEach(service => {
           if(service.amount){
             // console.log(service.quantity);
@@ -292,7 +297,10 @@ export class CreateConfirmedBookingComponent implements OnInit {
      }
 
    calculateTotalBookingCharge(){
-    this.totalBookingCharge=this.totalMenuCharge+this.serviceCharges;
+   
+    this.bookingChargesbeforeTax=this.totalMenuCharge+this.serviceCharges;
+    this.taxCharge=(this.bookingChargesbeforeTax*12)/100;
+    this.totalBookingCharge=this.bookingChargesbeforeTax+this.taxCharge
    }
 
    showInvoice(){
@@ -305,50 +313,51 @@ export class CreateConfirmedBookingComponent implements OnInit {
    }
 
   confirmation(){
-    //commented partp
-    // if(this.amountpaying==25000){
-    //   this.makePayment();
-    // }
-    // else if(this.amountpaying<25000){
+    
+    if(this.amountpaying==25000){
+      this.makePayment();
+    }
+    else if(this.amountpaying<25000){
       
-    //     if (confirm("Key Money Payement is less than Rs. 25000!")) {
-    //     this.makePayment();
-    //   } else {
+        if (confirm("Key Money Payement is less than Rs. 25000!")) {
+        this.makePayment();
+      } else {
         
-    //   }
-    // }
-    // else if(this.amountpaying>25000){
-    //   if (confirm("Key Money Payement is greater than Rs. 25000!")) {
-    //     this.makePayment();
-    //   } else {
+      }
+    }
+    else if(this.amountpaying>25000){
+      if (confirm("Key Money Payement is greater than Rs. 25000!")) {
+        this.makePayment();
+      } else {
         
-    //   }
-    // }
+      }
+    }
 
 
-    this.generateInvoice();
+    // this.generateInvoice();
 
   }
 
 
    makePayment(){
-     let payment={
-      paymentType:this.paymentType,
-       amount:this.amountpaying,
-       date:new Date(),
-      clientId:this.bookingForm.value.clientId
+    //  let payment={
+    //   paymentType:this.paymentType,
+    //    amount:this.amountpaying,
+    //    date:new Date(),
+    //   clientId:this.bookingForm.value.clientId
 
-     }
-     console.log(payment);
-     this.paymentService.makePayment(payment)
-     .subscribe(response=>{
-       this.payment=response;
-       console.log(response);
-       this.updateBookingTable(this.payment._id);
-     },
-      (error:Response)=>{
+    //  }
+    //  console.log(payment);
+    //  this.paymentService.makePayment(payment)
+    //  .subscribe(response=>{
+    //    this.payment=response;
+    //    console.log(response);
+    //    this.updateBookingTable(this.payment._id);
+    //  },
+    //   (error:Response)=>{
 
-     })
+    //  })
+    this.generateInvoice();
    }
    
    updateBookingTable(paymentId){
@@ -379,6 +388,7 @@ export class CreateConfirmedBookingComponent implements OnInit {
     this.bookingForm.patchValue({keyMoney:this.amountpaying});
     this.bookingForm.patchValue({damageCharge:0});
     this.bookingForm.patchValue({durationCharge:0});
+    this.bookingForm.patchValue({taxCharge:this.taxCharge});
     this.bookingForm.patchValue({totalCharge:this.totalBookingCharge});
 
     
@@ -464,31 +474,32 @@ export class CreateConfirmedBookingComponent implements OnInit {
   //    }
 
    
+  console.log(this.bookingForm.value.clientId)
     
     let client=this.clients.find(client=>client._id==this.bookingForm.value.clientId);
     console.log(client)
     let doc=new jspdf();
-    doc.setFontSize(22);
+    doc.setFontSize(21);
     doc.setTextColor(40);
     doc.setFontStyle('normal');
     doc.text("Hotel Royal Park",80,25);
-    doc.setFontSize(15);
-    doc.text(client.name,14,38);
-    doc.text(client.telephoneNumber.toString(),14,45);
-    doc.text(new Date().toDateString(),14,52);
-    doc.text("Hotel Royal Park",130,38);
-    doc.text("Kiribathgoda",130,45);
-    doc.text("Tel-0112829829",130,52);
+    doc.setFontSize(13);
+    doc.text(client.name,14,36);
+    doc.text(client.telephoneNumber.toString(),14,43);
+    doc.text(new Date().toDateString(),14,50);
+    doc.text("Hotel Royal Park",130,36);
+    doc.text("Kiribathgoda",130,43);
+    doc.text("Tel-0112829829",130,50);
 
-    doc.text("Event Date :"+this.confirmedDate,14,62);
+    doc.text("Event Date :"+this.confirmedDate,14,60);
     if(this.confirmedTime=='wholeDay'){
-      doc.text("Event Time :"+this.bookingForm.value.eventType,14,69);
+      doc.text("Event Time :"+this.bookingForm.value.eventType,14,67);
     }
     else{
-      doc.text("Event Time :"+this.confirmedTime,14,69);
+      doc.text("Event Time :"+this.confirmedTime,14,67);
     }
-    doc.text("Hall:"+this.confirmedHall.name,14,76);
-
+    doc.text("Hall:"+this.confirmedHall.name,14,74);
+    doc.text("Menu:"+this.selectMenu.name,80,82);
     let head=[['Category','Items']];
 
     doc.autoTable({
@@ -512,6 +523,7 @@ export class CreateConfirmedBookingComponent implements OnInit {
   });
   doc.text("Services ",14,doc.autoTable.previous.finalY+10);
   doc.setFontSize(13);
+ 
   for(let i=0;i<this.selectedServices.length;i++){
     if(this.selectedServices[i].amount){
       doc.text(this.selectedServices[i].name+"-"+this.selectedServices[i].quantity,14,doc.autoTable.previous.finalY+10+(i+1)*7);
@@ -520,9 +532,25 @@ export class CreateConfirmedBookingComponent implements OnInit {
       doc.text(this.selectedServices[i].name,14,doc.autoTable.previous.finalY+10+(i+1)*7);
     }
   }
+  let margin=20+(this.selectedServices.length*7)
+  doc.text("Charges.",14,doc.autoTable.previous.finalY+margin);
+  doc.text("Capacity :"+this.bookingForm.value.capacity,14,doc.autoTable.previous.finalY+margin+7);
+  doc.text("Menu price=Rs."+this.menuPrice+".00 Additional charges=Rs."+this.additionalMenuPrice+".00 Total menu charge=Rs."+this.menuPrice+this.additionalMenuPrice,14,doc.autoTable.previous.finalY+margin+14);
+  doc.text("Total Menu Charge="+this.totalMenuCharge,14,doc.autoTable.previous.finalY+margin+21);
+  doc.text("Total Service Charge="+this.serviceCharges,14,doc.autoTable.previous.finalY+margin+28);
+  doc.text("Total Charge Before Tax="+this.bookingChargesbeforeTax,14,doc.autoTable.previous.finalY+margin+35);
+  doc.text("Total Tax Charge="+this.taxCharge,14,doc.autoTable.previous.finalY+margin+42);
+  doc.text("Total Booking Charge="+this.totalBookingCharge,14,doc.autoTable.previous.finalY+margin+49);
+  doc.text("Paying amount="+this.amountpaying,14,doc.autoTable.previous.finalY+margin+56);
+  let balance=this.totalBookingCharge-this.amountpaying
 
-    doc.save('Invoice.pdf');
-    
+  // doc.text("Balance="+this.amountpaying,14,doc.autoTable.previous.finalY+margin+63);
+  doc.save('Invoice.pdf');
+
+
+
+  console.log(balance);
+
   }
  
 }

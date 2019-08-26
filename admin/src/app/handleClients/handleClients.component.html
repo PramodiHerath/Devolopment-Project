@@ -20,7 +20,7 @@
                             <a  class="btn btn-primary btn-xl"  (click)="bringTentativeBookings()">Handle</a>
                         </div>
                     </div> -->
-                    <a  class="btn btn-primary btn-xl"  (click)="bringAddMembers()">View Clients <br> Details</a>
+                    <a  class="btn btn-primary btn-xl"  (click)="bringClients()">View Clients <br> Details</a>
                 </div>
                 
             <div class="col-md-4">
@@ -31,7 +31,7 @@
                         <a  class="btn btn-primary btn-xl"  (click)="bringTentativeBookings()">Handle</a>
                     </div>
                 </div> -->
-                <a  class="btn btn-primary btn-xl"  (click)="bringAddMembers()">Add Members</a>
+                <button  class="btn btn-primary btn-xl" [disabled]="!isAdmin" (click)="bringAddMembers()">Add Members</button>
             </div>
                 </div>
 

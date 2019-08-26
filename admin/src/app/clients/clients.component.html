@@ -4,9 +4,6 @@
 <br>
 <br>
 <br>
-<br>
-<br>
-
 <div class="container">
   <mat-form-field style="width: 50% ;min-width: 100px;font-size: 20px" class="search-form-field search-div " floatLabel="never">
     <input type="text"   [(ngModel)]="searchKey" matInput placeholder="Search Clients" autocomplete="off" (keyup)="searchClients()">
@@ -27,24 +24,9 @@
         <td>{{client.name}}</td>
         <td> {{client.telephoneNumber}}</td>
         <td> {{client.emailAddress}}</td>
-        <td><button (click)=bringDetails(client) class="btn-table">View Details</button></td>
+        <!-- <td><button (click)=bringDetails(client) class="btn-table">View Details</button></td> -->
       
       </tr>
     </tbody>
   </table>
-</div>
-
-<div class="container-fluid" *ngIf="showDetails">
-  <div class="row spacing justify-content-center">
-    <div class="col-md-10 square-box7" style="margin-left: 1%; margin-right: 1%;width: 98%">
-      <h1 class="left-heading menu-heading">Add As a memeber : {{clientName}}</h1>
-      <ul *ngFor="let booking of clientBooking" class="menu-para-text">
-        <li>Booking Id : {{booking._id}}</li>
-        <li>Booking Status : {{booking.status}}</li>
-        <li>Booking Date : {{booking.date}}</li>
-      </ul>
-      <button  class="btn btn-primary btn-xl"  (click)=addAsMember() >Add as a Member</button>
-
-    </div>
-  </div>
 </div>

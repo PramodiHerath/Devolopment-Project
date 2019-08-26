@@ -9,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddMembersComponent implements OnInit {
 
+  clientsToDisplay:any;
+  searchKey:any;
   clients;
   showDetails:boolean;
   clientBooking;
@@ -24,11 +26,12 @@ export class AddMembersComponent implements OnInit {
   }
 
   loadClients(){
-    this.clientService.getClients()
+    this.clientService.getClientsWithNoMembership()
     .subscribe(
       response=>{
         console.log(response);
         this.clients=response;
+        this.clientsToDisplay=this.clients
          
     },
       error=>{
@@ -81,5 +84,21 @@ export class AddMembersComponent implements OnInit {
   }
 
   
+  searchClients(){
+    let filteredClients=[]
+    if(this.searchKey==null){
+      filteredClients=this.clients;
+    }
+    else{
+      this.clients.forEach(client => {
+        let clientname=client.name.toLowerCase();
+        if(clientname.includes(this.searchKey)){
+          filteredClients.push(client);
+        }
+      });
 
+    }
+    this.clientsToDisplay = filteredClients;
+  }
+  
 }

@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'handleClients',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./handleClients.component.css']
 })
 export class HandleClientsComponent implements OnInit {
-
-  constructor(private router:Router) { }
-
+  isAdmin=this.authService.decodedToken.isAdmin;
+  constructor(private router:Router, private authService:AuthService) { }
+  
   ngOnInit() {
   }
 
@@ -21,6 +22,9 @@ export class HandleClientsComponent implements OnInit {
 
   bringAddMembers(){
     this.router.navigate(['/addMembers']);
+  }
+  bringClients(){
+    this.router.navigate(['/clients']);
   }
 
 }

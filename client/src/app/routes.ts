@@ -19,6 +19,7 @@ export const appRoutes: Routes= [
   {path:'halls',component:HallDetailComponent},
   {path:'packages',component:PackageComponent},
   {path:'services',component:ServicesComponent},
+  {path:'home',component:HomeComponent},
   {path:'login',component:LoginComponent},
   {path:'menues',component:MenuesComponent},
   {path:'booking',component:BookingComponent},

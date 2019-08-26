@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-reservations',
@@ -7,8 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./reservations.component.css']
 })
 export class ReservationsComponent implements OnInit {
-
-  constructor(private router:Router) { }
+  isAdmin=this.authService.decodedToken.isAdmin;
+  constructor(private router:Router,private authService:AuthService) { }
   ConfirmedBookings='/assets/images/Confirmed Bookings.png';
   TentativeBookings='/assets/images/Tentative Bookings.png';
 

@@ -12,6 +12,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { Globals } from './globals';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { JwtModule } from '@auth0/angular-jwt';
+import { BarRatingModule } from "ngx-bar-rating";
 
 
 import { AppComponent } from './app.component';
@@ -78,6 +79,7 @@ import { TentativeBookingsComponent } from './tentativeBookings/tentativeBooking
       FlexLayoutModule,
       ReactiveFormsModule,
       PdfViewerModule,
+      BarRatingModule,
       BsDatepickerModule.forRoot(),
       ButtonsModule.forRoot(),
       CarouselModule.forRoot()

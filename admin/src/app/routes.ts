@@ -23,6 +23,8 @@ import { MakePaymentComponent } from './makePayment/makePayment.component';
 import { CloseConfirmedBookingsComponent } from './closeConfirmedBookings/closeConfirmedBookings.component';
 import { AddMembersComponent } from './addMembers/addMembers.component';
 import { HandleClientsComponent } from './handleClients/handleClients.component';
+import { ClientsComponent } from './clients/clients.component';
+import { ReportsComponent } from './reports/reports.component';
 
 
 export const appRoutes: Routes= [
@@ -45,6 +47,8 @@ export const appRoutes: Routes= [
     {path:'closeConfirmedBookings',component:CloseConfirmedBookingsComponent},
     {path:'createTentativeBookings',component:CreateTentativeBookingComponent},
     {path:'addMembers',component:AddMembersComponent},
+    {path:'clients',component:ClientsComponent},
+    {path:'reports',component:ReportsComponent},
     {path:'updateMenu/:menuId',component:UpdateMenuComponent},
     {path:'handleClients',component:HandleClientsComponent},
     {path:'',component: LoginComponent},

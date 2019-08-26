@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MenuItemsService } from '../services/menuItems.service';
 import { MenuService } from '../services/menu.service';
+import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-updateMenu',
   templateUrl: './updateMenu.component.html',
@@ -12,7 +13,8 @@ import { MenuService } from '../services/menu.service';
 export class UpdateMenuComponent implements OnInit {
 
   constructor(private categoryItemsService:CategoryItemsService,
-    private route:ActivatedRoute,private router:Router,private menuItemService:MenuItemsService,private menuService:MenuService) { }
+    private route:ActivatedRoute,private router:Router,
+    private menuItemService:MenuItemsService,private menuService:MenuService,private authService:AuthService) { }
 
   ngOnInit() {
     this.getCategoryItems();
@@ -20,7 +22,7 @@ export class UpdateMenuComponent implements OnInit {
     
   }
 
-
+  isAdmin=this.authService.decodedToken.isAdmin;
   updateMenuForm = new FormGroup({
     name: new FormControl('',Validators.required),
     price: new FormControl('',Validators.required),

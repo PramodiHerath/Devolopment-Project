@@ -5,7 +5,7 @@
 <br>
 <br>
 
-<div class="container-fluid">
+<div class="container-fluid"style="margin-top:100px" >
         <div class="raw">
             <div class="col-md-4">
                 <!-- <div class="card">
@@ -37,6 +37,6 @@
                         <a  class="btn btn-primary btn-xl"  (click)="bringTentativeBookings()">Handle</a>
                     </div>
                 </div> -->
-                <a  class="btn btn-primary btn-xl"  (click)="bringCloseBookings()">Close Confirmed Bookings</a>
+                <button  class="btn btn-primary btn-xl" [disabled]="!isAdmin" (click)="bringCloseBookings()">Close Confirmed Bookings</button>
             </div>
                 </div>
