@@ -7,9 +7,6 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-
-
-
 constructor(private http:HttpClient) { }
 
 jwtHelper=new JwtHelperService();
@@ -37,10 +34,6 @@ isLogedin(){
   // jwtHelper.
 
   return true;
-}
-
-getReport(){
-  return this.http.get(this.baseUrl+'ratingReport')
 }
 
 

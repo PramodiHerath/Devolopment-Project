@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-
+const {Booking} = require('../models/booking');
+const {Hall} = require('../models/hall');
 const {Rating} = require('../models/rating');
 
 router.get('/', async (req, res) => {
   let sections=['Food','Services','Staff','Other']
   let feedbacks=[];
+//   object creation for each section
   let foodFeedBack={
     name:'Food',
     feedbacks:[
@@ -93,6 +95,7 @@ router.get('/', async (req, res) => {
     ]
   };
 
+//   getting all past ratings and putting each objects' feedback array items to arry feedbacks
   const ratings = await Rating.find();
   ratings.forEach(rating=>{
       rating.feedback.forEach(feedBack=>{
@@ -101,6 +104,7 @@ router.get('/', async (req, res) => {
 
   })
 
+// setting total number of responses for each title and setting total rated count for each
   feedbacks.forEach(feedback=>{
     if(feedback.title=='drink'){
         foodFeedBack.feedbacks[0].count+=feedback.rating;
@@ -154,6 +158,7 @@ router.get('/', async (req, res) => {
     }
   })
 
+//   setting percentange of ratings for each section title
  foodFeedBack.feedbacks.forEach(feedback=>{
      feedback.percentage=(Math.round((feedback.count/(feedback.totalRespones*10))*100)).toString()+"%"
  })
@@ -167,6 +172,7 @@ staffFeedBack.feedbacks.forEach(feedback=>{
     feedback.percentage=(Math.round((feedback.count/(feedback.totalRespones*10))*100)).toString()+"%"
 })
 
+// array consisting all four sections and each of their titles overall percentages
  let dataTosend=[];
  dataTosend.push(foodFeedBack);
  dataTosend.push(servicesFeedBack);
@@ -175,5 +181,129 @@ staffFeedBack.feedbacks.forEach(feedback=>{
   res.send(dataTosend); 
  
 });
+
+
+router.get('/getBookingsReport', async (req, res) => {
+
+    let months=[
+        {
+            name:'January',
+            id:0,
+            halls:[],
+        },
+        {
+            name:'February',
+            id:1,
+            halls:[],
+        },
+        {
+            name:'March',
+            id:3,
+            halls:[],
+        },
+        {
+            name:'April',
+            id:3,
+            halls:[],
+        },
+        {
+            name:'May',
+            id:4,
+            halls:[],
+        },
+        {
+            name:'June',
+            id:5,
+            halls:[],
+        },
+        {
+            name:'July',
+            id:6,
+            halls:[],
+        },
+        {
+            name:'August',
+            id:7,
+            halls:[],
+        },
+        {
+            name:'September',
+            id:8,
+            halls:[],
+        },
+        {
+            name:'Octomber',
+            id:9,
+            halls:[],
+        },
+
+        {
+            name:'November',
+            id:10,
+            halls:[],
+        },
+        {
+            name:'December',
+            id:11,
+            halls:[],
+        },
+    ]
+    let yearQuery=req.query.year;
+    const bookings = await Booking.find().populate('hallId');
+    const halls = await Hall.find();
+    let bookingsOfYear=[];
+
+    bookings.forEach(booking=>{
+        if(new Date(booking.date).getFullYear()==parseInt(yearQuery)){
+            bookingsOfYear.push(booking)
+        }    
+    })
+
+   
+    months.forEach(month=>{
+        let hallsToSend=[];
+        halls.forEach(hall=>{
+            let hallToPush={
+                name:hall.name,
+                count:0
+            }
+            bookingsOfYear.forEach(booking=>{
+                if(hall._id==booking.hallId._id){
+                    if(booking.date.getMonth()==month.id){
+                        hallToPush.count++;
+                    }
+                }
+            })
+            hallsToSend.push(hallToPush);
+        })
+        month.halls=hallsToSend
+    })
+    
+
+    res.send(months);
+  });
+  
+
+  
+router.get('/oneMonthBookings/all', async (req, res) => {
+    let monthQuery=req.query.month;
+    let yearQuery=req.query.year;
+    let bookingsToSend=[]
+    const bookings = await Booking.find().populate('hallId');
+   
+    
+    bookings.forEach(booking=>{
+        if(new Date(booking.date).getMonth()==parseInt(monthQuery)){
+            if(new Date(booking.date).getFullYear()==parseInt(yearQuery)){
+                    
+                bookingsToSend.push(booking);
+            }  
+        }
+    })
+
+    res.send(bookingsToSend);
+  });
+  
+
 
 module.exports = router;  

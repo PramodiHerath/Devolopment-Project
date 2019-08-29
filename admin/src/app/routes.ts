@@ -25,6 +25,7 @@ import { AddMembersComponent } from './addMembers/addMembers.component';
 import { HandleClientsComponent } from './handleClients/handleClients.component';
 import { ClientsComponent } from './clients/clients.component';
 import { ReportsComponent } from './reports/reports.component';
+import { HallsComponent } from './halls/halls.component';
 
 
 export const appRoutes: Routes= [
@@ -48,6 +49,7 @@ export const appRoutes: Routes= [
     {path:'createTentativeBookings',component:CreateTentativeBookingComponent},
     {path:'addMembers',component:AddMembersComponent},
     {path:'clients',component:ClientsComponent},
+    {path:'halls',component:HallsComponent},
     {path:'reports',component:ReportsComponent},
     {path:'updateMenu/:menuId',component:UpdateMenuComponent},
     {path:'handleClients',component:HandleClientsComponent},

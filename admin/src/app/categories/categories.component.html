@@ -7,6 +7,7 @@
 <br>
 <br>
 
+<!-- start of the category table -->
 <div class="table-responsive">
     <table class="table table-hover table-dark data-table">
       <thead>
@@ -28,6 +29,10 @@
     </table>
   </div>
 
+  <!-- end of the table -->
+
+  <!-- start of add update delete buttons -->
+
 <div class="container-fluid" *ngIf="isAdmin">
     <div class="raw justify-content-center" style="text-align: center">
 
@@ -47,11 +52,12 @@
 
 </div>
     </div>
-</div>  
+</div>
+<!-- end of crud buttons   -->
   
    <br>
    <br>
-   
+   <!-- add categories form -->
 
    <div class="container-fluid" *ngIf=add style="width: 50%;">
       <div class="row spacing">
@@ -95,7 +101,7 @@
   </div>
 </div>
 
-
+<!-- update categories form -->
 <div class="container-fluid" *ngIf=update style="width: 50%">
   <div class="row spacing">
     <div class="col-md-12 square-box7" style="margin-right: 3%; width:66% ">

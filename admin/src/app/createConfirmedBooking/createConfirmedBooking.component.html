@@ -103,7 +103,7 @@
         
         </form>
     </div>
-
+<!-- menu customization -->
     <div class="col-md-4 square-box7" *ngIf="clicked" style="margin-left: 2%">
         <h1 class="left-heading menu-heading">Customize Your Menu : {{selectedMenu}}</h1>
         <p class="menu-para-text">Additional Choices will Add a category price per plate:</p>
@@ -130,7 +130,7 @@
     
   </div>
 </div>
-
+<!-- booking summary starts -->
 <div class="container-fluid" *ngIf="showSummary">
 	<div class="row spacing">
 		<div class="col-md-12 square-box7" style="margin-right: 1%; width:66% ">
@@ -151,9 +151,25 @@
         </ul>
         <h4 class="menu-para-text">Total Service Charge: Rs. {{serviceCharges}} /-</h4>
         <h4 class="menu-para-text">Before Tax Charge: Rs. {{bookingChargesbeforeTax}} /-</h4>
+        <h4 class="menu-para-text">Current Tax Rate: Rs. {{taxRate}} %</h4>
+        <button class="btn-table"  (click)="bringChangeTaxRate()">Need to change tax rate?</button>
+        <br>
+        <br>
+        <div *ngIf="changeTaxRate">
+        <div class="form-group">
+          <input type="text" name="newRate" [(ngModel)]="newTaxRate" id="newRate" class="form-control mb-4" placeholder="Enter new changeTaxRate"
+           style="height: 50px; width:35%;font-size: 15px">
+      </div>
+      <button class="btn-table" (click)="updateTaxRate()">change</button>
+        </div>
         <h4 class="menu-para-text">Total Tax Charge: Rs. {{taxCharge}} /-</h4>
         <h4 class="menu-para-text">Total Booking Charge: Rs. {{totalBookingCharge}} /-</h4>
-        <p class="menu-para-text">Key Money Payment<span><input [(ngModel)]="amountpaying" placeholder="Amount"></span></p>
+        <p class="menu-para-text">Key Money Payment<span>
+            <div class="form-group">
+                <input type="text" name="pay" [(ngModel)]="amountpaying" id="pay" class="form-control mb-4" placeholder="Amount"
+                 style="height: 50px; width:35%;font-size: 15px">
+            </div>
+        </span></p>
         
         <mat-form-field>
           <mat-label>Payment Type</mat-label>

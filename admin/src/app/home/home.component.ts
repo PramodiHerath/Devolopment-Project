@@ -33,6 +33,9 @@ export class HomeComponent implements OnInit {
   bringReports(){
     this.router.navigate(['/reports']);
   }
+  bringHallsComponents(){
+    this.router.navigate(['/halls']);
+  }
 
   constructor(private router: Router,private authService:AuthService) { }
 

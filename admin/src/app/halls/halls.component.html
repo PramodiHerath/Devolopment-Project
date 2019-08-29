@@ -1,0 +1,29 @@
+<admin-navBar></admin-navBar>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="table-responsive">
+    <table class="table table-hover table-dark data-table">
+      <thead>
+        <tr>
+          <th scope="col">Hall Id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Capacity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table-active" *ngFor= "let hall of halls; index as i">
+          <td>{{hall._id}}</td>
+          <td> {{hall.name}}</td>
+          <td> {{hall.capacity}}</td>
+          <!-- <td><button  class="btn-table"  (click)="onItemView(category)">View Items</button></td>
+          <td><button *ngIf=update (click)=bringUpdateForm(category) class="btn-table">Update</button></td>
+          <td><button *ngIf=delete (click)=deleteCategory(category,i)  class="btn-table">Delete</button></td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>

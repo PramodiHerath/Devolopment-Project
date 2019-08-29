@@ -33,6 +33,7 @@ import { AddMembersComponent } from './addMembers/addMembers.component';
 import { HandleClientsComponent } from './handleClients/handleClients.component';
 import { ClientsComponent } from './clients/clients.component';
 import { ReportsComponent } from './reports/reports.component';
+import { HallsComponent } from './halls/halls.component';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { ReportsComponent } from './reports/reports.component';
       AddMembersComponent,
       HandleClientsComponent,
       ClientsComponent,
-      ReportsComponent
+      ReportsComponent,
+      HallsComponent
    ],
    imports: [
       BrowserAnimationsModule,

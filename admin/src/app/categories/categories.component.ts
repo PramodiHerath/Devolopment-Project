@@ -11,7 +11,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
-  isAdmin=this.authService.decodedToken.isAdmin;
+  // checking the user role
+isAdmin=this.authService.decodedToken.isAdmin;
+
 categories : any  ;
 newCategory:object;
 changedCategory:object;
@@ -41,10 +43,14 @@ updateCategoryForm = new FormGroup({
 
   constructor(private service:CategoriesService,private router:Router,
      private authService:AuthService) {
-   this.viewCategories();
-   
+  
    }
 
+   ngOnInit() {
+    this.viewCategories();
+  }
+
+  // getting all existing categories
    viewCategories(){
     this.service.getAllCategories()
     .subscribe(
@@ -164,7 +170,6 @@ updateCategoryForm = new FormGroup({
   }
 
 
-  ngOnInit() {
-  }
+ 
 
 }

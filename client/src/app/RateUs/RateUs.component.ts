@@ -8,7 +8,7 @@ import { RatingService } from '../serviceshttp/rating.service';
 })
 export class RateUsComponent implements OnInit {
 
-
+// maximum rating scale for client
 drink=10;
 mainCourse=10;
 dessert=10;
@@ -46,14 +46,14 @@ feedBack:object;
          
     },
       error=>{
-        alert('An unexpected error occurred.');
+        alert(error.error);
         console.log(error);
     })  
    
   }
 
 
-
+// making array of individual rate for each title
   prepareFeedback(){
     let drink={
       section:"food",
@@ -61,6 +61,7 @@ feedBack:object;
       rating:this.drink
     }
     this.rating.push(drink);
+
     let mainCourse={
         section:"food",
         title:"mainCourse",
@@ -74,12 +75,14 @@ feedBack:object;
     rating:this.dessert
 }
 this.rating.push(dessert);
+
 let receptionist={
   section:"staff",
   title:"receptionist",
   rating:this.receptionist
 }
 this.rating.push(receptionist);
+
 let buffetStaff={
   section:"staff",
   title:"buffetStaff",
@@ -95,12 +98,13 @@ let management={
 }
 this.rating.push(management);
 
-let milkRice={
+let sanitary={
   section:"services",
   title:"sanitaryFacilities",
   rating:this.sanitary
 }
-this.rating.push(milkRice);
+this.rating.push(sanitary);
+
 let decoration={
   section:"services",
   title:"decoration",
@@ -136,6 +140,7 @@ let sounds={
 }
 this.rating.push(sounds);
 
+// object to be sent to the backend
 this.feedBack={
   name:this.clientName,
   feedback:this.rating

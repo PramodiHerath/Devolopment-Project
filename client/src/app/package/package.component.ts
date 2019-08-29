@@ -51,7 +51,7 @@ menu:any;
   downloadPdf(){ 
     var data = document.getElementById('contentToConvert');  
     html2canvas(data).then(canvas => {  
-      // Few necessary setting options  
+       
       var imgWidth = 208;   
       var pageHeight = 295;    
       var imgHeight = canvas.height * imgWidth / canvas.width;  

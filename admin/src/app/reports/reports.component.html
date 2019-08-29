@@ -11,11 +11,23 @@
                 
                 <a class="btn btn-primary btn-xl" (click)="getFeedbackReport()" >Feedback Report</a>
             </div>
-    
-            <!-- <div class="col-md-3">
-                    
-                    <a  class="btn btn-primary btn-xl"  (click)="bringTentativeBookings()">Tentative Booking <br> Details</a>
-            </div>
-                 -->
-    
-                </div>
+        </div>
+        <div class="raw">
+            <div class="col-md-3">
+              <mat-form-field >
+                <mat-label>Year</mat-label>
+                <mat-select [(ngModel)]="selectedYear" >
+                  <mat-option *ngFor="let year of years" [value]="year.value" >
+                    {{year.viewValue}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="raw">
+          <div class="col-md-3">
+          <a class="btn btn-primary btn-xl" (click)="getHallsReport()" >Halls Report</a>
+          </div>
+        </div>
+    </div>
+               

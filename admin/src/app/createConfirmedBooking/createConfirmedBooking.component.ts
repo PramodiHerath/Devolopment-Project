@@ -11,6 +11,7 @@ import { BookingService } from '../services/booking.service';
 import { MatDatepickerInputEvent } from '@angular/material';
 import * as jspdf from 'jspdf';
 import 'jspdf-autotable';
+import { TaxService } from '../services/tax.service';
 
 
 @Component({
@@ -19,6 +20,7 @@ import 'jspdf-autotable';
   styleUrls: ['./createConfirmedBooking.component.css']
 })
 export class CreateConfirmedBookingComponent implements OnInit {
+  bookingCreated:any;
 
   //To get details from halldateselection component
   static selectedHall;
@@ -66,10 +68,15 @@ export class CreateConfirmedBookingComponent implements OnInit {
   fullServicePrice=0;
   serviceCharges=0;
   totalMenuCharge=0;
+  taxRate:number=0;
   taxCharge=0;
+  changeTaxRate:boolean;
+  taxId;
+  newTaxRate:number=this.taxRate;
+  changedRateObjt;
 
 
-
+// booking form
   bookingForm = new FormGroup({
     hall: new FormControl('',Validators.required),
     status: new FormControl('',Validators.required),
@@ -94,13 +101,15 @@ export class CreateConfirmedBookingComponent implements OnInit {
   constructor(private router: Router,private serviceService:ServiceService
     ,private hallService:HallsService,private menuService:MenuService,
     private menuItemService:MenuItemsService,private clientService:ClientService,
-    private paymentService:PaymentService,private bookingService:BookingService) { }
+    private paymentService:PaymentService,private bookingService:BookingService,
+    private taxService:TaxService) { }
 
   ngOnInit() {
     // this.bringHalls();
     this.viewMenus();
     this.loadClients();
     this.viewServices();
+    this.getTaxRate();
     // console.log(CreateConfirmedBookingComponent.selectedDate);
   
     this.confirmedHall=CreateConfirmedBookingComponent.selectedHall;
@@ -111,7 +120,7 @@ export class CreateConfirmedBookingComponent implements OnInit {
 
     
 
-
+// getting all clients
   loadClients(){
     this.clientService.getClients()
     .subscribe(
@@ -126,7 +135,49 @@ export class CreateConfirmedBookingComponent implements OnInit {
     }) 
   } 
   
+  // getting current tax rate
+  getTaxRate(){
+    this.taxService.getTaxRate()
+    .subscribe(
+      response=>{
+        console.log(response);
+        this.taxId=response[0]._id;
+        this.taxRate=response[0].taxRate;
+         
+    },
+      error=>{
+        alert('An unexpected error occurred.');
+        console.log(error);
+    })
+  }
 
+  // show input field to change tax rate
+  bringChangeTaxRate(){
+      this.changeTaxRate=true;
+  }
+
+  // update tax rate
+  updateTaxRate(){
+    
+    let rate={
+      newRate:this.newTaxRate
+    }
+    this.taxService.updateTaxRate(this.taxId,rate)
+    .subscribe(
+      response=>{
+        console.log(response);
+        this.changedRateObjt=response;
+        this.taxRate=this.changedRateObjt.taxRate;
+        console.log(this.taxRate);
+        this.calculateTotalBookingCharge();     
+    },
+      error=>{
+        alert('An unexpected error occurred.');
+        console.log(error);
+    })
+  }
+
+  // getting all menus
   viewMenus(){
     this.menuService.getAllMenus()
     .subscribe(
@@ -141,6 +192,7 @@ export class CreateConfirmedBookingComponent implements OnInit {
     })  
    }
 
+  //  getting menu items of the selected menu
    selectMenu(menu){
      this.menuId=menu._id;
     this.selectedMenu=menu.name;
@@ -165,6 +217,7 @@ export class CreateConfirmedBookingComponent implements OnInit {
 
   }
 
+  // making an array of selected items
   chooseItem(event,menuCatergory,catItem){
     console.log(menuCatergory);
     if(event.checked){
@@ -203,6 +256,7 @@ export class CreateConfirmedBookingComponent implements OnInit {
     console.log(this.additionalMenuCharges);
    }
 
+  //  search client when user is typing name
    searchClient(event){
 
     console.log(this.bookingForm.get('clientId').value);
@@ -217,6 +271,7 @@ export class CreateConfirmedBookingComponent implements OnInit {
     })
   }
 
+  // getting all available services
   viewServices(){
     this.serviceService.getAllServices()
     .subscribe(
@@ -245,6 +300,8 @@ export class CreateConfirmedBookingComponent implements OnInit {
         console.log(error);
     })  
    }
+
+  //  making an array of selected services
    chooseService(event,service){
     if(event.checked){
       service.isSelected=true;
@@ -299,7 +356,7 @@ export class CreateConfirmedBookingComponent implements OnInit {
    calculateTotalBookingCharge(){
    
     this.bookingChargesbeforeTax=this.totalMenuCharge+this.serviceCharges;
-    this.taxCharge=(this.bookingChargesbeforeTax*12)/100;
+    this.taxCharge=(this.bookingChargesbeforeTax*this.taxRate)/100;
     this.totalBookingCharge=this.bookingChargesbeforeTax+this.taxCharge
    }
 
@@ -334,30 +391,30 @@ export class CreateConfirmedBookingComponent implements OnInit {
     }
 
 
-    // this.generateInvoice();
+  
 
   }
 
 
    makePayment(){
-    //  let payment={
-    //   paymentType:this.paymentType,
-    //    amount:this.amountpaying,
-    //    date:new Date(),
-    //   clientId:this.bookingForm.value.clientId
+     let payment={
+      paymentType:this.paymentType,
+       amount:this.amountpaying,
+       date:new Date(),
+      clientId:this.bookingForm.value.clientId
 
-    //  }
-    //  console.log(payment);
-    //  this.paymentService.makePayment(payment)
-    //  .subscribe(response=>{
-    //    this.payment=response;
-    //    console.log(response);
-    //    this.updateBookingTable(this.payment._id);
-    //  },
-    //   (error:Response)=>{
+     }
+     console.log(payment);
+     this.paymentService.makePayment(payment)
+     .subscribe(response=>{
+       this.payment=response;
+       console.log(response);
+       this.updateBookingTable(this.payment._id);
+     },
+      (error:Response)=>{
 
-    //  })
-    this.generateInvoice();
+     })
+    
    }
    
    updateBookingTable(paymentId){
@@ -398,6 +455,8 @@ export class CreateConfirmedBookingComponent implements OnInit {
     .subscribe(
       response=>{
       console.log(response);
+      this.bookingCreated=response;
+      this.generateInvoice(this.bookingCreated._id);
       this.router.navigate(['/home']);
       
     
@@ -414,7 +473,7 @@ export class CreateConfirmedBookingComponent implements OnInit {
   catergoriesAndItemsSorted=[];
 
 
-  generateInvoice(){
+  generateInvoice(id){
     let catergoryRawSpanCumalitive=0;
     for(let i=0;i<this.categories.length;i++){
       let catergoryRawSpan=0;
@@ -455,24 +514,7 @@ export class CreateConfirmedBookingComponent implements OnInit {
    console.log(this.rowSpanData);
    console.log(this.cumalativeRowSpanData);
 
-  //  this.invoiceItemData= this.invoiceItemData.map(row => Object.keys(row).map(key => row[key]));
-           
-  //  let rowSpanNumber=0;
-
-  //  for (var i = 0; i < this.invoiceItemData.length; i++) {
-  //          let row = this.invoiceItemData[i];
-  //          if (rowSpanNumber== 0) {
-  //            console.log(i);
-  //              row.unshift({rowSpan: this.rowSpanData[0], content: this.invoiceItemData[i].category, styles: {valign: 'middle', halign: 'left'}});
-  //              rowSpanNumber++;
-  //          }
-  //          if (this.cumalativeRowSpanData[rowSpanNumber-1]== i) {
-  //           console.log(i);
-  //             row.unshift({rowSpan: this.rowSpanData[0], content: this.invoiceItemData[i].category, styles: {valign: 'middle', halign: 'left'}});
-  //             rowSpanNumber++;
-  //         }
-  //    }
-
+ 
    
   console.log(this.bookingForm.value.clientId)
     
@@ -490,8 +532,14 @@ export class CreateConfirmedBookingComponent implements OnInit {
     doc.text("Hotel Royal Park",130,36);
     doc.text("Kiribathgoda",130,43);
     doc.text("Tel-0112829829",130,50);
+//     const imageToBase64 = require('image-to-base64');
+// imageToBase64("path/to/file.jpg")
+//     var imgData = 'data:image/jpeg;base64,'+ Base64.encode('Koala.jpeg');
+//     doc.addImage(imgData, 'JPEG', 15, 40, 180, 160);
+//     logo='/assets/images/logo.jpg';
 
     doc.text("Event Date :"+this.confirmedDate,14,60);
+    doc.text("Booking ID:"+id,130,60);
     if(this.confirmedTime=='wholeDay'){
       doc.text("Event Time :"+this.bookingForm.value.eventType,14,67);
     }
@@ -499,7 +547,7 @@ export class CreateConfirmedBookingComponent implements OnInit {
       doc.text("Event Time :"+this.confirmedTime,14,67);
     }
     doc.text("Hall:"+this.confirmedHall.name,14,74);
-    doc.text("Menu:"+this.selectMenu.name,80,82);
+    doc.text("Menu:"+this.selectedMenu,80,82);
     let head=[['Category','Items']];
 
     doc.autoTable({
@@ -521,8 +569,10 @@ export class CreateConfirmedBookingComponent implements OnInit {
       
   }, 
   });
+
+  doc.setFontSize(14);
   doc.text("Services ",14,doc.autoTable.previous.finalY+10);
-  doc.setFontSize(13);
+  doc.setFontSize(11);
  
   for(let i=0;i<this.selectedServices.length;i++){
     if(this.selectedServices[i].amount){
@@ -533,9 +583,11 @@ export class CreateConfirmedBookingComponent implements OnInit {
     }
   }
   let margin=20+(this.selectedServices.length*7)
-  doc.text("Charges.",14,doc.autoTable.previous.finalY+margin);
+  doc.setFontSize(14);
+  doc.text("Charges",14,doc.autoTable.previous.finalY+margin);
+  doc.setFontSize(11);
   doc.text("Capacity :"+this.bookingForm.value.capacity,14,doc.autoTable.previous.finalY+margin+7);
-  doc.text("Menu price=Rs."+this.menuPrice+".00 Additional charges=Rs."+this.additionalMenuPrice+".00 Total menu charge=Rs."+this.menuPrice+this.additionalMenuPrice,14,doc.autoTable.previous.finalY+margin+14);
+  doc.text("Menu price=Rs."+this.menuPrice+".00 Additional charges=Rs."+this.additionalMenuPrice+".00 Total menu charge=Rs."+(this.menuPrice+this.additionalMenuPrice),14,doc.autoTable.previous.finalY+margin+14);
   doc.text("Total Menu Charge="+this.totalMenuCharge,14,doc.autoTable.previous.finalY+margin+21);
   doc.text("Total Service Charge="+this.serviceCharges,14,doc.autoTable.previous.finalY+margin+28);
   doc.text("Total Charge Before Tax="+this.bookingChargesbeforeTax,14,doc.autoTable.previous.finalY+margin+35);
@@ -546,8 +598,6 @@ export class CreateConfirmedBookingComponent implements OnInit {
 
   // doc.text("Balance="+this.amountpaying,14,doc.autoTable.previous.finalY+margin+63);
   doc.save('Invoice.pdf');
-
-
 
   console.log(balance);
 

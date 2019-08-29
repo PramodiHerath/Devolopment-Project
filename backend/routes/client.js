@@ -23,7 +23,7 @@ router.post('/sendEmail/toclient', async (req, res) => {
  // let url='https://www.google.com/';
   
  server.send({
-    text:   "ytrytfytfyt click- "+url, 
+    text:   "Hotel Royal Park is willing to extend you the priviledged membership. To register click the link- "+url, 
     from:      "weerakkody95dilshan<weerakkody95dilshan@gmail.com>",
     to:    clientEmail, 
     //    cc:      "else <else@your-email.com>",
