@@ -23,6 +23,7 @@ const Payment=require('./routes/payment');
 const Member=require('./routes/members');
 const Rating=require('./routes/ratings');
 const Tax=require('./routes/tax');
+const HallCharge=require('./routes/hallCharge');
 const RatingReport=require('./routes/ratingReport');
 
 
@@ -67,6 +68,7 @@ app.use('/api/payment', Payment);
 app.use('/api/member', Member);
 app.use('/api/rating', Rating);
 app.use('/api/tax', Tax);
+app.use('/api/hallCharge', HallCharge);
 app.use('/api/ratingReport', RatingReport);
 
 

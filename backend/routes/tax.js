@@ -1,7 +1,8 @@
 
 const express = require('express');
 const router = express.Router();
-const {Tax} = require('../models/tax'); 
+const {Tax} = require('../models/tax');
+ 
 
 router.post('/', async (req, res) => {
    

@@ -2,6 +2,7 @@ import { BookingService } from './../services/booking.service';
 import { Component, OnInit } from '@angular/core';
 import { PaymentService } from '../services/payment.service';
 import { Router } from '@angular/router';
+import { TaxService } from '../services/tax.service';
 
 @Component({
   selector: 'closeConfirmedBookings',
@@ -25,6 +26,12 @@ export class CloseConfirmedBookingsComponent implements OnInit {
   message:String;
   paymentType;
   payingAmount=0;
+  // new
+  hallChargeRate:number=0;
+  changeHallCharge:boolean;
+  newHallCharge:number;
+  hallChargeId;
+  changedChargeObjt;
   
 
   NoOfHrs;
@@ -35,9 +42,11 @@ export class CloseConfirmedBookingsComponent implements OnInit {
   finalBalanceMessage:string;
   clientOwe:boolean;
 
-  constructor(private router:Router, private bookingService: BookingService, private paymentService:PaymentService) { }
+  constructor(private router:Router, private bookingService: BookingService, 
+    private paymentService:PaymentService,private taxService:TaxService) { }
 
   ngOnInit() {
+    this.getHallCharge();
   }
 
   
@@ -81,6 +90,55 @@ export class CloseConfirmedBookingsComponent implements OnInit {
     })
   }
 
+  getHallCharge(){
+    this.taxService.getHallCharge()
+    .subscribe(
+      response=>{
+        console.log(response);
+        this.hallChargeId=response[0]._id;
+        this.hallChargeRate=response[0].hallCharge;
+       
+         
+    },
+      error=>{
+        alert('An unexpected error occurred.');
+        console.log(error);
+    })
+  }
+
+  
+  
+  bringChangeHallCharge(){
+    this.changeHallCharge=true;
+}
+
+
+updateHallCharge(){
+  
+  let charge={
+    newHallCharge:this.newHallCharge
+  }
+  console.log(charge);
+  console.log(this.hallChargeId);
+
+  this.taxService.updateHallCharge(this.hallChargeId,charge)
+  .subscribe(
+    response=>{
+      console.log(response);
+      this.changedChargeObjt=response;
+      this.hallChargeRate=this.changedChargeObjt.hallCharge;
+      console.log(this.hallChargeRate);
+  
+        
+  },
+    error=>{
+      alert('An unexpected error occurred.');
+      console.log(error);
+  })
+}
+
+
+
   paymentCalculations(){
     this.payments.forEach((payment)=>{
                   this.totalPaidAmount+=payment.amount;
@@ -99,8 +157,9 @@ export class CloseConfirmedBookingsComponent implements OnInit {
 
 
     calculateDurationCharges(){
+      console.log(this.hallChargeRate)
       if(this.NoOfHrs>5){
-        this.durationCharge=(this.NoOfHrs-5)*50000;
+        this.durationCharge=(this.NoOfHrs-5)*this.hallChargeRate;
         console.log(this.durationCharge);
 
       }

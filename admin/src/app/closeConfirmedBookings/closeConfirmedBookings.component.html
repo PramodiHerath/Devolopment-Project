@@ -40,7 +40,21 @@
                             <h3>{{message}}</h3>
                             
                             </div>
+
+                            <h4 class="menu-para-text">Current Duration Charge: Rs. {{hallChargeRate}} </h4>
+                            <button class="btn-table"  (click)="bringChangeHallCharge()">Need to change duration charge?</button>
+                            <br>
+                            <br>
+                            <div *ngIf="changeHallCharge">
+                            <div class="form-group">
+                              <input type="text" name="newRate" [(ngModel)]="newHallCharge" id="newRate" class="form-control mb-4" placeholder="Enter new duration charge"
+                               style="height: 50px; width:35%;font-size: 15px">
+                          </div>
+                          <button class="btn-table" (click)="updateHallCharge()">change</button>
+                            </div>
+
                             <form class="border border-light p-5" (ngSubmit)="makePayment()">
+                              
                                 <div class="form-group">
                                     <input type="text" name="NoOfHrs" [(ngModel)]="NoOfHrs" id="NoOfHrs" class="form-control mb-4" placeholder="Enter the Number of Hours Event Went"
                                      style="height: 50px; width:50%;font-size: 15px" (keyup)="calculateDurationCharges()">

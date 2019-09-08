@@ -18,4 +18,15 @@ updateTaxRate(updatingId,newRate){
   return this.http.put(this.baseUrl + 'tax/'+updatingId, newRate)
 }
 
+
+getHallCharge(){
+  return this.http.get(this.baseUrl+'hallCharge')
+}
+
+
+updateHallCharge(updatingId,newHallCharge){
+  return this.http.put(this.baseUrl + 'hallCharge/'+updatingId, newHallCharge)
+}
+
+
 }
